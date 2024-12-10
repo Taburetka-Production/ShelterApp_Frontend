@@ -1,0 +1,27 @@
+body {
+    padding: 0px 50px;
+}
+
+.choose-shelter-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--blue-color)
+}
+
+.filter-container {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.filter-container .choose-on-map-btn{
+    justify-content: center;
+    width: 160px;
+}
+
+.main-shelters-div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
