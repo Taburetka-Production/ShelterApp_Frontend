@@ -19,9 +19,3 @@ body {
     justify-content: center;
     width: 160px;
 }
-
-.main-shelters-div{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
-}

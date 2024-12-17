@@ -1,0 +1,41 @@
+.main-slider-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.slider-wrapper {
+    padding: 10px 0px;
+    overflow-x: hidden;
+}
+
+.main-shelters-div {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.main-shelters-div > * {
+    flex: 0 0 calc(25% - 20px);
+    box-sizing: border-box;
+    margin: 0 10px;
+}
+
+.arrow-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid var(--blue-color);
+    border-radius: var(--btn-border-radius);
+    background-color: white;
+    color: var(--blue-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.arrow-btn:hover {
+    background-color: var(--red-color);
+    color: var(--white-color)
+}
