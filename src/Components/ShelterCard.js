@@ -2,7 +2,7 @@ import React from "react";
 import "./ShelterCard.css";
 import { Button } from "./Button";
 
-export const ShelterCard = ({ image, title, description, rating, reviews }) => {
+export const ShelterCard = ({ image, title, description, rating, reviews, onClick, className }) => {
 
   const ReviewText = ({reviews}) => {
       switch(reviews){
@@ -21,7 +21,7 @@ export const ShelterCard = ({ image, title, description, rating, reviews }) => {
       }
   }
 
-  const Star = ({ rating, children, reviews }) => {
+  const Star = ({ rating, children }) => {
     const stars = Array(5).fill(0);
 
     if (rating % 1 !== 0) {
@@ -62,7 +62,7 @@ export const ShelterCard = ({ image, title, description, rating, reviews }) => {
   };
 
   return (
-    <div className="shelter-card">
+    <div className={`shelter-card ${className}`} onClick={onClick}>
       <div className="shelter-card-img">
         <img src={image} alt="Shelter"/>
       </div>

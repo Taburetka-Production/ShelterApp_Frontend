@@ -17,9 +17,9 @@
 }
 
 .main-shelters-div > * {
-    flex: 0 0 calc(25% - 20px);
+    flex: 0 0 calc(25% - 30px);
     box-sizing: border-box;
-    margin: 0 10px;
+    margin: 0 15px;
 }
 
 .arrow-btn {
