@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--yellow-color);
+    padding: 10px 20px;
+    color: var(--blue-color);
+    font-family: Roboto;
+}
+
+.header-logo {
+    font-size: 18px;
+}
+
+.header-icons {
+    display: flex;
+  align-items: center; /* Vertically aligns icons */
+  gap: 10px;
+}
+.header i {
+    font-size: 32px; 
+    color: var(--blue-color); 
+    cursor: pointer; 
+  }
+
+
