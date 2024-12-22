@@ -6,12 +6,9 @@ import MainPage from './Pages/MainPage';
 function App() {
   return (
     <Router>
-      <nav>
-        <Link to="/">Main Page</Link>
-        <Link to="/shelters">Shelters Page</Link>
-      </nav>
+     
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/mainpage" element={<MainPage />} />
         <Route path="/shelters" element={<SheltersPage />} />
       </Routes>
     </Router>

@@ -2,10 +2,18 @@ import React from 'react';
 import './Header.css';
 
 export const Header = () => {
+
+    const handleIconClicked = (iconName) => {
+        console.log(`${iconName} icon clicked!`);
+    }
     return (
         <header className = "header">
             <div className="header-menu">
-                <i className="fas fa-bars"></i>
+
+                <button onClick={() => handleIconClicked('menu')} className="header-menu icon-style">
+                    <i className="fas fa-bars"></i>
+                </button>
+
             </div>
 
             <div className="header-logo">
@@ -13,11 +21,17 @@ export const Header = () => {
             </div>
 
             <div className="header-icons">
-            <i className="far fa-bookmark"></i>
-                <i className="far fa-heart"></i>
-                <i className="far fa-user"></i>
-                
+                <button onClick={() => handleIconClicked('bookmark')} className="header-icons icon-style">
+                    <i className="far fa-bookmark"></i>
+                </button>
+                <button onClick={() => handleIconClicked('heart')} className="header-icons icon-style">
+                    <i className="far fa-heart"></i>
+                </button>
+                <button onClick={() => handleIconClicked('user')} className="header-icons icon-style">
+                    <i className="far fa-user"></i>
+                </button>
             </div>
+
         </header>
     )
 }
