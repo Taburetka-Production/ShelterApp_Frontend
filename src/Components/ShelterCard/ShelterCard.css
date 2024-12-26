@@ -1,0 +1,54 @@
+.shelter-card {
+    border: 1px solid #ddd;
+    border-radius: var(--btn-border-radius);
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+  
+.shelter-card-img img {
+    width: 100%;
+    height: auto;
+}
+  
+.shelter-card-content {
+    padding: 12px 16px;
+    color: var(--blue-color);
+}
+  
+.shelter-card-content h3 {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+  
+.shelter-card-content p {
+    font-size: 0.9em;
+}
+  
+.shelter-card-rating {
+    display: flex;
+    align-items: center;
+    margin: 12px 0px 12px 0px;
+    width: 100%;
+    font-size: 14px;
+    gap: 5px;
+}
+.shelter-card-rating span {
+    display: flex;
+    align-items: center;
+}
+.star-span {
+    display: flex;
+    gap: 1px;
+}
+
+.shelter-card-content .view-more-btn{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.star{
+    width: 18px;
+    height: auto;
+}

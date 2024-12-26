@@ -1,8 +1,14 @@
 import React from 'react';
-import "./index.css"
+import { Footer } from "../../Components/Footer/Footer.js";
+import { Header } from "../../Components/Header/Header.js";
 
 const MainPage = () => {
-  return <h1>Main Page</h1>;
+  return (
+    <div className="all-page">
+      <Header></Header>
+      <Footer></Footer>
+    </div>
+  );
 }
 
 export default MainPage;

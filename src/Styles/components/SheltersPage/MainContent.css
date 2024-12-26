@@ -1,0 +1,32 @@
+body {
+    padding: 0px 50px;
+}
+
+.choose-shelter-text h1{
+    font-size: 32px;
+    font-weight: bold;
+    padding: 20px 0px;
+    margin-bottom: 40px;
+}
+
+.main-content{
+    padding: 0px 50px;
+}
+
+.choose-shelter-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--blue-color)
+}
+
+.filter-container {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.filter-container .choose-on-map-btn{
+    justify-content: center;
+    width: 160px;
+}
