@@ -1,9 +1,10 @@
 import React from 'react';
+import { FaSearch } from "react-icons/fa";
 import './SearchBar.css';
 
 export const SearchBar = ({ placeholder }) => (
   <div className="search-bar">
-    <i className="fas fa-search"></i>
+    <FaSearch className="fa-search"/>
     <input type="text" placeholder={placeholder} />
   </div>
 );

@@ -1,17 +1,16 @@
 import React from 'react';
-import "./index.css"
-import  { Header }  from "../../Components/Header.js";
-import  { Footer }  from "../../Components/Footer.js";
+import { Footer } from "../../Components/Footer/Footer.js";
+import { Header } from "../../Components/Header/Header.js";
+import { MainContent } from "../../Components/mainPage/MainContent.js";
 
 const MainPage = () => {
   return (
-  <div className="all-page">
-        <div></div>
-        <Header></Header>
-        <Footer></Footer>
-      </div>
-  )
-  
+    <div className="all-page">
+      <Header></Header>
+      <MainContent></MainContent>
+      <Footer></Footer>
+    </div>
+  );
 }
 
 export default MainPage;

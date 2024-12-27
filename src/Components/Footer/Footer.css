@@ -4,29 +4,30 @@
     justify-content: center;
     align-items: center;
     padding: 20px 0;
+    padding-top: 10px;
+    height: 200px;
 }
 
 .footer-items h1 {
     color: var(--blue-color);
     font-family: Roboto;
-    font-size: 36px;
-    margin-bottom: 25px; 
-    padding-left: 185px;
+    font-size: 32px;
+    margin-bottom: 30px; 
+    padding-left: 195px;
 }
 
 .footer-links {
     list-style: none; 
     display: flex; 
     justify-content: space-around; 
-    gap: 40px;
-    padding-right: 100px;
+    gap: 70px;
     margin: 0;
 }
 
 .footer-links a {
-    text-decoration: none; 
+    text-decoration: none;
     color: var(--blue-color);
-    font-size: 18px;
+    font-size: 16px;
 
 }
 

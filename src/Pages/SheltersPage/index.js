@@ -1,16 +1,14 @@
 import React from "react";
-import "./index.css"
-import { TopSlider } from "./TopSlider";
-import { MainContent } from "./MainContent";
-import  { Header }  from "../../Components/Header.js";
-import  { Footer }  from "../../Components/Footer.js";
+import { Footer } from "../../Components/Footer/Footer.js";
+import { Header } from "../../Components/Header/Header.js";
+import { MainContent } from "../../Components/SheltersPage/MainContent.js";
+import { TopSlider } from "../../Components/SheltersPage/TopSlider.js";
 
 const SheltersPage = () => {
   return (
-    <div className="all-page">
-      <div></div>
+    <div className="all-shelters-page">
       <Header></Header>
-      <TopSlider></TopSlider> 
+      <TopSlider></TopSlider>
       <MainContent></MainContent>
       <Footer></Footer>
     </div>
