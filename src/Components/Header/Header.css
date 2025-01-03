@@ -1,3 +1,22 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
 .icon-style {
   background: none;
   border: none;
@@ -26,6 +45,60 @@
     height: 50px;
 }
 
+.header-menu {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  width: 140px;
+  height: 130px;
+  border-radius: var(--btn-border-radius);
+  top: 199%; 
+  left: 0;
+  margin-left: -20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 10px;
+  z-index: 1000;
+  
+}
+.dropdown-menu a{
+text-decoration: none;
+color: var(--blue-color);
+--s: 0.1em;   /* the thickness of the line */
+  padding-bottom: var(--s);
+  background: 
+    linear-gradient(90deg,var(--hover-text-color) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+    linear-gradient(var(--hover-text-color) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+  -webkit-background-clip: text,padding-box;
+          background-clip: text,padding-box;
+  transition: 0.5s;
+}
+
+.dropdown-menu a:hover{
+  --_p: 100%
+}
+
+.dropdown-menu.open {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+
+.dropdown-menu.close {
+  animation: fadeOut 0.4s ease forwards;
+  transform: translateY(-10px);
+}
+
+.dropdown-menu li {
+  margin-left: 10px;
+}
+
 .header-logo {
     font-size: 32px;
     padding-left: 80px;
@@ -44,8 +117,11 @@
   }
   
   .header i:hover {
-    color:#5b7fdb;
+    color: var(--hover-text-color);
   }
+  
+
+  
 
   
   

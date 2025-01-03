@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoFilterSharp } from "react-icons/io5";
 import "../../styles/components/SheltersPage/Dropdown.css";
 import { Button } from "../Button";
@@ -34,12 +34,12 @@ export const Dropdown = () => {
 
   return (
     <div className="filter-menu" ref={dropdownRef}>
-      <Button onClick={() => setIsOpen(!isOpen)}>
+      <Button onClick={() => setIsOpen(!isOpen)} className={``}>
         <IoFilterSharp className="filter-icon"/>
         Filters
       </Button>
       {isOpen && (
-        <div className={`dropdown-filter-open fadeIn animated`}>
+        <div className={`dropdown-filter-open DropdownFadeIn animated`}>
           <SearchBar placeholder="Search" />
           <Rating />
           <Region />

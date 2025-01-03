@@ -23,7 +23,6 @@ input[type="checkbox"] {
     margin-right: 6px;
     accent-color: var(--blue-color);
     border: 2px solid #e40000;
-
 }
 
 .region-list::-webkit-scrollbar {

@@ -43,7 +43,7 @@
 }
 
 
-@keyframes fadeIn {
+@keyframes DropdownFadeIn {
   from {
     opacity: 0;
     transform: translateY(-10px);
@@ -60,6 +60,6 @@
   animation-fill-mode: forwards;
 }
 
-.fadeIn {
-  animation-name: fadeIn;
+.DropdownFadeIn {
+  animation-name: DropdownFadeIn;
 }

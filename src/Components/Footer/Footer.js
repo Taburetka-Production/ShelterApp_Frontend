@@ -4,10 +4,10 @@ import "./Footer.css";
 
 export const Footer = () => {
   const items = [
-    { id: 1, name: "Main page", path: "/" },
+    { id: 1, name: "Main page", path: "/mainpage" },
     { id: 2, name: "Shelters", path: "/shelters" },
-    { id: 3, name: "Sign up", path: "/signup" },
-    { id: 4, name: "Sign in", path: "/signin" },
+    { id: 3, name: "Sign up", path: "/authorization" },
+    { id: 4, name: "Sign in", path: "/authorization" },
   ];
 
   return (

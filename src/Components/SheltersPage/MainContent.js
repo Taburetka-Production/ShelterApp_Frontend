@@ -1,8 +1,7 @@
-import React from "react";
 import "../../styles/components/SheltersPage/MainContent.css";
 import { Button } from "../Button.js";
+import { AllSheltersList } from "./AllSheltersList.js";
 import { Dropdown } from "./Dropdown.js";
-import { HorizontalSlider } from "./HorizontalSlider.js";
 
 export const MainContent = () => {
   return (
@@ -14,7 +13,7 @@ export const MainContent = () => {
         <Dropdown />
         <Button className="choose-on-map-btn">Choose on map</Button>
       </div>
-      <HorizontalSlider />
+      <AllSheltersList />
     </div>
   );
 };
