@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../styles/components/mainPage/FirstSection.css";
+import "../../styles/components/MainPage/FirstSection.css";
 
 export const FirstSection = () => {
     return (

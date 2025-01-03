@@ -1,18 +1,26 @@
 .shelter-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     border: 1px solid #ddd;
     border-radius: var(--btn-border-radius);
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
-  
+
 .shelter-card-img img {
-    width: 100%;
-    height: auto;
+    width: 300px;
+    height: 200px;
+    /* object-fit: cover; */
 }
   
 .shelter-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 12px 16px;
     color: var(--blue-color);
+    height: 100%;
 }
   
 .shelter-card-content h3 {

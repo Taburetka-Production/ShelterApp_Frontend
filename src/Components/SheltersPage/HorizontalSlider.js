@@ -3,21 +3,25 @@ import React, { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import "../../styles/components/SheltersPage/HorizontalSlider.css";
 import { ShelterCard } from "../ShelterCard/ShelterCard.js";
+import { SkeletonCard } from "./SkeletonCard.js";
+import { axiosInstance } from "../../App.tsx";
+import { ShelterAppApi, SheltersApi } from "../../generated-client/api.ts";
 
 export const HorizontalSlider = () => {
   const [shelters, setShelters] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    axios
-      .get("/shelters.json")
-      .then((response) => {
-        setShelters(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching shelters:", error);
-      });
-  }, []);
+    (async () => { 
+      const apiInstance = new SheltersApi(undefined, '', axiosInstance);
+      const {data} = await apiInstance.sheltersGet();
+      setShelters(data)
+    })() 
+  }, [])
+
+  for(let i = 0; i < shelters.length; i++){
+    console.log(shelters[i]);
+  }
 
   const itemsPerPage = 4;
   const totalPages = Math.ceil(shelters.length / itemsPerPage);
@@ -52,17 +56,17 @@ export const HorizontalSlider = () => {
             transform: `translateX(-${currentIndex * 100}%)`,
           }}
         >
-          {shelters.map((shelter) => (
+          {!!shelters.length ? shelters.map((shelter) => (
             <ShelterCard
               key={shelter.id}
-              image={shelter.image}
-              title={shelter.title}
+              image={shelter.imageUrl}
+              title={shelter.name}
               description={shelter.description}
               rating={shelter.rating}
-              reviews={shelter.reviews}
+              reviews={shelter.reviewsCount}
               className={``}
             />
-          ))}
+          )) : Array.from({length:4}).map(() => (<SkeletonCard />))}
         </div>
       </div>
       <div>

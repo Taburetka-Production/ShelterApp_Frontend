@@ -30,11 +30,10 @@ export const ShelterCardForSlider = ({
       : currentIndex >= length - 2 && index <= 1 - (length - 1 - currentIndex)
       ? classNames[index + 3 + (length - 1 - currentIndex)]
       : "");
-  console.log(index, className);
 
   return (
     <div className={`shelter-card ${className}`}>
-      <div className="shelter-card-img">
+      <div className="shelter-card-img top">
         <img src={image} alt="Shelter" />
       </div>
       <div className="shelter-card-content">

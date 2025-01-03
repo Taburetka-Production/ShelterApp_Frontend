@@ -6,6 +6,7 @@
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-syntax-flow": "^7.26.0",
     "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@openapitools/openapi-generator-cli": "^2.15.3",
     "@reduxjs/toolkit": "^2.5.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^5.17.0",
@@ -24,6 +25,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "codegen": "npx openapi-generator-cli generate -i ./api.json -g typescript-axios -o ./src/generated-client && echo 'Hello from Andrew Pohribniak'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

@@ -24,8 +24,8 @@ export const TopSlider = () => {
   const handleRender = (shelter, index) => (
     <ShelterCardForSlider
       key={index}
-      image={shelter.image}
-      title={shelter.title}
+      image={shelter.imageUrl}
+      title={shelter.name}
       index={index}
       length={shelters.length}
       currentIndex={currentIndex}

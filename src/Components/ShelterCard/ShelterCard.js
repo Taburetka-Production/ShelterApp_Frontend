@@ -19,13 +19,19 @@ export const ShelterCard = ({
         <img src={image} alt="Shelter" />
       </div>
       <div className="shelter-card-content">
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <div className="shelter-card-rating">
-          <Star rating={rating}>{reviews > 0 ? `(${rating} stars)` : ``}</Star>
-          <ReviewText reviews={reviews} />
+        <div>
+          <h3>{title}</h3>
+          <p>{description}</p>
         </div>
-        <Button className="view-more-btn">View more</Button>
+        <div>
+          <div className="shelter-card-rating">
+            <Star rating={rating}>
+              {reviews > 0 ? `(${rating} stars)` : ``}
+            </Star>
+            <ReviewText reviews={reviews} />
+          </div>
+          <Button className="view-more-btn">View more</Button>
+        </div>
       </div>
     </div>
   );
