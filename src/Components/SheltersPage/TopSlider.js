@@ -6,7 +6,7 @@ import { ShelterCardForSlider } from "./ShelterCardForSlider.js";
 
 export const TopSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLocked, setIsLocked] = useState(false);
+  const [isLocked, setIsLocked] = useState(true);
   const [shelters, setShelters] = useState([]);
   const timeout = useRef(undefined);
 
@@ -14,10 +14,16 @@ export const TopSlider = () => {
     axios
       .get("/shelters.json")
       .then((response) => {
-        setShelters(response.data);
+        const sortedShelters = response.data
+          .sort((a, b) => (a.rating < b.rating ? 1 : -1))
+          .slice(0, 8);
+        setShelters(sortedShelters);
       })
       .catch((error) => {
         console.error("Error fetching shelters:", error);
+      })
+      .finally(() => {
+        setIsLocked(false);
       });
   }, []);
 
@@ -31,7 +37,7 @@ export const TopSlider = () => {
       currentIndex={currentIndex}
       description={shelter.description}
       rating={shelter.rating}
-      reviews={shelter.reviews}
+      reviews={shelter.reviewsCount}
     />
   );
 
@@ -51,6 +57,8 @@ export const TopSlider = () => {
     setStateWithTimeout((currentIndex - 1 + shelters.length) % shelters.length);
 
   return (
+    // <div className="top-slider-container">
+    //   <h2>Most popular shelters</h2>
     <div className="slider">
       <button className="top-slider-arrow-btn left" onClick={pressPrevious}>
         <IoIosArrowBack className="arrow back" />
@@ -60,5 +68,6 @@ export const TopSlider = () => {
         <IoIosArrowForward className="arrow forward" />
       </button>
     </div>
+    // </div>
   );
 };

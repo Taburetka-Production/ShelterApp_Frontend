@@ -20,45 +20,47 @@ export const AllSheltersList = () => {
 
   useEffect(() => {
     (async () => {
-      axios.get("/shelters.json").then((response) => {setShelters(response.data)})
+      axios.get("/shelters.json").then((response) => {
+        setShelters(response.data);
+      });
     })();
   }, []);
-
-  for (let i = 0; i < shelters.length; i++) {
-    console.log(shelters[i]);
-  }
 
   const pressButton = () => {
     setVisibleShelters((prev) => prev + 8);
   };
 
+  const pressCloseButton = () => {
+    setVisibleShelters(4);
+  };
+
   return (
     <div className="main-slider-container">
-        <div className="main-shelters-div">
-          {!!shelters.length
-            ? shelters
-                .slice(0, visibleShelters)
-                .map((shelter, index) => (
-                  <div className="card-container animation-card"
-                  >
-                    <ShelterCard
-                      key={shelter.id}
-                      image={shelter.imageUrl}
-                      title={shelter.name}
-                      description={shelter.description}
-                      rating={shelter.rating}
-                      reviews={shelter.reviewsCount}
-                      className={``}
-                    />
-                  </div>
-                ))
-            : Array.from({ length: 4 }).map(() => <SkeletonCard />)}
-        </div>
-        <div className="view-more-shelters-button-container">
-      <button onClick={pressButton} className="view-more-shelters-button">
-        View more
-      </button>
-        </div>
+      <div className="main-shelters-div">
+        {!!shelters.length
+          ? shelters.slice(0, visibleShelters).map((shelter) => (
+              <div className="card-container animation-card">
+                <ShelterCard
+                  key={shelter.id}
+                  image={shelter.imageUrl}
+                  title={shelter.name}
+                  description={shelter.description}
+                  rating={shelter.rating}
+                  reviews={shelter.reviewsCount}
+                  className={``}
+                />
+              </div>
+            ))
+          : Array.from({ length: 4 }).map(() => <SkeletonCard />)}
+      </div>
+      <div className="view-more-shelters-button-container">
+        <button onClick={pressButton} className="view-more-shelters-button">
+          View more
+        </button>
+        <button onClick={pressCloseButton} className="close-shelters-button">
+          Close
+        </button>
+      </div>
     </div>
   );
 };

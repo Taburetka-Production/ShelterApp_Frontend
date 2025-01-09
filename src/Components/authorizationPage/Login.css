@@ -1,0 +1,8 @@
+.remember-me-forgot-password-div{
+    display: flex;
+    justify-content: space-between;
+}
+.remember-me-forgot-password-div p{
+    text-decoration-line: underline;
+    cursor: pointer;
+}

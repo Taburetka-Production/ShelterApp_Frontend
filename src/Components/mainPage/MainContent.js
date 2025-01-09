@@ -5,10 +5,10 @@ import { SecondSection } from "./SecondSection.js";
 
 export const MainContent = () => {
     return (
-        <dic class = "all-sections">
+        <div className = "all-sections">
             <FirstSection></FirstSection>
             <SecondSection></SecondSection>
-        </dic>
+        </div>
         
     )
 }

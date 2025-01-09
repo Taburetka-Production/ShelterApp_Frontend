@@ -1,11 +1,10 @@
-import React from "react";
 import "../../styles/components/authorizationPage/MainContent.css";
-
+import { Auth } from "./Auth.js";
 
 export const MainContent =() => {
     return (
-        <dic class = "all-sections">
-        </dic>
-        
+        <div className = "all-section">
+        <Auth />
+        </div>
     )
 }

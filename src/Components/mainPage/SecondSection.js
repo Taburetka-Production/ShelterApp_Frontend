@@ -5,7 +5,7 @@ import "../../styles/components/mainPage/SecondSection.css";
 
 export const SecondSection = () => {
     return (
-    <div class = "second-section">
+    <div className = "second-section">
         <div className = "second-section-img">
             Image
         </div>

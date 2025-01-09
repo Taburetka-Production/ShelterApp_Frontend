@@ -36,6 +36,7 @@
     margin-top: 50px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .view-more-shelters-button{
@@ -50,4 +51,13 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     cursor: pointer;
     font-weight: bold;
+}
+
+.close-shelters-button{
+    background-color: white;
+    padding: 0;
+    color: var(--blue-color);
+    cursor: pointer;
+    border: none;
+    margin-left: 24px;
 }

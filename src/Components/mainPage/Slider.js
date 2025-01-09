@@ -3,6 +3,6 @@ import "../../styles/components/mainPage/Slider.css";
 
 export const Slider = () => {
     return (
-        <div class = "slider">Slider</div>
+        <div className = "slider">Slider</div>
     )
 }
