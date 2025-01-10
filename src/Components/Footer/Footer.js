@@ -11,7 +11,8 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="footer">
+    <footer class="footer">
+
       <div className="footer-items">
         <h1>Logo</h1>
         <ul className="footer-links">
@@ -22,6 +23,13 @@ export const Footer = () => {
           ))}
         </ul>
       </div>
+      
+      <div className = "footer-photo-container">
+        <img src="/images/10.png" alt="Description" />
+        <img src="/images/11.png" alt="Description" />
+      </div>
+      
+
     </footer>
   );
 };

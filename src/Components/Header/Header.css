@@ -38,11 +38,45 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--yellow-color);
     padding: 10px 20px;
     color: var(--blue-color);
     font-family: Roboto;
-    height: 50px;
+    height: 60px;
+}
+
+.header-divider-left {
+  position: absolute;
+  height: 1px; 
+  width: 40%; 
+  background-color: var(--blue-color); 
+  margin-top: 45px;
+  z-index: 500;
+}
+
+.header-divider-right {
+  position: absolute;
+  height: 1px; 
+  width: 40%; 
+  background-color: var(--blue-color); 
+  margin-top: 45px;
+  margin-left: 58%;
+  z-index: 500;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  font-size: 32px;
+  margin-top: 45px;
+  background-color: var(--white-color);
+  z-index: 1000;
+    
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .header-menu {
@@ -57,9 +91,9 @@
   width: 140px;
   height: 130px;
   border-radius: var(--btn-border-radius);
-  top: 199%; 
+  top: 157%; 
   left: 0;
-  margin-left: -20px;
+  margin-left: -10px;
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -86,28 +120,18 @@ color: var(--blue-color);
 }
 
 .dropdown-menu.open {
-  animation: fadeIn 0.4s ease forwards;
+  animation: fadeIn 0.4s ease-out;
+  transform: translateX(-10px);
 }
 
 
 .dropdown-menu.close {
   animation: fadeOut 0.4s ease forwards;
-  transform: translateY(-10px);
+  transform: translateX(-10px);
 }
 
 .dropdown-menu li {
   margin-left: 10px;
-}
-
-.header-logo {
-    font-size: 32px;
-    padding-left: 80px;
-}
-
-.header-icons {
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .header i {
@@ -120,6 +144,25 @@ color: var(--blue-color);
     color: var(--hover-text-color);
   }
   
+  ::-webkit-scrollbar {
+    width: 10px; 
+    height: 10px; 
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 8px; 
+  }
+  
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--blue-color); 
+    border-radius: 8px; 
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--hover-text-color); 
+  }
 
   
 

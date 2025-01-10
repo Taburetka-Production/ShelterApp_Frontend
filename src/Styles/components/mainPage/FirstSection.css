@@ -2,32 +2,74 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 650px;
+    height: 600px;
 }
 
 .first-section-group {
+    position: absolute;
     display:flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-evenly;
     gap: 30px;
     margin-left: 50px;
+    z-index: 100;
+    left: 150px;
+    top: 250px;
+    color: var(--blue-color);
     
 }
 
 .first-section h1 {
+    width: 40%;
     font-size: 60px;
     font-family: Roboto;
 }
 
 .first-section-text {
     font-size: 20px;
-    width: 50%;
+    width: 30%;
 }
 
 .first-section .first-section-btn {
     display: flex;
     justify-content: center;
     width: 170px;
+    background-color: var(--blue-color);
+    border-color: var(--blue-color);
    
+}
+
+.first-section .first-section-btn:hover {
+    
+    background-color: transparent;
+    color: var(--blue-color);
+}
+
+.first-section-photo-container {
+    position: relative; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    gap: 5%; 
+    width: 100%;
+}
+
+.first-section-photo-container img {
+    height: auto;
+    width: 600px;
+    
+}
+
+.first-section-animal-container {
+    position: absolute;
+    display:flex;
+    top: 117px;
+    left: 500px;
+
+}
+
+.first-section-animal-container img {
+    height: 600px;
+    width: auto;
 }

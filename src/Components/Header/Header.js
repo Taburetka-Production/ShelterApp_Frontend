@@ -64,23 +64,14 @@ export const Header = () => {
         )}
       </div>
 
+      <div className="header-divider-left"></div>
+      <div className="header-divider-right"></div>
+
       <div className="header-logo">
-        <h1 className="logo">Logo</h1>
+          <h1>Logo</h1>
       </div>
 
       <div className="header-icons">
-        <button
-          onClick={() => handleIconClicked("bookmark")}
-          className="header-icons icon-style"
-        >
-          <i className="far fa-bookmark"></i>
-        </button>
-        <button
-          onClick={() => handleIconClicked("heart")}
-          className="header-icons icon-style"
-        >
-          <i className="far fa-heart"></i>
-        </button>
         <button
           onClick={() => handleIconClicked("user")}
           className="header-icons icon-style"

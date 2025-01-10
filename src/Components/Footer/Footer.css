@@ -1,11 +1,17 @@
 .footer {
+    position: relative;
     display: flex;
     flex-direction: column; 
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    padding-top: 10px;
+    padding-top: 100px;
     height: 200px;
+}
+
+.footer-items {
+    position: absolute;
+    z-index: 100;
 }
 
 .footer-items h1 {
@@ -43,3 +49,14 @@
 .footer-links a:hover {
     --_p: 100%; 
 }
+
+.footer-photo-container {
+    position: relative; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    gap: 5%; 
+    width: 100%;
+}
+
+

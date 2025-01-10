@@ -1,0 +1,12 @@
+.statistic-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 300px;
+    padding-top: 70px;
+}
+.statistic-section-photo-container img{
+    height: auto;
+    width: 25%;
+}
