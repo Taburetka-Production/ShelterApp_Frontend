@@ -1,12 +1,44 @@
 .statistic-section {
-    position: relative;
     display: flex;
+    justify-content: space-around;
     align-items: center;
-    flex-direction: row;
-    height: 300px;
-    padding-top: 70px;
+    padding: 100px 0;
+    gap: 20px;
 }
-.statistic-section-photo-container img{
-    height: auto;
-    width: 25%;
+
+.statistic-section-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 2px solid #ff5722; 
+    border-radius: 8px;
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+}
+
+.statistic-section-item .circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ff5722; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.statistic-section-item h1 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.statistic-section-item .text {
+    font-size: 20px;
+    color: var(--blue-color);
+    margin: 20px 0 0 0;
 }

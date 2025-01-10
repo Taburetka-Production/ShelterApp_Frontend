@@ -11,7 +11,7 @@ export const MainContent = () => {
         <div className = "all-sections">
             <FirstSection></FirstSection>
             <StatisticSection></StatisticSection>
-            <SecondSection></SecondSection>
+            {/*<SecondSection></SecondSection>*/}
             <ThirdSection></ThirdSection>
         </div>
         
