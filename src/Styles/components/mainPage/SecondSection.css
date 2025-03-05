@@ -1,4 +1,4 @@
-.second-section {
+.main-page__second-section {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -7,13 +7,13 @@
     z-index: 150;
 }
 
-.second-section-img {
+.main-page__second-section-img {
     display: flex;
     width: 100%;
     justify-content: center;
 }
 
-.second-section-group {
+.main-page__second-section-group {
     display:flex;
     flex-direction: column;
     align-items: flex-start;
@@ -23,19 +23,18 @@
     
 }
 
-.second-section h1 {
+.main-page__second-section h1 {
     font-size: 60px;
     font-family: Roboto;
 }
 
-.second-section-text {
+.main-page__second-section-text {
     font-size: 20px;
     width: 60%;
 }
 
-.second-section .second-section-btn {
+.main-page__second-section .main-page__second-section-btn {
     display: flex;
     justify-content: center;
     width: 170px;
-   
 }

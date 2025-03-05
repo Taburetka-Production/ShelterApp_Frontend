@@ -11,8 +11,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer class="footer">
-
+    <footer className="footer">
       <div className="footer-items">
         <h1>Logo</h1>
         <ul className="footer-links">
@@ -23,13 +22,11 @@ export const Footer = () => {
           ))}
         </ul>
       </div>
-      
-      <div className = "footer-photo-container">
-        <img src="/images/10.png" alt="Description" />
-        <img src="/images/11.png" alt="Description" />
-      </div>
-      
 
+      {/* <div className = "footer-photo-container" style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/11.png)` }}>
+        {/* <img src="/images/10.png" alt="Description" /> }
+        {/* <img src="/images/11.png" alt="Description" /> }
+      </div> */}
     </footer>
   );
 };

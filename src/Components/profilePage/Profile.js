@@ -1,31 +1,29 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink , Outlet, useNavigate } from "react-router-dom";
+import "./Profile.css";
+import { BiLogOut } from "react-icons/bi";
 
 export const Profile = () => {
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState(null);
   const [error, setError] = useState("");
-  const [navigateOnProfile, setnavigateOnProfile] = useState("");
 
   const fetchProfile = async () => {
-    try {
-      const accessToken = localStorage.getItem("accessToken");
-      if (!accessToken) {
-        throw new Error("Please log in.");
-      }
-      const response = await axios.get("https://localhost:7118/api/UserInfo", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching profile:", error);
-      throw error;
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      throw new Error("Please log in.");
     }
+  
+    const response = await axios.get("https://localhost:7118/api/UserInfo", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+  
+    return response.data;
   };
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,13 +33,14 @@ export const Profile = () => {
         setError(err.message);
       }
     };
+  
     fetchData();
   }, []);
-
+  
   if (error) {
     return <div>{error}</div>;
   }
-
+  
   if (!profileData) {
     return <div>Loading...</div>;
   }
@@ -55,21 +54,41 @@ export const Profile = () => {
   return (
     <div className="profile-page">
       <div className="profile-container">
-        <h1>Welcome, {profileData.userName}!</h1>
-        <div className="profile-side">
-          <div className="profile-personal-div">
-            <h2>{profileData.userName}</h2>
+        <h2>Welcome {profileData.userName}</h2>
+        <div className="profile-wrapper">
+          <div className="profile-side">
+            <div className="profile-side user">
+              <div className="profile-user-photo">
+              <img src={profileData.avatarUrl ? profileData.avatarUrl : `${process.env.PUBLIC_URL}/images/user.png`} alt="You"/>
+                <input type="file" accept="image/*" style={{ display: "none" }}></input>
+              </div>
+              <div className="profile-user-information">
+                <h2>{profileData.userName}</h2>
+              </div>
+            </div>
+            <div className="profile-side navigation">
+              <nav>
+                <ul>
+                  <li>
+                    <NavLink  to="/profile/" className={({ isActive }) => (isActive ? 'link active' : 'link')} end>Profile Info</NavLink >
+                  </li>
+                  <li className="profile-nav-element">
+                    <NavLink  to="/profile/pets" className={({ isActive }) => (isActive ? 'link active' : 'link')}>Pets</NavLink >
+                  </li>
+                  <li className="profile-nav-element">
+                    <NavLink  to="/profile/transactions" className={({ isActive }) => (isActive ? 'link active' : 'link')}>Transactions</NavLink >
+                  </li>
+                  <li className="profile-nav-element">
+                    <NavLink  to="/profile/tracked" className={({ isActive }) => (isActive ? 'link active' : 'link')}>Tracked</NavLink >
+                  </li>
+                </ul>
+                <button onClick={() => handleLogout()} className="profile-logout-btn"><BiLogOut className="logout-icon"/>Logout</button>
+              </nav>
+            </div>
           </div>
-          <div className="profile-option-list">
-            <button>Add shelter</button>
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#"></a>
+          <div className="profile-content">
+            <Outlet />
           </div>
-          <button onClick={handleLogout}>Вийти</button>
-        </div>
-        <div className="profile-content">
-          <p>Email: {profileData.email}</p>
         </div>
       </div>
     </div>

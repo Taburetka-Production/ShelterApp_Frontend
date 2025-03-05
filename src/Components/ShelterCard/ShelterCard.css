@@ -6,10 +6,12 @@
     border-radius: var(--btn-border-radius);
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 430px;
 }
 
 .shelter-card-img img {
-    width: 300px;
+    /* width: 300px; */
+    width: 100%;
     height: 200px;
 }
   

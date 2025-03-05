@@ -1,4 +1,4 @@
-.third-section {
+.main-page__third-section {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -6,7 +6,7 @@
     padding-top: 100px;
 }
 
-.third-section-group {
+.main-page__third-section-group {
     position: absolute;
     display:flex;
     flex-direction: column;
@@ -15,18 +15,16 @@
     z-index: 100;
     top: 360px;
     left: -750px;
-    
-    
 }
 
-.third-section h1 {
+.main-page__third-section h2 {
     font-size: 50px;
     width: 30%;
     font-family: Roboto;
     color: var(--cream-color);
 }
 
-.third-section-text {
+.main-page__third-section-text {
     align-content: center;
     font-size: 20px;
     width: 30%;
@@ -34,18 +32,18 @@
     color: var(--cream-color);
 }
 
-.third-section .third-section-btn {
+.main-page__third-section .main-page__third-section-btn {
     display: flex;
     justify-content: center;
     width: 170px;
 }
 
-.third-section-photo-container {
+.main-page__third-section-photo-container {
     display: flex;
     flex-direction: column;
 }
 
-.third-section-first {
+.main-page__third-section-first {
     opacity: 0;
     position: relative;
     height: auto;
@@ -54,14 +52,14 @@
     top: -70px;
     
 }
-.third-section-second {
+.main-page__third-section-second {
     position: relative;
     height: auto;
     width: 110%;
     top: -200px;
 }
 
-.third-section-animal-container {
+.main-page__third-section-animal-container {
     position: absolute;
     display:flex;
     top: -200px;
@@ -69,7 +67,7 @@
 
 }
 
-.third-section-animal-container img {
+.main-page__third-section-animal-container img {
     height: 900px;
     width: auto;
 }

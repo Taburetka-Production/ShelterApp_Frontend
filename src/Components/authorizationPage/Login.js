@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { MdEmail } from "react-icons/md";
+import { FaLock } from "react-icons/fa";
 
 export const Login = ({ switchToRegister }) => {
   const navigate = useNavigate();
@@ -13,7 +15,7 @@ export const Login = ({ switchToRegister }) => {
 
   const submitForm = (e) => {
     e.preventDefault();
-  
+
     axios
       .post("https://localhost:7118/login", {
         email: data.email,
@@ -21,23 +23,22 @@ export const Login = ({ switchToRegister }) => {
       })
       .then((response) => {
         const { accessToken, refreshToken } = response.data;
-  
+
         if (accessToken && refreshToken) {
           localStorage.setItem("accessToken", accessToken);
           localStorage.setItem("refreshToken", refreshToken);
           console.log("Tokens saved successfully!");
         }
-  
+
         console.log("Login Successful:", response.data);
         setError("");
-        navigate('/profile')
+        navigate("/profile");
       })
       .catch((error) => {
         setError(error.response?.data?.message || "An error occurred.");
         console.error("Login Error:", error);
       });
   };
-  
 
   const inputData = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -50,22 +51,26 @@ export const Login = ({ switchToRegister }) => {
           <h2>Welcome back</h2>
           <p>Please enter your details to sign in.</p>
         </div>
-        <label htmlFor="email">E-mail Address</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email..."
-          onChange={inputData}
-          required
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="• • • • • • • •"
-          onChange={inputData}
-          required
-        />
+        <div className="input-box">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            onChange={inputData}
+            required
+          />
+          <MdEmail className="auth-icon" />
+        </div>
+        <div className="input-box">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={inputData}
+            required
+          />
+          <FaLock className="auth-icon" />
+        </div>
         <div className="remember-me-forgot-password-div">
           <div>
             <input type="checkbox" />
@@ -77,8 +82,9 @@ export const Login = ({ switchToRegister }) => {
         </div>
         <button type="submit">Sign in</button>
       </form>
-      <p>
-        Don't have an account yet? <span onClick={switchToRegister}>Sign up</span>
+      <p className="login-register-suggest">
+        Don't have an account yet?
+        <span onClick={switchToRegister}>Sign up</span>
       </p>
       {error && <p>{error}</p>}
     </div>

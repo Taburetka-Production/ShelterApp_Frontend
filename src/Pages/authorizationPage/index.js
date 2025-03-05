@@ -1,5 +1,5 @@
-import { Footer } from "../../Components/Footer/Footer.js";
-import { Header } from "../../Components/Header/Header.js";
+import { Footer } from "../../Components/footer/Footer.js";
+import { Header } from "../../Components/header/Header.js";
 import { MainContent } from "../../Components/authorizationPage/MainContent.js";
 
 const AuthorizationPage = () => {
@@ -10,6 +10,6 @@ const AuthorizationPage = () => {
       <Footer></Footer>
     </>
   );
-}
+};
 
 export default AuthorizationPage;

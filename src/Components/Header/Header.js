@@ -12,7 +12,6 @@ export const Header = () => {
   const items = [
     { id: 1, name: "Головна", path: "/mainpage" },
     { id: 2, name: "Притулки", path: "/shelters" },
-    { id: 3, name: "Зареєструватися", path: "/authorization" },
     { id: 4, name: "Увійти", path: "/authorization" },
     { id: 5, name: "Профіль", path: "/profile" },
   ];
@@ -21,7 +20,12 @@ export const Header = () => {
 
   const handleIconClicked = (iconName) => {
     // console.log(`${iconName} icon clicked!`);
-    iconName === 'user' ? navigate('/profile') : console.log(`${iconName} icon clicked`);
+    iconName === "user"
+      ? navigate("/profile")
+      : console.log(`${iconName} icon clicked`);
+    iconName === "logo"
+      ? navigate("/mainpage")
+      : console.log(`${iconName} icon clicked`);
   };
 
   const handleMouseEnter = () => {
@@ -68,7 +72,9 @@ export const Header = () => {
       <div className="header-divider-right"></div>
 
       <div className="header-logo">
-          <h1>Logo</h1>
+        <h1 className="logo" onClick={() => handleIconClicked("logo")}>
+          lamash
+        </h1>
       </div>
 
       <div className="header-icons">

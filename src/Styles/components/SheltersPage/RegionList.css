@@ -9,7 +9,7 @@
 
 .region-list:hover {
     overflow-y: auto;
-    max-height: 95px;
+    max-height: 115px;
 }
 
 .region-list li {
@@ -22,7 +22,6 @@ input[type="checkbox"] {
     cursor: pointer;
     margin-right: 6px;
     accent-color: var(--blue-color);
-    border: 2px solid #e40000;
 }
 
 .region-list::-webkit-scrollbar {

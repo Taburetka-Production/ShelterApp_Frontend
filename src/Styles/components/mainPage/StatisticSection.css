@@ -1,4 +1,4 @@
-.statistic-section {
+.main-page__statistic-section {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -6,7 +6,7 @@
     gap: 20px;
 }
 
-.statistic-section-item {
+.main-page__statistic-section-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +18,7 @@
     padding: 10px;
 }
 
-.statistic-section-item .circle {
+.main-page__statistic-section-item-circle {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -32,12 +32,12 @@
     margin-bottom: 10px;
 }
 
-.statistic-section-item h1 {
+.main-page__statistic-section-item h1 {
     font-size: 16px;
     margin: 0;
 }
 
-.statistic-section-item .text {
+.main-page__statistic-section-item-text {
     font-size: 20px;
     color: var(--blue-color);
     margin: 20px 0 0 0;

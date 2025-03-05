@@ -1,22 +1,18 @@
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Profile from './Pages/profilePage';
-import MainPage from './Pages/MainPage';
-import SheltersPage from './Pages/SheltersPage';
-import AuthorizationPage from './Pages/authorizationPage/index';
+import { BrowserRouter as Router } from "react-router-dom";
+import { MainRoutes } from "./Components/mainPage/MainRoutes";
+import { ProfileRoutes } from "./Components/profilePage/ProfileRoutes";
 import "./styles/main.scss";
-
+import axios from 'axios';
+export const axiosInstance = axios.create({
+  baseURL: 'https://localhost:7118/',
+});
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/mainpage" />} />
-        <Route path="/mainpage" element={<MainPage />} />
-        <Route path="/shelters" element={<SheltersPage />} />
-        <Route path ="/authorization" element = {<AuthorizationPage />} />
-        <Route path ="/profile" element = {<Profile />} />
-      </Routes>
+        <MainRoutes />
+        <ProfileRoutes />
     </Router>
-  )
+  );
 }
 
 export default App;

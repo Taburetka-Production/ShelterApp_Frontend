@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.1",
     "info": {
-        "title": "ShelterApp",
-        "version": "1.0"
+        "title": "Website for Shelters",
+        "version": "v1"
     },
     "paths": {
         "/api/Home": {
@@ -392,7 +392,7 @@
                 }
             }
         },
-        "/Shelters": {
+        "/api/Shelters": {
             "get": {
                 "tags": [
                     "Shelters"
@@ -426,6 +426,18 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        },
+        "/api/UserInfo": {
+            "get": {
+                "tags": [
+                    "UserInfo"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
                     }
                 }
             }
@@ -701,6 +713,7 @@
             "Shelter": {
                 "required": [
                     "addressId",
+                    "animalsCount",
                     "createdAtUtc",
                     "description",
                     "imageUrl",
@@ -737,6 +750,10 @@
                         "format": "double"
                     },
                     "reviewsCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "animalsCount": {
                         "type": "integer",
                         "format": "int32"
                     },
@@ -814,6 +831,17 @@
                 },
                 "additionalProperties": false
             }
+        },
+        "securitySchemes": {
+            "Bearer": {
+                "type": "http",
+                "scheme": "bearer"
+            }
         }
-    }
+    },
+    "security": [
+        {
+            "Bearer": []
+        }
+    ]
 }

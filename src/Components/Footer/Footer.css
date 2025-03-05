@@ -51,7 +51,7 @@
     --_p: 100%; 
 }
 
-.footer-photo-container {
+/* .footer-photo-container {
     position: relative; 
     display: flex;
     flex-direction: row;
@@ -60,4 +60,9 @@
     width: 100%;
 }
 
-
+.footer-photo-container{
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 200px;
+} */
