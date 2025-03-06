@@ -19,10 +19,6 @@ export const FirstSection = (): JSX.Element => {
           </Button>
         </Link>
       </div>
-      <div className="main-page__first-section-photo-container">
-        <img src="/images/2.png" alt="Description" />
-        <img src="/images/3.png" alt="Description" />
-      </div>
       <div className="main-page__first-section-animal-container">
         <img src="/images/6.png" alt="Description" />
       </div>
