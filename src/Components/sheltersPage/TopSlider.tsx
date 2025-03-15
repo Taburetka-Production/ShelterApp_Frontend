@@ -7,7 +7,7 @@ import { ShelterCardForSlider } from "./ShelterCardForSlider";
 
 export const TopSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isLocked, setIsLocked] = useState(true);
+  const [isLocked, setIsLocked] = useState(false);
   const timeout = useRef<number | null>(null);
   const allShelters = useAppSelector((state) => state.shelter.shelters);
   const dispatch = useAppDispatch();
@@ -50,7 +50,11 @@ export const TopSlider: React.FC = () => {
 
   return (
     <div className="slider">
-      <button className="top-slider-arrow-btn left" onClick={pressPrevious}>
+      <button
+        className="top-slider-arrow-btn left"
+        onClick={pressPrevious}
+        disabled={isLocked}
+      >
         <IoIosArrowBack className="arrow back" />
       </button>
       {shelters.map((shelter, index) => (
@@ -66,7 +70,11 @@ export const TopSlider: React.FC = () => {
           reviews={shelter.reviewsCount}
         />
       ))}
-      <button className="top-slider-arrow-btn right" onClick={pressNext}>
+      <button
+        className="top-slider-arrow-btn right"
+        onClick={pressNext}
+        disabled={isLocked}
+      >
         <IoIosArrowForward className="arrow forward" />
       </button>
     </div>

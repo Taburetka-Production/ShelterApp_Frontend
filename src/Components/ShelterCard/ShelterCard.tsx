@@ -1,10 +1,12 @@
 import React from "react";
 import { Button } from "../Button";
 import { ReviewText } from "./ReviewText";
-import "./ShelterCard.css";
+import "../../styles/components/shelterCard/ShelterCard.css";
 import { Star } from "./Star";
+import { useNavigate } from "react-router-dom";
 
 interface ShelterCardProps {
+  id: string;
   image: string;
   title: string;
   description: string;
@@ -15,6 +17,7 @@ interface ShelterCardProps {
 }
 
 export const ShelterCard: React.FC<ShelterCardProps> = ({
+  id,
   image,
   title,
   description,
@@ -24,6 +27,11 @@ export const ShelterCard: React.FC<ShelterCardProps> = ({
   onClick,
 }) => {
   const maxLength = 220;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/shelter/${id}`);
+  };
 
   const truncateText = (text: string) => {
     if (text.length <= maxLength) return text;
@@ -51,7 +59,9 @@ export const ShelterCard: React.FC<ShelterCardProps> = ({
             </Star>
             <ReviewText reviews={reviews} />
           </div>
-          <Button className="view-more-btn">View more</Button>
+          <Button className="view-more-btn" onClick={handleClick}>
+            View more
+          </Button>
         </div>
       </div>
     </div>

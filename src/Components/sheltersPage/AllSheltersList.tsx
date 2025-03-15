@@ -41,6 +41,7 @@ export const AllSheltersList: React.FC = () => {
           ? filteredShelters.slice(0, visibleShelters).map((shelter) => (
               <div key={shelter.id} className="card-container animation-card">
                 <ShelterCard
+                  id={shelter.id ?? ""}
                   image={shelter.imageUrl}
                   title={shelter.name}
                   description={shelter.description}

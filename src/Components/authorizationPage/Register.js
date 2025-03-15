@@ -47,7 +47,7 @@ export const Register = ({ switchToLogin }) => {
           <h2>Welcome!</h2>
           <p>Please enter your details to sign up.</p>
         </div>
-        <div className="input-box">
+        {/* <div className="input-box">
           <input
             type="text"
             name="username"
@@ -56,7 +56,7 @@ export const Register = ({ switchToLogin }) => {
             required
           />
           <FaUser className="auth-icon" />
-        </div>
+        </div> */}
         <div className="input-box">
           <input
             type="email"

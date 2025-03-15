@@ -1,5 +1,5 @@
 export interface Address {
-  id: string;
+  id: string | null;
   country: string;
   region: string;
   district?: string;
@@ -10,14 +10,14 @@ export interface Address {
 }
 
 export interface Shelter {
-  id: string;
+  id: string | null;
   name: string;
   rating: number;
   reviewsCount: number;
   animalsCount: number;
   description: string;
   imageUrl: string;
-  addressId: string;
+  addressId: string | null;
   address: Address;
 }
 
