@@ -1,12 +1,19 @@
 .main-page__first-section {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  height: 600px;
+  justify-content: space-evenly;
+  height: 630px;
+
+
+  background-image: url('/public/images/Header.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
 }
 
 .main-page__first-section-group {
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -14,20 +21,19 @@
   gap: 30px;
   margin-left: 50px;
   z-index: 100;
-  left: 150px;
-  top: 250px;
   color: var(--blue-color);
+  padding-left: 10%;
 }
 
 .main-page__first-section h2 {
-  width: 40%;
+  width: 80%;
   font-size: 60px;
   font-family: Roboto;
 }
 
 .main-page__first-section-text {
   font-size: 20px;
-  width: 30%;
+  width: 80%;
 }
 
 .main-page__first-section .main-page__first-section-btn {
@@ -43,28 +49,13 @@
   color: var(--blue-color);
 }
 
-.main-page__first-section-photo-container {
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 5%;
-  width: 100%;
-}
-
-.main-page__first-section-photo-container img {
-  height: auto;
-  width: 600px;
-}
 
 .main-page__first-section-animal-container {
-  position: absolute;
   display: flex;
-  top: 117px;
-  left: 500px;
-}
-
-.main-page__first-section-animal-container img {
-  height: 600px;
+  position: relative;
+  padding-top: 80px;
+  height: 550px;
   width: auto;
 }
+
+

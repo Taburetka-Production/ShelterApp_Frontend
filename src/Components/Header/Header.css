@@ -42,7 +42,7 @@
     padding: 10px 20px;
     color: var(--blue-color);
     font-family: Roboto;
-    height: 60px;
+    height: 40px;
 }
 
 .header-divider-left {
@@ -50,7 +50,7 @@
   height: 1px; 
   width: 40%; 
   background-color: var(--blue-color); 
-  margin-top: 45px;
+  margin-top: 60px;
   z-index: 500;
 }
 
@@ -59,7 +59,7 @@
   height: 1px; 
   width: 40%; 
   background-color: var(--blue-color); 
-  margin-top: 45px;
+  margin-top: 60px;
   margin-left: 58%;
   z-index: 500;
 }
@@ -68,7 +68,6 @@
   display: flex;
   align-items: center;
   font-size: 32px;
-  margin-top: 45px;
   background-color: var(--white-color);
   z-index: 1000;
     

@@ -5,12 +5,16 @@
     justify-content: space-between;
     height: 650px;
     z-index: 150;
+    
 }
 
-.main-page__second-section-img {
+.main-page__second-section-animal-container{
     display: flex;
-    width: 100%;
-    justify-content: center;
+    position: relative;
+
+    height: 140%;
+    width: auto;
+
 }
 
 .main-page__second-section-group {

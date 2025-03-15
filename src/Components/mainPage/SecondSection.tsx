@@ -5,7 +5,11 @@ import { Button } from "../Button";
 export const SecondSection = (): JSX.Element => {
   return (
     <div className="main-page__second-section">
-      <div className="main-page__second-section-img">Image</div>
+
+      <div className="main-page__second-section-animal-container">
+        <img src="/images/Dog.svg" alt="Description" />
+      </div>
+
       <div className="main-page__second-section-group">
         <h1>About us</h1>
         <div className="main-page__second-section-text">

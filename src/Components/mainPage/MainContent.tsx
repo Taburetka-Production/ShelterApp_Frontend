@@ -9,7 +9,7 @@ export const MainContent = () : JSX.Element => {
     <div className="all-mainpage-sections">
       <FirstSection></FirstSection>
       <StatisticSection></StatisticSection>
-      {/* <SecondSection></SecondSection> */}
+      <SecondSection></SecondSection>
       <ThirdSection></ThirdSection>
     </div>
   );
