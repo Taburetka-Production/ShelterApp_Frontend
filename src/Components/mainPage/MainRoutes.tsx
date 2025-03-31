@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import MainPage from "../../Pages/MainPage";
-import SheltersPage from "../../Pages/SheltersPage";
+import MainPage from "../../Pages/mainPage";
+import SheltersPage from "../../Pages/sheltersPage";
 import AuthorizationPage from "../../Pages/authorizationPage/index";
 
 export const MainRoutes = (): JSX.Element => {

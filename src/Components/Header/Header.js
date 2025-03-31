@@ -8,24 +8,18 @@ export const Header = () => {
   const [menuClass, setMenuClass] = useState("");
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
-
-  const items = [
-    { id: 1, name: "Головна", path: "/mainpage" },
-    { id: 2, name: "Притулки", path: "/shelters" },
-    { id: 4, name: "Увійти", path: "/authorization" },
-    { id: 5, name: "Профіль", path: "/profile" },
-  ];
-
   let closeTimeout;
 
+  const items = [
+    { id: 1, name: "Головна", path: "/" },
+    { id: 2, name: "Притулки", path: "/shelters" },
+    { id: 3, name: "Увійти", path: "/login" },
+    { id: 4, name: "Профіль", path: "/profile" },
+  ];
+
   const handleIconClicked = (iconName) => {
-    // console.log(`${iconName} icon clicked!`);
-    iconName === "user"
-      ? navigate("/profile")
-      : console.log(`${iconName} icon clicked`);
-    iconName === "logo"
-      ? navigate("/mainpage")
-      : console.log(`${iconName} icon clicked`);
+    if (iconName === "user") navigate("/profile");
+    if (iconName === "logo") navigate("/");
   };
 
   const handleMouseEnter = () => {

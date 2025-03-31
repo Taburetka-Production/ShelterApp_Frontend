@@ -25,25 +25,27 @@ export const MainContent: React.FC = () => {
         <h1>Choose your shelter</h1>
       </div>
       <div className="filter-container">
-        <Dropdown />
-        <Button className="choose-on-map-btn">Choose on map</Button>
-        <div className="active-filters">
-          <h3>Active Filters:</h3>
-          <ul>
-            {searchQuery && <li>Search: {searchQuery}</li>}
-            {regions.length > 0 && <li>Regions: {regions.join(", ")}</li>}
-          </ul>
+        <div className="filter-container-filters">
+          <Dropdown />
+          <Button className="choose-on-map-btn">Choose on map</Button>
         </div>
-        <p onClick={handleClearFilters} style={{ cursor: "pointer" }}>
-          Clear Filters
-        </p>
-        <div className="sort-order-buttons">
-          <button onClick={() => dispatch(setSortOrder("desc"))}>
-            <HiSortAscending className="hiSort" /> Sort ascending
-          </button>
-          <button onClick={() => dispatch(setSortOrder("asc"))}>
-            <HiSortDescending className="hiSort" /> Sort descending
-          </button>
+        <div className="filter-container-sorting">
+          <div className="active-filters">
+            <h3>Active Filters:</h3>
+            <ul>
+              {searchQuery && <li>Search: {searchQuery}</li>}
+              {regions.length > 0 && <li>Regions: {regions.join(", ")}</li>}
+            </ul>
+          </div>
+          <Button onClick={handleClearFilters}>Clear Filters</Button>
+          <div className="sort-order-buttons">
+            <button onClick={() => dispatch(setSortOrder("desc"))}>
+              <HiSortAscending className="hiSort" /> Sort ascending
+            </button>
+            <button onClick={() => dispatch(setSortOrder("asc"))}>
+              <HiSortDescending className="hiSort" /> Sort descending
+            </button>
+          </div>
         </div>
       </div>
       <AllSheltersList />

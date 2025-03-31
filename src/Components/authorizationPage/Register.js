@@ -4,17 +4,23 @@ import "./Register.css";
 import { FaUser } from "react-icons/fa";
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
-export const Register = ({ switchToLogin }) => {
+export const Register = () => {
   const [data, setData] = useState({
-    username: "",
     email: "",
     password: "",
     confirmPassword: "",
+    username: "",
+    name: "",
+    surname: "",
+    age: 0,
+    phone: "",
   });
   const [error, setError] = useState("");
   const [showPasswordRequirements, setShowPasswordRequirements] =
     useState(false);
+  const navigate = useNavigate();
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -23,17 +29,45 @@ export const Register = ({ switchToLogin }) => {
       return;
     }
     try {
-      const response = await axios.post("https://localhost:7118/register", {
-        // username: data.username,
+      await axios.post("https://localhost:7118/register", {
         email: data.email,
         password: data.password,
       });
-      console.log("Registration Successful:", response.data);
+      await axios
+        .post("https://localhost:7118/login", {
+          email: data.email,
+          password: data.password,
+        })
+        .then((response) => {
+          const { accessToken, refreshToken } = response.data;
+          if (accessToken && refreshToken) {
+            localStorage.setItem("accessToken", accessToken);
+            localStorage.setItem("refreshToken", refreshToken);
+            console.log("Tokens saved successfully!");
+          }
+          console.log("Login Successful:", response.data);
+          setError("");
+        });
+      await axios.put(
+        "https://localhost:7118/api/Account/info",
+        {
+          userName: data.username,
+          name: data.name,
+          surname: data.surname,
+          phoneNumber: data.phone,
+          age: data.age,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        },
+      );
       setError("");
     } catch (error) {
       setError(error.response?.data.message || "An error occurred.");
     }
-    switchToLogin();
+    navigate("/profile");
   };
 
   const inputData = (e) => {
@@ -47,7 +81,7 @@ export const Register = ({ switchToLogin }) => {
           <h2>Welcome!</h2>
           <p>Please enter your details to sign up.</p>
         </div>
-        {/* <div className="input-box">
+        <div className="input-box">
           <input
             type="text"
             name="username"
@@ -56,7 +90,7 @@ export const Register = ({ switchToLogin }) => {
             required
           />
           <FaUser className="auth-icon" />
-        </div> */}
+        </div>
         <div className="input-box">
           <input
             type="email"
@@ -94,10 +128,43 @@ export const Register = ({ switchToLogin }) => {
           />
           <FaLock className="auth-icon" />
         </div>
+        <div className="input-box">
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            onChange={inputData}
+          />
+        </div>
+        <div className="input-box">
+          <input
+            type="text"
+            name="surname"
+            placeholder="Surname"
+            onChange={inputData}
+          />
+        </div>
+        <div className="input-box">
+          <input
+            type="number"
+            name="age"
+            placeholder="Age"
+            onChange={inputData}
+          />
+        </div>
+        <div className="input-box">
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone number"
+            onChange={inputData}
+          />
+        </div>
         <button type="submit">Sign up</button>
       </form>
       <p className="login-register-suggest">
-        Already registered? <span onClick={switchToLogin}>Sign in</span>
+        Already registered?{" "}
+        <span onClick={() => navigate("/login")}>Sign in</span>
       </p>
       {error && <p>{error}</p>}
     </div>

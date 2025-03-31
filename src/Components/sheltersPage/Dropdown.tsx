@@ -3,7 +3,7 @@ import { IoFilterSharp } from "react-icons/io5";
 import { useAppDispatch } from "../../redux/hooks";
 import {
   setRegionFilter,
-  setSearchQuery
+  setSearchQuery,
 } from "../../redux/slices/searchSlice";
 import "../../styles/components/sheltersPage/Dropdown.css";
 import { Button } from "../Button";
@@ -15,9 +15,12 @@ export const Dropdown = () => {
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [tempRegions, setTempRegions] = useState<string[]>([]);
-  
+
   const handler = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setIsOpen(false);
     }
   };
@@ -40,9 +43,11 @@ export const Dropdown = () => {
 
   return (
     <div className="filter-menu" ref={dropdownRef}>
-      <Button onClick={() => setIsOpen(!isOpen)} className={``}>
-        <IoFilterSharp className="filter-icon" />
-        Filters
+      <Button onClick={() => setIsOpen(!isOpen)}>
+        <div className="btn-filter-div">
+          <IoFilterSharp className="filter-icon" />
+          Filters
+        </div>
       </Button>
       {isOpen && (
         <div className={`dropdown-filter-open DropdownFadeIn animated`}>

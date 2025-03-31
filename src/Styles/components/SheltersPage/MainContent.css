@@ -1,60 +1,71 @@
-.choose-shelter-text h1{
-    font-size: 32px;
-    font-weight: bold;
-    padding: 20px 0px;
-    margin-bottom: 40px;
+.choose-shelter-text h1 {
+  font-size: 32px;
+  font-weight: bold;
+  padding: 20px 0px;
+  margin-bottom: 40px;
 }
 
-.main-content{
-    padding: 0px 50px;
+.main-content {
+  padding: 0px 50px;
 }
 
 .choose-shelter-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--blue-color)
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--blue-color);
 }
 
 .filter-container {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    margin-left: 14px;
+  display: flex;
+  align-items: center;
+  margin-left: 14px;
+  justify-content: space-between;
 }
 
-.filter-container .choose-on-map-btn{
-    justify-content: center;
-    width: 160px;
+.filter-container-filters {
+  display: flex;
+  gap: 24px;
 }
 
-.sort-order-buttons{
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    margin-top: 10px;
-    gap: 6px;
+.filter-container-sorting {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
-.sort-order-buttons button{
-    display: flex;
-    position: relative;
-    align-items: center;
-    cursor: pointer;
-    padding: 2px 6px;
-    width: 100%;
-    height: 30px;
-    border-radius: var(--btn-border-radius);
-    font-size: 14px;
-    font-weight: 500;
-    border-color: var(--btn-color);
-    background-color: white;
-    border: 1px solid var(--blue-color);
-    padding-left: 24px;
+
+.filter-container .choose-on-map-btn {
+  justify-content: center;
+  width: 160px;
 }
-.hiSort{
-    position: absolute;
-    margin-left: 5px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
+
+.sort-order-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  margin-top: 10px;
+  gap: 6px;
+}
+.sort-order-buttons button {
+  display: flex;
+  position: relative;
+  align-items: center;
+  cursor: pointer;
+  padding: 2px 6px;
+  width: 100%;
+  height: 30px;
+  border-radius: var(--btn-border-radius);
+  font-size: 14px;
+  font-weight: 500;
+  border-color: var(--btn-color);
+  background-color: white;
+  border: 1px solid var(--blue-color);
+  padding-left: 24px;
+}
+.hiSort {
+  position: absolute;
+  margin-left: 5px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
 }

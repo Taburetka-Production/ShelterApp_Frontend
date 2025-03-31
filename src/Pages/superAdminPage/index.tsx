@@ -1,12 +1,12 @@
+import { SuperAdminPanel } from "../../Components/superAdminPanel/SuperAdminPanel";
 import { Footer } from "../../Components/footer/Footer.js";
 import { Header } from "../../Components/header/Header";
-import { Profile } from "../../Components/profilePage/Profile";
 
-export const ProfilePage = () => {
+export const SuperAdminPage = () => {
   return (
     <>
       <Header></Header>
-      <Profile />
+      <SuperAdminPanel />
       <Footer></Footer>
     </>
   );

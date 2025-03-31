@@ -1,5 +1,5 @@
-import React from 'react';
-import './Button.css';
+import React from "react";
+import "./Button.css";
 
 interface ButtonProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -7,10 +7,14 @@ interface ButtonProps {
   className?: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ onClick, children, className }) => {
-  return(
-  <button className={`btn ${className}`} onClick={onClick}>
-    {children}
-  </button>
-  )
-};  
+export const Button: React.FC<ButtonProps> = ({
+  onClick,
+  children,
+  className,
+}) => {
+  return (
+    <button className={`btn ${className ? className : ""}`} onClick={onClick}>
+      {children}
+    </button>
+  );
+};

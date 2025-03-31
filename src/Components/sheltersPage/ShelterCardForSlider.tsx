@@ -2,8 +2,10 @@ import React from "react";
 import { Button } from "../Button";
 import { ReviewText } from "../shelterCard/ReviewText";
 import { Star } from "../shelterCard/Star";
+import { useNavigate } from "react-router-dom";
 
 interface ShelterCardForSliderProps {
+  id: string | null | undefined;
   image?: string;
   title: string;
   description?: string;
@@ -15,6 +17,7 @@ interface ShelterCardForSliderProps {
 }
 
 export const ShelterCardForSlider: React.FC<ShelterCardForSliderProps> = ({
+  id,
   image,
   title,
   description,
@@ -24,6 +27,12 @@ export const ShelterCardForSlider: React.FC<ShelterCardForSliderProps> = ({
   rating,
   reviews,
 }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    console.log("navigate");
+    navigate(`/shelter/${id}`);
+  };
+
   const classNames = [
     " beforePrevious",
     " previous",
@@ -54,7 +63,9 @@ export const ShelterCardForSlider: React.FC<ShelterCardForSliderProps> = ({
           <Star rating={rating}>{reviews > 0 ? `(${rating} stars)` : ``}</Star>
           <ReviewText reviews={reviews} />
         </div>
-        <Button className="view-more-btn">View more</Button>
+        <Button className="view-more-btn" onClick={handleClick}>
+          View more
+        </Button>
       </div>
     </div>
   );

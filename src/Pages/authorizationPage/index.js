@@ -1,12 +1,12 @@
 import { Footer } from "../../Components/footer/Footer.js";
-import { Header } from "../../Components/header/Header.js";
-import { MainContent } from "../../Components/authorizationPage/MainContent.js";
+import { Header } from "../../Components/header/Header";
+import { Login } from "../../Components/authorizationPage/Login";
 
 const AuthorizationPage = () => {
   return (
     <>
       <Header></Header>
-      <MainContent></MainContent>
+      <Login />
       <Footer></Footer>
     </>
   );

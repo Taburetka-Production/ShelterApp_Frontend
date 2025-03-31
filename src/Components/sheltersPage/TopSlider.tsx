@@ -60,6 +60,7 @@ export const TopSlider: React.FC = () => {
       {shelters.map((shelter, index) => (
         <ShelterCardForSlider
           key={shelter.id}
+          id={shelter.id}
           image={shelter.imageUrl}
           title={shelter.name}
           index={index}

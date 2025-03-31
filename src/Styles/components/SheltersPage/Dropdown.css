@@ -1,4 +1,5 @@
-.filter-menu, .region-section {
+.filter-menu,
+.region-section {
   display: grid;
   position: relative;
 }
@@ -35,10 +36,16 @@
   justify-content: center;
 }
 
-.button-find-div{
+.button-find-div {
   display: flex;
   width: 100%;
   justify-content: start;
+}
+
+.btn-filter-div {
+  margin-right: 1em;
+  text-align: center;
+  justify-content: center;
 }
 
 @keyframes DropdownFadeIn {
