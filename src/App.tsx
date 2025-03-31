@@ -1,11 +1,11 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { MainRoutes } from "./Components/mainPage/MainRoutes";
-import { ShelterRoutes } from "./Components/oneShelterPage/ShelterRoutes";
-import { ProfileRoutes } from "./Components/profilePage/ProfileRoutes";
-import { SuperAdminPanelRoutes } from "./Components/superAdminPanel/SuperAdminPanelRoutes";
-import { Register } from "./Components/authorizationPage/Register";
-import { Login } from "./Components/authorizationPage/Login";
 import axios from "axios";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Login } from "./components/authorizationPage/Login";
+import { Register } from "./components/authorizationPage/Register";
+import { MainRoutes } from "./components/mainPage/MainRoutes";
+import { ShelterRoutes } from "./components/oneShelterPage/ShelterRoutes";
+import { ProfileRoutes } from "./components/profilePage/ProfileRoutes";
+import { SuperAdminPanelRoutes } from "./components/superAdminPanel/SuperAdminPanelRoutes";
 import "./styles/main.scss";
 export const axiosInstance = axios.create({
   baseURL: "https://localhost:7118/",
