@@ -44,7 +44,7 @@ jobs:
           node-version: '22'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile && yarn add -D sass
 
       - name: Build project
         run: npm run build
