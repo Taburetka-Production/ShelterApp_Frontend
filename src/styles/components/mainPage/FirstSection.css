@@ -1,0 +1,61 @@
+.main-page__first-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 630px;
+
+
+  background-image: url('/public/images/Header.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
+
+}
+
+.main-page__first-section-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  gap: 30px;
+  margin-left: 50px;
+  z-index: 100;
+  color: var(--blue-color);
+  padding-left: 10%;
+}
+
+.main-page__first-section h2 {
+  width: 80%;
+  font-size: 60px;
+  font-family: Roboto;
+}
+
+.main-page__first-section-text {
+  font-size: 20px;
+  width: 80%;
+}
+
+.main-page__first-section .main-page__first-section-btn {
+  display: flex;
+  justify-content: center;
+  width: 170px;
+  background-color: var(--blue-color);
+  border-color: var(--blue-color);
+}
+
+.main-page__first-section .main-page__first-section-btn:hover {
+  background-color: transparent;
+  color: var(--blue-color);
+}
+
+
+.main-page__first-section-animal-container {
+  display: flex;
+  position: relative;
+  padding-top: 80px;
+  height: 550px;
+  width: auto;
+}
+
+
