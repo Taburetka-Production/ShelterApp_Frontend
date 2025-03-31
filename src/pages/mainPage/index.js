@@ -1,7 +1,7 @@
 import React from "react";
-import { Footer } from "../../components/footer/Footer.js";
-import { Header } from "../../components/header/Header.js";
-import { MainContent } from "../../components/mainPage/MainContent.js";
+import { Footer } from "../../components/footer/Footer";
+import { Header } from "../../components/header/Header";
+import { MainContent } from "../../components/mainPage/MainContent";
 
 const MainPage = () => {
   return (
