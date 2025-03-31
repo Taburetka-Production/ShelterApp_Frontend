@@ -1,0 +1,59 @@
+.footer {
+    user-select: none;
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    padding-top: 100px;
+    height: 300px;
+
+    /*Background*/
+
+    background-image: url('/public/images/ShelterPage.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.footer-items {
+    position: absolute;
+    z-index: 100;
+}
+
+.footer-items h1 {
+    color: var(--blue-color);
+    font-family: Roboto;
+    font-size: 32px;
+    margin-bottom: 30px; 
+    padding-left: 195px;
+}
+
+.footer-links {
+    list-style: none; 
+    display: flex; 
+    justify-content: space-around; 
+    gap: 70px;
+    margin: 0;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: var(--blue-color);
+    font-size: 16px;
+    --s: 0.1em; 
+    padding-bottom: var(--s);
+    background: 
+        linear-gradient(90deg,var(--hover-text-color) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+        linear-gradient(var(--hover-text-color) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: 0.5s;
+    cursor: pointer; 
+
+}
+
+.footer-links a:hover {
+    --_p: 100%; 
+}

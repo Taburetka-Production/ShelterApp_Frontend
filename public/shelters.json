@@ -1,0 +1,162 @@
+[
+    {
+        "id": 1,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 1",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 4.5,
+        "reviewsCount": 11
+    },
+    {
+        "id": 2,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 2",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 3.5,
+        "reviewsCount": 48
+    },
+    {
+        "id": 3,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 3",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 0,
+        "reviewsCount": 0
+    },
+    {
+        "id": 4,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 4",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 1,
+        "reviewsCount": 1
+    },
+    {
+        "id": 5,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 5",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 5,
+        "reviewsCount": 3
+    },
+    {
+        "id": 6,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 6",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 2.5,
+        "reviewsCount": 101
+    },
+    {
+        "id": 7,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 7",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 0.5,
+        "reviewsCount": 4
+    },
+    {
+        "id": 8,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 8",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 5,
+        "reviewsCount": 22
+    },
+    {
+        "id": 9,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 9",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 3,
+        "reviewsCount": 312
+    },
+    {
+        "id": 10,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 10",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 0,
+        "reviewsCount": 0
+    },
+    {
+        "id": 11,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 11",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 4.2,
+        "reviewsCount": 54
+    },
+    {
+        "id": 12,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 12",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 3.8,
+        "reviewsCount": 12
+    },
+    {
+        "id": 13,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 13",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 2.5,
+        "reviewsCount": 7
+    },
+    {
+        "id": 14,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 14",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 4.9,
+        "reviewsCount": 102
+    },
+    {
+        "id": 15,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 15",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 1.8,
+        "reviewsCount": 5
+    },
+    {
+        "id": 16,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 16",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 3.0,
+        "reviewsCount": 20
+    },
+    {
+        "id": 17,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 17",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 4.5,
+        "reviewsCount": 80
+    },
+    {
+        "id": 18,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 18",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 5.0,
+        "reviewsCount": 130
+    },
+    {
+        "id": 19,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 19",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 0.0,
+        "reviewsCount": 0
+    },
+    {
+        "id": 20,
+        "imageUrl": "./images/shelter.jpg",
+        "name": "Shelter name 20",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+        "rating": 2.0,
+        "reviewsCount": 15
+    }
+]
