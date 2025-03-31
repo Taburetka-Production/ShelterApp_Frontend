@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { ProfilePage } from "../../Pages/profilePage/index.js";
+import { ProfilePage } from "../../pages/profilePage/index";
 import { Tracked } from "./Tracked";
 import { Transactions } from "./Transactions";
 import { UserPets } from "./UserPets";

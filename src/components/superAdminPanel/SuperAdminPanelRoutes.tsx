@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { SuperAdminPage } from "../../Pages/superAdminPage/index";
+import { SuperAdminPage } from "../../pages/superAdminPage/index";
 import { Shelters } from "./Shelters";
 import { Users } from "./Users";
 
