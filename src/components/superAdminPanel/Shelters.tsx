@@ -1,9 +1,7 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { fetchShelters } from "../../redux/slices/shelterSlice";
-import { Shelter } from "@/redux/types";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export const Shelters = () => {
   // const [shelters, setShelters] = useState<Shelter[]>([]);

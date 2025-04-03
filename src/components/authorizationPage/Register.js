@@ -1,10 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
-import "./Register.css";
-import { FaUser } from "react-icons/fa";
-import { FaLock } from "react-icons/fa";
+import { FaLock, FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
 export const Register = () => {
   const [data, setData] = useState({

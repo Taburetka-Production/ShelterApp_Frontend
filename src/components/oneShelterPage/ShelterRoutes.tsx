@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import { ShelterPage } from "./ShelterPage";
 import { ShelterCreate } from "./ShelterCreate";
+import { ShelterPage } from "./ShelterPage";
 
 export const ShelterRoutes = (): JSX.Element => {
   return (
     <Routes>
-      <Route path="/shelter-create" element={<ShelterCreate />} />
-      <Route path="/shelter/:id" element={<ShelterPage />} />
+      <Route path="/create" element={<ShelterCreate />} />
+      <Route path="/:id" element={<ShelterPage />} />
     </Routes>
   );
 };

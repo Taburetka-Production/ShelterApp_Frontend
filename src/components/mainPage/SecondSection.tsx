@@ -5,7 +5,6 @@ import { Button } from "../Button";
 export const SecondSection = (): JSX.Element => {
   return (
     <div className="main-page__second-section">
-
       <div className="main-page__second-section-animal-container">
         <img src="/images/Dog.svg" alt="Description" />
       </div>
@@ -18,7 +17,9 @@ export const SecondSection = (): JSX.Element => {
           minim venia.
         </div>
         <Link to="/shelters" className="no-text-decoration">
-          <Button className="main-page__second-section-btn">Visit Animals</Button>
+          <Button className="main-page__second-section-btn">
+            Visit Animals
+          </Button>
         </Link>
       </div>
     </div>

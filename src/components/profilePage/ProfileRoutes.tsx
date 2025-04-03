@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import { ProfilePage } from "../../pages/profilePage/index";
+import { ProfileInfo } from "./ProfileInfo";
 import { Tracked } from "./Tracked";
 import { Transactions } from "./Transactions";
 import { UserPets } from "./UserPets";
-import { ProfileInfo } from "./ProfileInfo";
 
 export const ProfileRoutes = (): JSX.Element => {
   return (

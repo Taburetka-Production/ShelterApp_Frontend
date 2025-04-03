@@ -6,9 +6,8 @@ export const ThirdSection = (): JSX.Element => {
   return (
     <div className="main-page__third-section">
       <div className="main-page__third-section-group">
-
         <h2>Об’єднуємо сили заради чотирилапих друзів!</h2>
-        
+
         <p className="main-page__third-section-text">
           Наша ініціатива співпрацює з десятками притулків по всій Україні, щоб
           кожна тварина знайшла люблячу родину. Завдяки цій співпраці ми

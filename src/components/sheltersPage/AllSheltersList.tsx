@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import "../../styles/components/sheltersPage/AllSheltersList.css";
-import { ShelterCard } from "../shelterCard/ShelterCard";
-import { SkeletonCard } from "../SkeletonCard";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { fetchShelters } from "../../redux/slices/shelterSlice";
 import { Shelter } from "../../redux/types";
+import "../../styles/components/sheltersPage/AllSheltersList.css";
+import { ShelterCard } from "../shelterCard/ShelterCard";
+import { SkeletonCard } from "../SkeletonCard";
 
 export const AllSheltersList: React.FC = () => {
   const [visibleShelters, setVisibleShelters] = useState(4);

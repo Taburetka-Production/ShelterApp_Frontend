@@ -1,8 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import { Button } from "../Button";
-import { useState } from "react";
-import { useOutletContext } from "react-router-dom";
 import axios from "axios";
+import { useState } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { Button } from "../Button";
 import "./ProfileInfo.scss";
 
 interface UserData {

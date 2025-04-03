@@ -4,7 +4,7 @@ import { useAppSelector } from "../../redux/hooks";
 import "../../styles/components/sheltersPage/Region.css";
 import { RegionList } from "./RegionList";
 
-interface RegionProps{
+interface RegionProps {
   onRegionChange: (regions: string[]) => void;
 }
 
@@ -14,11 +14,10 @@ export const Region: React.FC<RegionProps> = ({ onRegionChange }) => {
 
   const handleBtnClick = () => setIsOpen(!isOpen);
 
-  const shelters = useAppSelector((action) => action.shelter.shelters)
+  const shelters = useAppSelector((action) => action.shelter.shelters);
 
-  const regions = shelters
-    .map((shelter) => shelter.address?.city ?? "")
-    // .filter((city) => city !== "")
+  const regions = shelters.map((shelter) => shelter.address?.city ?? "");
+  // .filter((city) => city !== "")
 
   const handleRegionChange = (updatedRegions: string[]) => {
     setSelectedRegions(updatedRegions);
@@ -29,13 +28,13 @@ export const Region: React.FC<RegionProps> = ({ onRegionChange }) => {
     <div className="region-section">
       <button onClick={handleBtnClick}>
         Region
-        <IoIosArrowDown className={`arrow-icon${isOpen ? "-open" : ""}`}/>
+        <IoIosArrowDown className={`arrow-icon${isOpen ? "-open" : ""}`} />
       </button>
       <div className={`dropdown-region ${isOpen ? "open" : "close"}`}>
-        <RegionList 
-        regions={regions}         
-        selectedRegions={selectedRegions}
-        onRegionChange={handleRegionChange}
+        <RegionList
+          regions={regions}
+          selectedRegions={selectedRegions}
+          onRegionChange={handleRegionChange}
         />
       </div>
     </div>

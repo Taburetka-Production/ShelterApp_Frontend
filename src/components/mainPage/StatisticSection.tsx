@@ -1,7 +1,6 @@
 import "../../styles/components/mainPage/StatisticSection.css";
 
-export const StatisticSection = () : JSX.Element => {
-  
+export const StatisticSection = (): JSX.Element => {
   const data = [
     {
       id: 1,
@@ -22,14 +21,19 @@ export const StatisticSection = () : JSX.Element => {
       id: 4,
       number: 65,
       text: "Ми працюємо вже 65 днів, об’єднуючи небайдужих людей та притулки.",
-    }];
+    },
+  ];
 
   return (
     <div className="main-page__statistic-section">
       {data.map((item) => (
         <div key={item.id} className="main-page__statistic-section-item">
-          <div className="main-page__statistic-section-item-circle">{item.number}</div>
-          <div className="main-page__statistic-section-item-text">{item.text}</div>
+          <div className="main-page__statistic-section-item-circle">
+            {item.number}
+          </div>
+          <div className="main-page__statistic-section-item-text">
+            {item.text}
+          </div>
         </div>
       ))}
     </div>
