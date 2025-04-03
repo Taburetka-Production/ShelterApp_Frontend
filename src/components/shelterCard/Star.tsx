@@ -5,7 +5,7 @@ interface StarProps {
   children?: React.ReactNode;
 }
 
-export const Star : React.FC<StarProps> = ({ rating, children }) => {
+export const Star: React.FC<StarProps> = ({ rating, children }) => {
   const stars: number[] = Array(5).fill(0);
 
   if (rating % 1 !== 0) {
@@ -26,12 +26,12 @@ export const Star : React.FC<StarProps> = ({ rating, children }) => {
       {stars.map((value, index) => {
         switch (value) {
           case 1:
-            return <IoIosStar className="star full" key={index}/>;
+            return <IoIosStar className="star full" key={index} />;
           case 0.5:
-            return <IoIosStarHalf className="star half" key={index}/>;
+            return <IoIosStarHalf className="star half" key={index} />;
           case 0:
           default:
-            return <IoIosStarOutline className="star empty" key={index}/>;
+            return <IoIosStarOutline className="star empty" key={index} />;
         }
       })}
       {children}

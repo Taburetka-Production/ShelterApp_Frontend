@@ -1,9 +1,9 @@
+import { User } from "@/redux/types";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { BiLogOut } from "react-icons/bi";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./Profile.css";
-import { BiLogOut } from "react-icons/bi";
-import { User } from "@/redux/types";
 
 export const Profile: React.FC = () => {
   const navigate = useNavigate();
@@ -54,7 +54,7 @@ export const Profile: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    navigate("/authorization");
+    navigate("/login");
   };
 
   return (
@@ -88,7 +88,7 @@ export const Profile: React.FC = () => {
                 <ul>
                   <li>
                     <NavLink
-                      to="/profile/"
+                      to="."
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }
@@ -99,7 +99,7 @@ export const Profile: React.FC = () => {
                   </li>
                   <li className="profile-nav-element">
                     <NavLink
-                      to="/profile/pets"
+                      to="pets"
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }
@@ -109,7 +109,7 @@ export const Profile: React.FC = () => {
                   </li>
                   <li className="profile-nav-element">
                     <NavLink
-                      to="/profile/transactions"
+                      to="transactions"
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }
@@ -119,7 +119,7 @@ export const Profile: React.FC = () => {
                   </li>
                   <li className="profile-nav-element">
                     <NavLink
-                      to="/profile/tracked"
+                      to="tracked"
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }

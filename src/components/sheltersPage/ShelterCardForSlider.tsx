@@ -1,8 +1,8 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../Button";
 import { ReviewText } from "../shelterCard/ReviewText";
 import { Star } from "../shelterCard/Star";
-import { useNavigate } from "react-router-dom";
 
 interface ShelterCardForSliderProps {
   id: string | null | undefined;

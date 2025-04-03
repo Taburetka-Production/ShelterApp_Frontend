@@ -1,13 +1,12 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
 export const Footer = () => {
   const items = [
-    { id: 1, name: "Головна", path: "/mainpage" },
+    { id: 1, name: "Головна", path: "/" },
     { id: 2, name: "Притулки", path: "/shelters" },
-    { id: 3, name: "Зареєструватися", path: "/authorization" },
-    { id: 4, name: "Увійти", path: "/authorization" },
+    { id: 3, name: "Зареєструватися", path: "/register" },
+    { id: 4, name: "Увійти", path: "/login" },
   ];
 
   return (

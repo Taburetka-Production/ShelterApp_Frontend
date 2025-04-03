@@ -1,10 +1,10 @@
 import React from "react";
 
-interface ReviewTextProps{
+interface ReviewTextProps {
   reviews: number;
 }
 
-export const ReviewText:React.FC<ReviewTextProps> = ({ reviews }) => {
+export const ReviewText: React.FC<ReviewTextProps> = ({ reviews }) => {
   switch (reviews) {
     case 0:
       return <span>- There are no reviews</span>;
