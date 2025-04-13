@@ -19,6 +19,7 @@ export interface Shelter {
   imageUrl: string;
   addressId: string | null;
   address: Address;
+  slug: string;
 }
 
 export interface User {

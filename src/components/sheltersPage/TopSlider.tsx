@@ -1,8 +1,8 @@
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { fetchShelters } from "@/redux/slices/shelterSlice";
+import "@/styles/components/sheltersPage/TopSlider.css";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { fetchShelters } from "../../redux/slices/shelterSlice";
-import "../../styles/components/sheltersPage/TopSlider.css";
 import { ShelterCardForSlider } from "./ShelterCardForSlider";
 
 export const TopSlider: React.FC = () => {
@@ -60,7 +60,7 @@ export const TopSlider: React.FC = () => {
       {shelters.map((shelter, index) => (
         <ShelterCardForSlider
           key={shelter.id}
-          id={shelter.id}
+          slug={shelter.slug}
           image={shelter.imageUrl}
           title={shelter.name}
           index={index}

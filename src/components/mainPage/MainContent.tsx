@@ -1,4 +1,4 @@
-import "../../styles/components/mainPage/MainContent.css";
+import "@/styles/components/mainPage/MainContent.css";
 import { FirstSection } from "./FirstSection";
 import { SecondSection } from "./SecondSection";
 import { StatisticSection } from "./StatisticSection";

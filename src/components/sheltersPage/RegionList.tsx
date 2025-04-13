@@ -1,4 +1,4 @@
-import "../../styles/components/sheltersPage/RegionList.css";
+import "@/styles/components/sheltersPage/RegionList.css";
 
 interface RegionListProps {
   regions: string[];

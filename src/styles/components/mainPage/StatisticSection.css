@@ -1,44 +1,88 @@
 .main-page__statistic-section {
-    display: flex;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 50px 20px;
+}
+
+.main-page__statistic-card-alt {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  max-width: 480px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 101;
+}
+
+.main-page__statistic-card-alt:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.main-page__statistic-card-alt__icon-wrapper {
+  flex-shrink: 0;
+  width: 65px;
+  height: 65px;
+  margin-right: 16px;
+  background-color: var(--red-color);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-page__statistic-icon {
+  color: white;
+  font-size: 2rem;
+}
+
+.main-page__statistic-card-alt__content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-page__statistic-card-alt__count {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--red-color);
+  margin-bottom: 5px;
+}
+
+.main-page__statistic-card-alt__label {
+  font-size: 1rem;
+  color: var(--blue-color);
+  line-height: 1.2;
+}
+
+/* @media (min-width: 1200px) {
+  .statistic-section {
     justify-content: space-around;
-    align-items: center;
-    padding: 100px 0;
-    gap: 20px;
-}
-
-.main-page__statistic-section-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border: 2px solid #ff5722; 
-    border-radius: 8px;
-    width: 250px;
-    height: 250px;
-    padding: 10px;
-}
-
-.main-page__statistic-section-item-circle {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: #ff5722; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.main-page__statistic-section-item h1 {
-    font-size: 16px;
-    margin: 0;
-}
-
-.main-page__statistic-section-item-text {
-    font-size: 20px;
-    color: var(--blue-color);
-    margin: 20px 0 0 0;
-}
+  }
+  .statistic-card-alt {
+    max-width: 280px;
+  }
+  .statistic-card-alt__count {
+    font-size: 2.2rem;
+  }
+  .statistic-card-alt__label {
+    font-size: 0.9rem;
+  }
+  .statistic-card-alt__icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-right: 15px;
+  }
+  .statistic-icon {
+    font-size: 1.6rem;
+  }
+} */

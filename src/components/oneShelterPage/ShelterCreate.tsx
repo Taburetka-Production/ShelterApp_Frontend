@@ -2,6 +2,9 @@ import { Shelter } from "@/redux/types";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ROUTES } from "@/routes/routes";
+// import { SheltersApi } from "@/generated-client";
+// import { axiosInstance } from "@/App";
 
 export const ShelterCreate: React.FC = () => {
   const navigate = useNavigate();
@@ -14,6 +17,7 @@ export const ShelterCreate: React.FC = () => {
     description: "",
     imageUrl: "",
     addressId: null,
+    slug: "",
     address: {
       id: null,
       country: "",
@@ -62,18 +66,17 @@ export const ShelterCreate: React.FC = () => {
       address: addressData,
     };
 
-    console.log("Sending data:", formattedShelter);
-
     try {
-      const response = await axios.post(
+      // const apiInstance = new SheltersApi(undefined, "", axiosInstance);
+      // await apiInstance.apiSheltersPost(formattedShelter);
+      await axios.post(
         "https://localhost:7118/api/Shelters",
         formattedShelter,
         { headers: { "Content-Type": "application/json" } },
       );
-      console.log("Shelter created:", response.data);
-      navigate("/profile");
+      navigate(ROUTES.PROFILE);
     } catch (error) {
-      alert("Error.");
+      console.log("Помилка:", error);
     }
   };
 

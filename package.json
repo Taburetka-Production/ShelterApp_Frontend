@@ -6,6 +6,7 @@
     "@babel/core": "^7.0.0-0",
     "@babel/plugin-syntax-flow": "^7.26.0",
     "@babel/plugin-transform-react-jsx": "^7.25.9",
+    "@craco/craco": "^7.1.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^6.3.1",
@@ -29,9 +30,9 @@
   },
   "scripts": {
     "codegen": "npx openapi-generator-cli generate -i ./api.json -g typescript-axios -o ./src/generated-client",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco  build",
+    "test": "craco  test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

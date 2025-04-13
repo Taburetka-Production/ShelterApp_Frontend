@@ -1,11 +1,11 @@
 import { HiSortAscending, HiSortDescending } from "react-icons/hi";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   setRegionFilter,
   setSearchQuery,
   setSortOrder,
-} from "../../redux/slices/searchSlice";
-import "../../styles/components/sheltersPage/MainContent.css";
+} from "@/redux/slices/searchSlice";
+import "@/styles/components/sheltersPage/MainContent.css";
 import { Button } from "../Button";
 import { AllSheltersList } from "./AllSheltersList";
 import { Dropdown } from "./Dropdown";
@@ -22,28 +22,28 @@ export const MainContent: React.FC = () => {
   return (
     <div className="main-content">
       <div className="choose-shelter-text">
-        <h1>Choose your shelter</h1>
+        <h1>Оберіть приутлок</h1>
       </div>
       <div className="filter-container">
         <div className="filter-container-filters">
           <Dropdown />
-          <Button className="choose-on-map-btn">Choose on map</Button>
+          <Button className="choose-on-map-btn">Обрати на карті</Button>
         </div>
         <div className="filter-container-sorting">
           <div className="active-filters">
-            <h3>Active Filters:</h3>
+            <h3>Активні фільтри:</h3>
             <ul>
-              {searchQuery && <li>Search: {searchQuery}</li>}
-              {regions.length > 0 && <li>Regions: {regions.join(", ")}</li>}
+              {searchQuery && <li>Пошук: {searchQuery}</li>}
+              {regions.length > 0 && <li>Регіони: {regions.join(", ")}</li>}
             </ul>
           </div>
-          <Button onClick={handleClearFilters}>Clear Filters</Button>
+          <Button onClick={handleClearFilters}>Очистити фільтри</Button>
           <div className="sort-order-buttons">
             <button onClick={() => dispatch(setSortOrder("desc"))}>
-              <HiSortAscending className="hiSort" /> Sort ascending
+              <HiSortDescending className="hiSort" /> За спаданням
             </button>
             <button onClick={() => dispatch(setSortOrder("asc"))}>
-              <HiSortDescending className="hiSort" /> Sort descending
+              <HiSortAscending className="hiSort" /> За зростанням
             </button>
           </div>
         </div>

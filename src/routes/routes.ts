@@ -6,23 +6,28 @@ export const ROUTES = {
   PROFILE: "/profile",
   SHELTER: "/shelter",
   SUPER_ADMIN: "/SuperAdminPanel",
+  AUTH: "/auth",
+  AUTH_LOGIN: "/auth/login",
+  AUTH_REGISTER: "/auth/register",
 };
 
-export const PROFILE_ROUTES = {
-  BASE: ROUTES.PROFILE,
-  INFO: `${ROUTES.PROFILE}`,
-  PETS: `${ROUTES.PROFILE}/pets`,
-  TRANSACTIONS: `${ROUTES.PROFILE}/transactions`,
-  TRACKED: `${ROUTES.PROFILE}/tracked`,
+// export const PROFILE_ROUTES = {
+//   BASE: ROUTES.PROFILE, // "/profile"
+// };
+
+export const PROFILE_NESTED_ROUTES = {
+  INFO: "",
+  PETS: "pets",
+  TRANSACTIONS: "transactions",
+  TRACKED: "tracked",
 };
 
-export const SHELTER_ROUTES = {
-  BASE: ROUTES.SHELTER,
-  CREATE: `${ROUTES.SHELTER}/create`,
-  DETAIL: (id: string) => `${ROUTES.SHELTER}/${id}`,
+export const SHELTER_NESTED_ROUTES = {
+  CREATE: "create",
+  DETAIL: ":slug",
 };
 
-export const SUPER_ADMIN_ROUTES = {
-  BASE: ROUTES.SUPER_ADMIN,
-  SHELTERS: `${ROUTES.SUPER_ADMIN}/shelters`,
-};
+// export const SUPER_ADMIN_ROUTES = {
+//   BASE: ROUTES.SUPER_ADMIN,
+//   SHELTERS: `${ROUTES.SUPER_ADMIN}/shelters`,
+// };

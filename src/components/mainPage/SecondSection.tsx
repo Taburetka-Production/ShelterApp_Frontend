@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../styles/components/mainPage/SecondSection.css";
 import { Button } from "../Button";
+import { ROUTES } from "@/routes/routes";
 
 export const SecondSection = (): JSX.Element => {
   return (
@@ -16,7 +17,7 @@ export const SecondSection = (): JSX.Element => {
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim venia.
         </div>
-        <Link to="/shelters" className="no-text-decoration">
+        <Link to={ROUTES.SHELTERS_PAGE} className="no-text-decoration">
           <Button className="main-page__second-section-btn">
             Visit Animals
           </Button>

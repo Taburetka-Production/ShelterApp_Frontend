@@ -14,10 +14,24 @@ const initialState: ShelterState = {
   error: null,
 };
 
-export const fetchShelters = createAsyncThunk("shelter/fetchShelters", async () => {
-  const response = await axios.get<Shelter[]>("https://localhost:7118/api/Shelters");
-  return response.data;
-});
+export const fetchShelters = createAsyncThunk(
+  "shelter/fetchShelters",
+  async () => {
+    const response = await axios.get<Shelter[]>(
+      "https://localhost:7118/api/Shelters",
+    );
+    return response.data;
+  },
+);
+
+// export const fetchShelters = createAsyncThunk<Shelter[], void>(
+//   "shelter/fetchShelters",
+//   async () => {
+//     const apiInstance = new SheltersApi(undefined, "", axiosInstance);
+//     const response = await apiInstance.apiSheltersGet();
+//     return response.data;
+//   },
+// );
 
 export const shelterSlice = createSlice({
   name: "shelter",
@@ -29,10 +43,13 @@ export const shelterSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchShelters.fulfilled, (state, action: PayloadAction<Shelter[]>) => {
-        state.shelters = action.payload;
-        state.loading = false;
-      })
+      .addCase(
+        fetchShelters.fulfilled,
+        (state, action: PayloadAction<Shelter[]>) => {
+          state.shelters = action.payload;
+          state.loading = false;
+        },
+      )
       .addCase(fetchShelters.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message || "Error";

@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { IoFilterSharp } from "react-icons/io5";
-import { useAppDispatch } from "../../redux/hooks";
-import {
-  setRegionFilter,
-  setSearchQuery,
-} from "../../redux/slices/searchSlice";
-import "../../styles/components/sheltersPage/Dropdown.css";
+import { useAppDispatch } from "@/redux/hooks";
+import { setRegionFilter, setSearchQuery } from "@/redux/slices/searchSlice";
+import "@/styles/components/sheltersPage/Dropdown.css";
 import { Button } from "../Button";
 import { SearchBar } from "../SearchBar";
 import { Region } from "./Region";
@@ -46,7 +43,7 @@ export const Dropdown = () => {
       <Button onClick={() => setIsOpen(!isOpen)}>
         <div className="btn-filter-div">
           <IoFilterSharp className="filter-icon" />
-          Filters
+          Фільтри
         </div>
       </Button>
       {isOpen && (
@@ -55,7 +52,7 @@ export const Dropdown = () => {
           <Region onRegionChange={setTempRegions} />
           <div className="button-find-div">
             <Button onClick={handleFindClick} className="find-open">
-              Find
+              Знайти
             </Button>
           </div>
         </div>

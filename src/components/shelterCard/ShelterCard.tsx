@@ -1,12 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles/components/shelterCard/ShelterCard.css";
+import "@/styles/components/shelterCard/ShelterCard.css";
 import { Button } from "../Button";
 import { ReviewText } from "./ReviewText";
 import { Star } from "./Star";
 
 interface ShelterCardProps {
-  id: string;
   image: string;
   title: string;
   description: string;
@@ -14,10 +13,10 @@ interface ShelterCardProps {
   reviews: number;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  slug: string;
 }
 
 export const ShelterCard: React.FC<ShelterCardProps> = ({
-  id,
   image,
   title,
   description,
@@ -25,12 +24,13 @@ export const ShelterCard: React.FC<ShelterCardProps> = ({
   reviews,
   className,
   onClick,
+  slug,
 }) => {
-  const maxLength = 220;
+  const maxLength = 150;
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/shelter/${id}`);
+    navigate(`/shelter/${slug}`);
   };
 
   const truncateText = (text: string) => {

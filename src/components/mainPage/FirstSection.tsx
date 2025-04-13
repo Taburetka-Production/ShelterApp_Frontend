@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "../../styles/components/mainPage/FirstSection.css";
+import "@/styles/components/mainPage/FirstSection.css";
 import { Button } from "../Button";
-
+import { ROUTES } from "@/routes/routes";
 export const FirstSection = (): JSX.Element => {
   return (
     <div className="main-page__first-section">
@@ -13,7 +13,7 @@ export const FirstSection = (): JSX.Element => {
           серце та подаруйте їм справжню домівку. Натисніть нижче, щоб знайти
           свого нового улюбленця.
         </div>
-        <Link to="/shelters" className="no-text-decoration">
+        <Link to={ROUTES.SHELTERS_PAGE} className="no-text-decoration">
           <Button className="main-page__first-section-btn">
             Дізнатися більше
           </Button>

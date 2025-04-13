@@ -1,3 +1,4 @@
+import { ROUTES } from "@/routes/routes";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -9,6 +10,7 @@ export const Shelters = () => {
   const shelters = useAppSelector((state) => state.shelter.shelters);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(fetchShelters());
   }, [dispatch]);
@@ -56,7 +58,7 @@ export const Shelters = () => {
                 </button>
                 <button
                   className="panel super-admin-action-btn delete"
-                  onClick={() => navigate(`/shelter/${shelter.id}`)}
+                  onClick={() => navigate(`${ROUTES.SHELTER}/${shelter.id}`)}
                 >
                   Details
                 </button>

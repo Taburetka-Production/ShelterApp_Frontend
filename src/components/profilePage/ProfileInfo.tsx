@@ -1,3 +1,4 @@
+import { ROUTES, SHELTER_NESTED_ROUTES } from "@/routes/routes";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
@@ -12,15 +13,16 @@ interface UserData {
   phoneNumber: string;
   surname: string;
   userName: string;
+  roles: string[];
 }
 
 export const ProfileInfo: React.FC = () => {
   const navigate = useNavigate();
   const handleCreateShelter = () => {
-    navigate("/shelter-create");
+    navigate(`${ROUTES.SHELTERS_PAGE}/${SHELTER_NESTED_ROUTES.CREATE}`);
   };
   const handleSuperAdmin = () => {
-    navigate("/SuperAdminPanel");
+    navigate(`${ROUTES.SUPER_ADMIN}`);
   };
   const [editMode, setEditMode] = useState(false);
   const initialData = useOutletContext<UserData>();
@@ -88,7 +90,7 @@ export const ProfileInfo: React.FC = () => {
           <div className="detail-item">
             <label>Username</label>
             <input
-              name="UserName"
+              name="userName"
               value={userData.userName}
               onChange={handleInputChange}
               disabled={!editMode}
@@ -142,6 +144,15 @@ export const ProfileInfo: React.FC = () => {
               disabled
             />
           </div>
+          {/* <div className="detail-item">
+            <label>Roles</label>
+            <input
+              name="roles"
+              value={userData.roles[0]}
+              onChange={handleInputChange}
+              disabled
+            />
+          </div> */}
         </div>
       </div>
       <div>

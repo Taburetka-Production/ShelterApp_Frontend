@@ -1,18 +1,18 @@
 :root {
-    --btn-color: #e55e40;
-    --btn-color-hover: #b04831;
-    --btn-text-color: #F6E1C6;
-    --btn-border-radius: 8px;
-    --btn-font-size:14px;
+  --btn-color: #e55e40;
+  --btn-color-hover: #b04831;
+  --btn-text-color: #f6e1c6;
+  --btn-border-radius: 8px;
+  --btn-font-size: 14px;
 
-    --main-font-size:16px;
-    --main-text-color:#084994;
+  --main-font-size: 16px;
+  --main-text-color: #084994;
 
-    --white-color: #ffffff;
-    --cream-color: #F6E1C6;
-    --yellow-color: #E7A72B;
-    --red-color: #e55e40;
-    --blue-color: #084994;
-    --hover-text-color: #5b7fdb;
+  --white-color: #ffffff;
+  --cream-color: #f6e1c6;
+  --yellow-color: #e7a72b;
+  --red-color: #e55e40;
+  --blue-color: #084994;
+  --hover-text-color: #5b7fdb;
+  --hover-red-color: #d42e2e;
 }
-  

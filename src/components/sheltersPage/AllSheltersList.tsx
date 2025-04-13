@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { fetchShelters } from "../../redux/slices/shelterSlice";
-import { Shelter } from "../../redux/types";
-import "../../styles/components/sheltersPage/AllSheltersList.css";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { fetchShelters } from "@/redux/slices/shelterSlice";
+import { Shelter } from "@/redux/types";
+import "@/styles/components/sheltersPage/AllSheltersList.css";
 import { ShelterCard } from "../shelterCard/ShelterCard";
 import { SkeletonCard } from "../SkeletonCard";
 
@@ -41,13 +41,13 @@ export const AllSheltersList: React.FC = () => {
           ? filteredShelters.slice(0, visibleShelters).map((shelter) => (
               <div key={shelter.id} className="card-container animation-card">
                 <ShelterCard
-                  id={shelter.id ?? ""}
                   image={shelter.imageUrl}
                   title={shelter.name}
                   description={shelter.description}
                   rating={shelter.rating}
                   reviews={shelter.reviewsCount}
                   className={``}
+                  slug={shelter.slug}
                 />
               </div>
             ))

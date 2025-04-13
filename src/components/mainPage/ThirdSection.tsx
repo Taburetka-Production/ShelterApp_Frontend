@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "../../styles/components/mainPage/ThirdSection.css";
 import { Button } from "../Button";
-
+import { ROUTES } from "@/routes/routes";
 export const ThirdSection = (): JSX.Element => {
   return (
     <div className="main-page__third-section">
@@ -15,7 +15,11 @@ export const ThirdSection = (): JSX.Element => {
           – дайте їм шанс на краще життя.
         </p>
 
-        <Link to="/shelters" className="no-text-decoration" role="button">
+        <Link
+          to={ROUTES.SHELTERS_PAGE}
+          className="no-text-decoration"
+          role="button"
+        >
           <Button className="main-page__third-section-btn">
             Дізнатися більше
           </Button>

@@ -1,17 +1,21 @@
 import { User } from "@/redux/types";
+import { ROUTES } from "@/routes/routes";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./Profile.css";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { logout } from "@/redux/slices/authSlice";
 
 export const Profile: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [userData, setUserData] = useState<User | null>(null);
   const [error, setError] = useState<string>("");
+  const { accessToken } = useAppSelector((state) => state.auth);
 
   const fetchProfile = async (): Promise<User> => {
-    const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       throw new Error("Please log in.");
     }
@@ -23,7 +27,6 @@ export const Profile: React.FC = () => {
         },
       },
     );
-    console.log(response.data);
     return response.data;
   };
 
@@ -36,12 +39,12 @@ export const Profile: React.FC = () => {
         if (err instanceof Error) {
           setError(err.message);
         } else {
-          setError("An unknown error occurred.");
+          setError("Невідома помилка.");
         }
       }
     };
     fetchData();
-  }, []);
+  });
 
   if (error) {
     return <div>{error}</div>;
@@ -52,9 +55,8 @@ export const Profile: React.FC = () => {
   }
 
   const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    navigate("/login");
+    dispatch(logout());
+    navigate(ROUTES.AUTH_LOGIN);
   };
 
   return (
@@ -88,7 +90,7 @@ export const Profile: React.FC = () => {
                 <ul>
                   <li>
                     <NavLink
-                      to="."
+                      to={`${ROUTES.PROFILE}`}
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }
@@ -99,7 +101,7 @@ export const Profile: React.FC = () => {
                   </li>
                   <li className="profile-nav-element">
                     <NavLink
-                      to="pets"
+                      to={`${ROUTES.PROFILE}/pets`}
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }
@@ -109,7 +111,7 @@ export const Profile: React.FC = () => {
                   </li>
                   <li className="profile-nav-element">
                     <NavLink
-                      to="transactions"
+                      to={`${ROUTES.PROFILE}/transactions`}
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }
@@ -119,7 +121,7 @@ export const Profile: React.FC = () => {
                   </li>
                   <li className="profile-nav-element">
                     <NavLink
-                      to="tracked"
+                      to={`${ROUTES.PROFILE}/tracked`}
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }

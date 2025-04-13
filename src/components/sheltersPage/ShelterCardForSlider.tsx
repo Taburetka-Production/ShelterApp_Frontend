@@ -1,3 +1,4 @@
+import { ROUTES } from "@/routes/routes";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../Button";
@@ -5,7 +6,6 @@ import { ReviewText } from "../shelterCard/ReviewText";
 import { Star } from "../shelterCard/Star";
 
 interface ShelterCardForSliderProps {
-  id: string | null | undefined;
   image?: string;
   title: string;
   description?: string;
@@ -14,10 +14,10 @@ interface ShelterCardForSliderProps {
   length: number;
   rating: number;
   reviews: number;
+  slug: string;
 }
 
 export const ShelterCardForSlider: React.FC<ShelterCardForSliderProps> = ({
-  id,
   image,
   title,
   description,
@@ -26,11 +26,11 @@ export const ShelterCardForSlider: React.FC<ShelterCardForSliderProps> = ({
   length,
   rating,
   reviews,
+  slug,
 }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    console.log("navigate");
-    navigate(`/shelter/${id}`);
+    navigate(`${ROUTES.SHELTER}/${slug}`);
   };
 
   const classNames = [

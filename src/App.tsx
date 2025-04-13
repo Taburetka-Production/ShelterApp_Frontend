@@ -1,29 +1,31 @@
 import axios from "axios";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { Login } from "./components/authorizationPage/Login";
-import { Register } from "./components/authorizationPage/Register";
-import { ShelterRoutes } from "./components/oneShelterPage/ShelterRoutes";
-import { ProfileRoutes } from "./components/profilePage/ProfileRoutes";
-import { SuperAdminPanelRoutes } from "./components/superAdminPanel/SuperAdminPanelRoutes";
+// import { ScrollToTop } from "./components/ScrollToTop";
 import MainPage from "./pages/mainPage";
 import SheltersPage from "./pages/sheltersPage";
+import { AuthRoutes } from "./routes/AuthRoutes";
+import { ProfileRoutes } from "./routes/ProfileRoutes";
+import { ROUTES } from "./routes/routes";
+import { ShelterRoutes } from "./routes/ShelterRoutes";
+import { SuperAdminPanelRoutes } from "./routes/SuperAdminPanelRoutes";
 import "./styles/main.scss";
-import { ScrollToTop } from "./components/ScrollToTop";
 export const axiosInstance = axios.create({
   baseURL: "https://localhost:7118/",
 });
 function App() {
   return (
     <Router>
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
       <Routes>
-        <Route path="/*" element={<MainPage />} />
-        <Route path="/shelters" element={<SheltersPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/profile/*" element={<ProfileRoutes />} />
-        <Route path="/shelter/*" element={<ShelterRoutes />} />
-        <Route path="/SuperAdminPanel/*" element={<SuperAdminPanelRoutes />} />
+        <Route path={ROUTES.MAIN} element={<MainPage />} />
+        <Route path={ROUTES.SHELTERS_PAGE} element={<SheltersPage />} />
+        <Route path={`${ROUTES.AUTH}/*`} element={<AuthRoutes />} />
+        <Route path={`${ROUTES.PROFILE}/*`} element={<ProfileRoutes />} />
+        <Route path={`${ROUTES.SHELTER}/*`} element={<ShelterRoutes />} />
+        <Route
+          path={`${ROUTES.SUPER_ADMIN}/*`}
+          element={<SuperAdminPanelRoutes />}
+        />
       </Routes>
     </Router>
   );

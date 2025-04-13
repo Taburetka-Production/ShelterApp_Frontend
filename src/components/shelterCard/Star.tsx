@@ -1,5 +1,5 @@
 import { IoIosStar, IoIosStarHalf, IoIosStarOutline } from "react-icons/io";
-
+import "./Star.css";
 interface StarProps {
   rating: number;
   children?: React.ReactNode;

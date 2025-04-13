@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import { ROUTES } from "@/routes/routes";
+
+const items = [
+  { id: 1, name: "Головна", path: `${ROUTES.MAIN}` },
+  { id: 2, name: "Притулки", path: `${ROUTES.SHELTERS_PAGE}` },
+  { id: 3, name: "Зареєструватися", path: `${ROUTES.AUTH_REGISTER}` },
+  { id: 4, name: "Увійти", path: `${ROUTES.AUTH_LOGIN}` },
+];
 
 export const Footer = () => {
-  const items = [
-    { id: 1, name: "Головна", path: "/" },
-    { id: 2, name: "Притулки", path: "/shelters" },
-    { id: 3, name: "Зареєструватися", path: "/register" },
-    { id: 4, name: "Увійти", path: "/login" },
-  ];
-
   return (
     <footer className="footer">
       <div className="footer-items">

@@ -1,38 +1,63 @@
+import { ROUTES } from "@/routes/routes";
 import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
+import { useCallback, useEffect } from "react";
+import { useAppSelector } from "@/redux/hooks";
 
 export const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [menuClass, setMenuClass] = useState("");
-  const dropdownRef = useRef(null);
   const navigate = useNavigate();
-  let closeTimeout;
-
-  const items = [
-    { id: 1, name: "Головна", path: "/" },
-    { id: 2, name: "Притулки", path: "/shelters" },
-    { id: 3, name: "Увійти", path: "/login" },
-    { id: 4, name: "Профіль", path: "/profile" },
+  const timeoutRef = useRef(null);
+  const { accessToken } = useAppSelector((state) => state.auth);
+  const route = accessToken ? ROUTES.PROFILE : ROUTES.AUTH_LOGIN;
+  const menuItems = [
+    { id: 1, name: "Головна", path: `${ROUTES.MAIN}` },
+    { id: 2, name: "Притулки", path: `${ROUTES.SHELTERS_PAGE}` },
+    { id: 3, name: "Увійти", path: `${ROUTES.AUTH_LOGIN}` },
+    { id: 4, name: "Профіль", path: `${route}` },
   ];
+  const handleIconClicked = useCallback(
+    (iconName) => {
+      if (iconName === "user") navigate(route);
+      else if (iconName === "logo") {
+        navigate(ROUTES.MAIN);
+      }
+    },
+    [navigate, route],
+  );
 
-  const handleIconClicked = (iconName) => {
-    if (iconName === "user") navigate("/profile");
-    if (iconName === "logo") navigate("/");
-  };
-
-  const handleMouseEnter = () => {
-    clearTimeout(closeTimeout);
+  const openDropdown = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     setMenuClass("open");
     setIsDropdownOpen(true);
-  };
+  }, []);
 
-  const handleMouseLeave = () => {
-    closeTimeout = setTimeout(() => {
-      setMenuClass("close");
-      setIsDropdownOpen(false);
+  const closeDropdown = useCallback(() => {
+    setMenuClass("close");
+    setIsDropdownOpen(false);
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    openDropdown();
+  }, [openDropdown]);
+
+  const handleMouseLeave = useCallback(() => {
+    timeoutRef.current = window.setTimeout(() => {
+      closeDropdown();
     }, 300);
-  };
+  }, [closeDropdown]);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
     <header className="header">
@@ -40,7 +65,6 @@ export const Header = () => {
         className="header-menu"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        ref={dropdownRef}
       >
         <button className="header-menu icon-style">
           <i className="fas fa-bars"></i>
@@ -52,7 +76,7 @@ export const Header = () => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            {items.map((item) => (
+            {menuItems.map((item) => (
               <li key={item.id}>
                 <Link to={item.path}>{item.name}</Link>
               </li>

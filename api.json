@@ -5,6 +5,303 @@
         "version": "v1"
     },
     "paths": {
+        "/api/Account/register": {
+            "post": {
+                "tags": [
+                    "Account"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrationDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrationDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegistrationDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Account/info": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Account"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/AdoptionRequests": {
+            "post": {
+                "tags": [
+                    "AdoptionRequests"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdoptionRequest"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdoptionRequest"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AdoptionRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/AdoptionRequests/{id}": {
+            "get": {
+                "tags": [
+                    "AdoptionRequests"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Animals": {
+            "get": {
+                "tags": [
+                    "Animals"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Animal"
+                                    }
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Animal"
+                                    }
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Animal"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Animals/{id}": {
+            "get": {
+                "tags": [
+                    "Animals"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Animal"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Animal"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Animal"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Animals"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Animals/AddAnimal": {
+            "post": {
+                "tags": [
+                    "Animals"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateAnimalDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateAnimalDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateAnimalDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Animals/ChangeAnimalInfo": {
+            "put": {
+                "tags": [
+                    "Animals"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateAnimalDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateAnimalDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateAnimalDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/api/Home": {
             "get": {
                 "tags": [
@@ -399,30 +696,50 @@
                 ],
                 "responses": {
                     "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Shelters"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Shelter"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Shelter"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Shelter"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
                         "description": "OK",
                         "content": {
                             "text/plain": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Shelter"
-                                    }
+                                    "$ref": "#/components/schemas/Shelter"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Shelter"
-                                    }
+                                    "$ref": "#/components/schemas/Shelter"
                                 }
                             },
                             "text/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Shelter"
-                                    }
+                                    "$ref": "#/components/schemas/Shelter"
                                 }
                             }
                         }
@@ -430,10 +747,202 @@
                 }
             }
         },
-        "/api/UserInfo": {
+        "/api/Shelters/byslug/{slug}": {
             "get": {
                 "tags": [
-                    "UserInfo"
+                    "Shelters"
+                ],
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Shelter"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Shelter"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Shelter"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/Shelters/{id}": {
+            "get": {
+                "tags": [
+                    "Shelters"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Shelters"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Shelters/populate-slugs": {
+            "post": {
+                "tags": [
+                    "Shelters"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Statistics": {
+            "get": {
+                "tags": [
+                    "Statistics"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Users/all-users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Users/grant-admin/{id}": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Users/revoke-admin/{id}": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferAdminDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferAdminDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferAdminDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Users/user/{id}": {
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -475,11 +984,15 @@
             },
             "Address": {
                 "required": [
+                    "apartments",
                     "city",
                     "country",
                     "createdAtUtc",
                     "district",
-                    "region"
+                    "lat",
+                    "lng",
+                    "region",
+                    "street"
                 ],
                 "type": "object",
                 "properties": {
@@ -518,15 +1031,275 @@
                         "type": "string"
                     },
                     "street": {
-                        "type": "string",
-                        "nullable": true
+                        "minLength": 1,
+                        "type": "string"
                     },
                     "apartments": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "lng": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "lat": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AdoptionRequest": {
+                "required": [
+                    "animalId",
+                    "createdAtUtc",
+                    "requestDate",
+                    "status",
+                    "userId"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "createdAtUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAtUtc": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "userLastModified": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true
+                    },
+                    "userId": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "animalId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "animal": {
+                        "$ref": "#/components/schemas/Animal"
+                    },
+                    "requestDate": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "status": {
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Animal": {
+                "required": [
+                    "age",
+                    "breed",
+                    "createdAtUtc",
+                    "name",
+                    "sex",
+                    "shelterId",
+                    "size",
+                    "species",
+                    "status",
+                    "sterilized"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "createdAtUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAtUtc": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "userLastModified": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true
+                    },
+                    "name": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "species": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "breed": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "status": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "sex": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "size": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "sterilized": {
+                        "type": "boolean"
+                    },
+                    "healthCondition": {
                         "type": "string",
                         "nullable": true
                     },
-                    "coordinates": {
+                    "description": {
                         "type": "string",
+                        "nullable": true
+                    },
+                    "shelterId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "shelter": {
+                        "$ref": "#/components/schemas/Shelter"
+                    },
+                    "photos": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AnimalPhoto"
+                        },
+                        "nullable": true
+                    },
+                    "usersAnimal": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UsersAnimal"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "AnimalPhoto": {
+                "required": [
+                    "createdAtUtc",
+                    "photoURL"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "createdAtUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAtUtc": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "userLastModified": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true
+                    },
+                    "photoURL": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "animalId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "animal": {
+                        "$ref": "#/components/schemas/Animal"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateAnimalDto": {
+                "required": [
+                    "description",
+                    "healthCondition",
+                    "name",
+                    "sex",
+                    "shelterId",
+                    "size",
+                    "species",
+                    "status",
+                    "sterilized"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "species": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "breed": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "age": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "status": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "shelterId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "sex": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "size": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "sterilized": {
+                        "type": "boolean"
+                    },
+                    "healthCondition": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "description": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "photoUrls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
                         "nullable": true
                     }
                 },
@@ -674,6 +1447,56 @@
                 },
                 "additionalProperties": false
             },
+            "RegistrationDto": {
+                "required": [
+                    "age",
+                    "email",
+                    "name",
+                    "password",
+                    "surname",
+                    "userName"
+                ],
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "minLength": 1,
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "minLength": 1,
+                        "type": "string",
+                        "format": "password"
+                    },
+                    "userName": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "name": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "surname": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "age": {
+                        "maximum": 120,
+                        "minimum": 1,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "avatarUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "phoneNumber": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
             "ResendConfirmationEmailRequest": {
                 "required": [
                     "email"
@@ -719,7 +1542,9 @@
                     "imageUrl",
                     "name",
                     "rating",
-                    "reviewsCount"
+                    "reviewsCount",
+                    "slug",
+                    "userId"
                 ],
                 "type": "object",
                 "properties": {
@@ -771,6 +1596,38 @@
                     },
                     "address": {
                         "$ref": "#/components/schemas/Address"
+                    },
+                    "userId": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "slug": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "usersShelters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UsersShelter"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "TransferAdminDto": {
+                "required": [
+                    "newAdminEmail"
+                ],
+                "type": "object",
+                "properties": {
+                    "newAdminEmail": {
+                        "minLength": 1,
+                        "type": "string",
+                        "format": "email"
                     }
                 },
                 "additionalProperties": false
@@ -827,6 +1684,267 @@
                     },
                     "isMachineRemembered": {
                         "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateAnimalDto": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "species": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "breed": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "age": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sex": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "size": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "sterilized": {
+                        "type": "boolean",
+                        "nullable": true
+                    },
+                    "healthCondition": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateUserDto": {
+                "type": "object",
+                "properties": {
+                    "userName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "surname": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "age": {
+                        "type": "integer",
+                        "format": "int32",
+                        "nullable": true
+                    },
+                    "phoneNumber": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "avatarUrl": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "User": {
+                "required": [
+                    "age",
+                    "name",
+                    "surname"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "userName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "normalizedUserName": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "normalizedEmail": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "emailConfirmed": {
+                        "type": "boolean"
+                    },
+                    "passwordHash": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "securityStamp": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "concurrencyStamp": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "phoneNumber": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "phoneNumberConfirmed": {
+                        "type": "boolean"
+                    },
+                    "twoFactorEnabled": {
+                        "type": "boolean"
+                    },
+                    "lockoutEnd": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "lockoutEnabled": {
+                        "type": "boolean"
+                    },
+                    "accessFailedCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "avatarUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "name": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "surname": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "age": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "shelter": {
+                        "$ref": "#/components/schemas/Shelter"
+                    },
+                    "usersShelters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UsersShelter"
+                        },
+                        "nullable": true
+                    },
+                    "usersAnimals": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UsersAnimal"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UsersAnimal": {
+                "required": [
+                    "createdAtUtc"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "createdAtUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAtUtc": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "userLastModified": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true
+                    },
+                    "animalId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "animal": {
+                        "$ref": "#/components/schemas/Animal"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UsersShelter": {
+                "required": [
+                    "createdAtUtc"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "createdAtUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAtUtc": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "userLastModified": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true
+                    },
+                    "shelterId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "shelter": {
+                        "$ref": "#/components/schemas/Shelter"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
                     }
                 },
                 "additionalProperties": false

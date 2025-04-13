@@ -1,0 +1,9 @@
+.star {
+  color: var(--blue-color);
+  width: 18px;
+  height: auto;
+}
+.star-span {
+  display: flex;
+  gap: 1px;
+}

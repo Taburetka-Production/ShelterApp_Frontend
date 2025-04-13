@@ -1,6 +1,8 @@
 import { User } from "@/redux/types";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
+import { axiosInstance } from "@/App";
+import { UsersApi } from "@/generated-client";
 
 export const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -10,10 +12,11 @@ export const Users = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(
-          "https://localhost:7118/api/Users/all-users",
-        );
-        console.log(response.data);
+        const apiInstance = new UsersApi(undefined, "", axiosInstance);
+        const response =
+          (await apiInstance.apiUsersAllUsersGet()) as unknown as AxiosResponse<
+            User[]
+          >;
         setUsers(response.data);
       } catch (error) {
         console.error("Помилка:", error);

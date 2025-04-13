@@ -1,63 +1,67 @@
 .main-slider-container {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 .main-shelters-div {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    row-gap: 40px;
-    transition: transform 0.5s ease;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  row-gap: 40px;
+  transition: transform 0.5s ease;
 }
 
 .main-shelters-div > * {
-    margin: 0 15px;
+  margin: 0 15px;
 }
 
 .card-container {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s ease-out forwards;
 }
-  
+
 @keyframes fadeIn {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-  
+
 .animation-card {
-    animation-duration: 0.5s;   
-    animation-fill-mode: forwards;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 
-.view-more-shelters-button-container{
-    margin-top: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.view-more-shelters-button-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.view-more-shelters-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    border: 1px solid var(--blue-color);
-    border-radius: var(--btn-border-radius);
-    background-color: white;
-    color: var(--blue-color);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    cursor: pointer;
-    font-weight: bold;
+.view-more-shelters-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid var(--blue-color);
+  border-radius: var(--btn-border-radius);
+  background-color: white;
+  color: var(--blue-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+.view-more-shelters-button:hover {
+  background-color: rgba(216, 216, 216, 0.5);
 }
 
-.close-shelters-button{
-    background-color: white;
-    padding: 0;
-    color: var(--blue-color);
-    cursor: pointer;
-    border: none;
-    margin-left: 24px;
+.close-shelters-button {
+  background-color: white;
+  padding: 0;
+  color: var(--blue-color);
+  cursor: pointer;
+  border: none;
+  margin-left: 24px;
 }
