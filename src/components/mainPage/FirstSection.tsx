@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "@/styles/components/mainPage/FirstSection.css";
-import { Button } from "../Button";
+import { Button } from "../button/Button";
 import { ROUTES } from "@/routes/routes";
 export const FirstSection = (): JSX.Element => {
   return (

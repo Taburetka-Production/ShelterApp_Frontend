@@ -2,7 +2,7 @@ import { ROUTES, SHELTER_NESTED_ROUTES } from "@/routes/routes";
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
-import { Button } from "../Button";
+import { Button } from "../button/Button";
 import "./ProfileInfo.scss";
 
 interface UserData {

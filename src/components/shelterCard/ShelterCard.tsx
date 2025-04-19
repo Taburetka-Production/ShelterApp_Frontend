@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "@/styles/components/shelterCard/ShelterCard.css";
-import { Button } from "../Button";
+import { Button } from "../button/Button";
 import { ReviewText } from "./ReviewText";
 import { Star } from "./Star";
 

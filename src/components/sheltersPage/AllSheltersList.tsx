@@ -4,7 +4,7 @@ import { fetchShelters } from "@/redux/slices/shelterSlice";
 import { Shelter } from "@/redux/types";
 import "@/styles/components/sheltersPage/AllSheltersList.css";
 import { ShelterCard } from "../shelterCard/ShelterCard";
-import { SkeletonCard } from "../SkeletonCard";
+import { SkeletonCard } from "../skeletonCard/SkeletonCard";
 
 export const AllSheltersList: React.FC = () => {
   const [visibleShelters, setVisibleShelters] = useState(4);

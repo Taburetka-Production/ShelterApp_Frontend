@@ -6,7 +6,8 @@ export interface Address {
   street: string;
   district?: string;
   apartments?: string;
-  coordinates?: string;
+  lng?: number;
+  lat?: number;
 }
 
 export interface Shelter {

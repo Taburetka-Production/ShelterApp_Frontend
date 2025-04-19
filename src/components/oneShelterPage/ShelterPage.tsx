@@ -1,6 +1,7 @@
 import { axiosInstance } from "@/App";
 import { SheltersApi } from "@/generated-client";
-import { Shelter } from "@/redux/types";
+// import { Shelter } from "@/redux/types";
+import { Shelter } from "@/generated-client";
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";

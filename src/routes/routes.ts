@@ -9,6 +9,8 @@ export const ROUTES = {
   AUTH: "/auth",
   AUTH_LOGIN: "/auth/login",
   AUTH_REGISTER: "/auth/register",
+
+  SHELTERS_MAP: "/shelters-map",
 };
 
 // export const PROFILE_ROUTES = {

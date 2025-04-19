@@ -25,7 +25,6 @@ export const ShelterCreate: React.FC = () => {
       street: "",
       apartments: "",
       region: "string",
-      coordinates: "string",
       district: "string",
     },
   });

@@ -1,7 +1,7 @@
 import { ROUTES } from "@/routes/routes";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../Button";
+import { Button } from "../button/Button";
 import { ReviewText } from "../shelterCard/ReviewText";
 import { Star } from "../shelterCard/Star";
 

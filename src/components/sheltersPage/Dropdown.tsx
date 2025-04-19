@@ -3,8 +3,8 @@ import { IoFilterSharp } from "react-icons/io5";
 import { useAppDispatch } from "@/redux/hooks";
 import { setRegionFilter, setSearchQuery } from "@/redux/slices/searchSlice";
 import "@/styles/components/sheltersPage/Dropdown.css";
-import { Button } from "../Button";
-import { SearchBar } from "../SearchBar";
+import { Button } from "../button/Button";
+import { SearchBar } from "../searchBar/SearchBar";
 import { Region } from "./Region";
 
 export const Dropdown = () => {

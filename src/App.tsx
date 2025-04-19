@@ -9,6 +9,7 @@ import { ROUTES } from "./routes/routes";
 import { ShelterRoutes } from "./routes/ShelterRoutes";
 import { SuperAdminPanelRoutes } from "./routes/SuperAdminPanelRoutes";
 import "./styles/main.scss";
+import { SheltersMap } from "./components/sheltersPage/SheltersMap";
 export const axiosInstance = axios.create({
   baseURL: "https://localhost:7118/",
 });
@@ -26,6 +27,7 @@ function App() {
           path={`${ROUTES.SUPER_ADMIN}/*`}
           element={<SuperAdminPanelRoutes />}
         />
+        <Route path={ROUTES.SHELTERS_MAP} element={<SheltersMap />} />
       </Routes>
     </Router>
   );
