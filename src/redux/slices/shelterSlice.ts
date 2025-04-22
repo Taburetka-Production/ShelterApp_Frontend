@@ -1,7 +1,8 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import { axiosInstance } from "@/App";
+import { SheltersApi } from "@/generated-client";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Shelter } from "../types";
-
+import { AxiosResponse } from "axios";
 interface ShelterState {
   shelters: Shelter[];
   loading: boolean;
@@ -17,21 +18,14 @@ const initialState: ShelterState = {
 export const fetchShelters = createAsyncThunk(
   "shelter/fetchShelters",
   async () => {
-    const response = await axios.get<Shelter[]>(
-      "https://localhost:7118/api/Shelters",
-    );
+    const apiInstance = new SheltersApi(undefined, "", axiosInstance);
+    const response =
+      (await apiInstance.apiSheltersGet()) as unknown as AxiosResponse<
+        Shelter[]
+      >;
     return response.data;
   },
 );
-
-// export const fetchShelters = createAsyncThunk<Shelter[], void>(
-//   "shelter/fetchShelters",
-//   async () => {
-//     const apiInstance = new SheltersApi(undefined, "", axiosInstance);
-//     const response = await apiInstance.apiSheltersGet();
-//     return response.data;
-//   },
-// );
 
 export const shelterSlice = createSlice({
   name: "shelter",

@@ -4,6 +4,8 @@ import "@/styles/components/shelterCard/ShelterCard.css";
 import { Button } from "../button/Button";
 import { ReviewText } from "./ReviewText";
 import { Star } from "./Star";
+import { ROUTES } from "@/routes/routes";
+import { truncateText } from "../truncateText";
 
 interface ShelterCardProps {
   image: string;
@@ -23,43 +25,33 @@ export const ShelterCard: React.FC<ShelterCardProps> = ({
   rating,
   reviews,
   className,
-  onClick,
   slug,
 }) => {
-  const maxLength = 150;
   const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/shelter/${slug}`);
-  };
-
-  const truncateText = (text: string) => {
-    if (text.length <= maxLength) return text;
-    const truncated = text.slice(0, maxLength);
-    const lastDotIndex = truncated.lastIndexOf(" ");
-    return lastDotIndex !== -1
-      ? truncated.slice(0, lastDotIndex + 1) + "..."
-      : truncated + "...";
+  const handleViewMoreClick = (e: React.MouseEvent) => {
+    navigate(`${ROUTES.SHELTER}/${slug}`);
   };
 
   return (
-    <div className={`shelter-card ${className}`} onClick={onClick}>
+    <div className={`shelter-card ${className || ""}`}>
       <div className="shelter-card-img">
-        <img src={image} alt="Shelter" />
+        <img src={image} alt={title || "Shelter"} />{" "}
       </div>
       <div className="shelter-card-content">
-        <div>
+        <div className="shelter-card-text-content">
           <h3>{title}</h3>
-          <p>{truncateText(description)}</p>
+          <p className="shelter-description">
+            {truncateText(description, 140)}
+          </p>
         </div>
-        <div>
+        <div className="shelter-card-footer">
           <div className="shelter-card-rating">
             <Star rating={rating}>
-              {reviews > 0 ? `(${rating} stars)` : ``}
+              {reviews > 0 ? `(${rating} stars)` : ""}
             </Star>
             <ReviewText reviews={reviews} />
           </div>
-          <Button className="view-more-btn" onClick={handleClick}>
+          <Button className="view-more-btn" onClick={handleViewMoreClick}>
             View more
           </Button>
         </div>

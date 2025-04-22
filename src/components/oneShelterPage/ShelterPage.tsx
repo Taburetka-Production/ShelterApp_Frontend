@@ -1,12 +1,12 @@
 import { axiosInstance } from "@/App";
 import { SheltersApi } from "@/generated-client";
-// import { Shelter } from "@/redux/types";
-import { Shelter } from "@/generated-client";
+import { Shelter } from "@/redux/types";
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./ShelterPage.css";
 import { Star } from "../shelterCard/Star";
+import { AnimalList } from "./AnimalList";
+import "./ShelterPage.css";
 
 export const ShelterPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -17,7 +17,7 @@ export const ShelterPage: React.FC = () => {
     const fetchShelter = async () => {
       try {
         const apiInstance = new SheltersApi(undefined, "", axiosInstance);
-        const response = (await apiInstance.apiSheltersByslugSlugGet(
+        const response = (await apiInstance.apiSheltersSlugGet(
           slug!,
         )) as unknown as AxiosResponse<Shelter>;
         setShelter(response.data);
@@ -49,13 +49,6 @@ export const ShelterPage: React.FC = () => {
           <div className="shelter-page__header-container">
             <div className="shelter-page__header-top">
               <div className="shelter-page__logo-name">
-                {/* {shelter.logoUrl && (
-                  <img
-                    src={shelter.logoUrl}
-                    alt={`${shelter.name} Logo`}
-                    className="shelter-page__logo"
-                  />
-                )} */}
                 <h1 className="shelter-page__shelter-name">{shelter.name}</h1>
               </div>
               <div className="shelter-page__rating-bookmark">
@@ -88,9 +81,8 @@ export const ShelterPage: React.FC = () => {
           <div className="shelter-page__content">
             <div className="shelter-page__pets section">
               <h2>Оберіть улюбленця! ({shelter.animalsCount || 0} тваринок)</h2>
-              <div className="pets-placeholder">Список</div>
+              <AnimalList animals={shelter.animals ?? []}></AnimalList>
             </div>
-
             <div className="shelter-page__location section">
               <h2>Наша локація та контакти</h2>
               {shelter.address && (

@@ -5,10 +5,12 @@ import "./SearchBar.css";
 interface SearchBarProps {
   placeholder: string;
   onSearchChange: (value: string) => void;
+  value?: string;
 }
 export const SearchBar: React.FC<SearchBarProps> = ({
   placeholder,
   onSearchChange,
+  value,
 }) => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     onSearchChange(e.target.value);
@@ -20,6 +22,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
         type="text"
         placeholder={placeholder}
         onChange={handleInputChange}
+        value={value}
       />
     </div>
   );

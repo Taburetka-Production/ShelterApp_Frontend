@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 // import { ScrollToTop } from "./components/ScrollToTop";
+import { SheltersMap } from "./components/sheltersPage/SheltersMap";
 import MainPage from "./pages/mainPage";
 import SheltersPage from "./pages/sheltersPage";
 import { AuthRoutes } from "./routes/AuthRoutes";
@@ -9,9 +10,8 @@ import { ROUTES } from "./routes/routes";
 import { ShelterRoutes } from "./routes/ShelterRoutes";
 import { SuperAdminPanelRoutes } from "./routes/SuperAdminPanelRoutes";
 import "./styles/main.scss";
-import { SheltersMap } from "./components/sheltersPage/SheltersMap";
 export const axiosInstance = axios.create({
-  baseURL: "https://localhost:7118/",
+  baseURL: "http://ec2-13-61-189-214.eu-north-1.compute.amazonaws.com:7118/",
 });
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <Route path={`${ROUTES.PROFILE}/*`} element={<ProfileRoutes />} />
         <Route path={`${ROUTES.SHELTER}/*`} element={<ShelterRoutes />} />
         <Route
-          path={`${ROUTES.SUPER_ADMIN}/*`}
+          path={`${ROUTES.SUPER_ADMIN_PANEL}/*`}
           element={<SuperAdminPanelRoutes />}
         />
         <Route path={ROUTES.SHELTERS_MAP} element={<SheltersMap />} />

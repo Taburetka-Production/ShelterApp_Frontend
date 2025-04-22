@@ -1,46 +1,42 @@
-import { Shelter } from "@/redux/types";
-import axios from "axios";
+import { ROUTES } from "@/routes/routes";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "@/routes/routes";
-// import { SheltersApi } from "@/generated-client";
-// import { axiosInstance } from "@/App";
+import { axiosInstance } from "@/App";
+import { SheltersApi } from "@/generated-client";
+import { CreateShelterDto } from "@/generated-client/api";
+import "./ShelterCreate.css";
 
 export const ShelterCreate: React.FC = () => {
   const navigate = useNavigate();
-  const [shelter, setShelter] = useState<Shelter>({
-    id: null,
+  const [shelter, setShelter] = useState<CreateShelterDto>({
     name: "",
-    rating: 0,
-    reviewsCount: 0,
-    animalsCount: 0,
     description: "",
     imageUrl: "",
-    addressId: null,
-    slug: "",
-    address: {
-      id: null,
-      country: "",
-      city: "",
-      street: "",
-      apartments: "",
-      region: "string",
-      district: "string",
-    },
+    country: "",
+    region: "",
+    district: "",
+    city: "",
+    street: "",
+    apartments: "",
+    lng: 0,
+    lat: 0,
   });
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setShelter((prev) => ({ ...prev, [name]: value }));
+    setShelter((prev) => ({
+      ...prev,
+      [name]: name === "lng" || name === "lat" ? Number(value) : value,
+    }));
   };
 
   const handleAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setShelter((prev) => ({
       ...prev,
-      address: { ...prev.address, [name]: value },
+      [name]: name === "lng" || name === "lat" ? +value : value,
     }));
   };
 
@@ -57,22 +53,19 @@ export const ShelterCreate: React.FC = () => {
   };
 
   const handleSubmit = async () => {
-    const { id, addressId, address, ...shelterData } = shelter;
-    const { id: addressInternalId, ...addressData } = address;
-
-    const formattedShelter = {
-      ...shelterData,
-      address: addressData,
-    };
-
+    if (
+      !shelter.name.trim() ||
+      !shelter.country.trim() ||
+      !shelter.city.trim()
+    ) {
+      alert("Заповніть всі поля");
+      return;
+    }
     try {
-      // const apiInstance = new SheltersApi(undefined, "", axiosInstance);
-      // await apiInstance.apiSheltersPost(formattedShelter);
-      await axios.post(
-        "https://localhost:7118/api/Shelters",
-        formattedShelter,
-        { headers: { "Content-Type": "application/json" } },
-      );
+      const apiInstance = new SheltersApi(undefined, "", axiosInstance);
+      await apiInstance.apiSheltersPost(shelter, {
+        headers: { "Content-Type": "application/json" },
+      });
       navigate(ROUTES.PROFILE);
     } catch (error) {
       console.log("Помилка:", error);
@@ -120,7 +113,7 @@ export const ShelterCreate: React.FC = () => {
         name="country"
         placeholder="Country"
         className="shelter-create__input"
-        value={shelter.address.country}
+        value={shelter.country}
         onChange={handleAddressChange}
       />
       <input
@@ -128,7 +121,7 @@ export const ShelterCreate: React.FC = () => {
         name="city"
         placeholder="City/Village"
         className="shelter-create__input"
-        value={shelter.address.city}
+        value={shelter.city}
         onChange={handleAddressChange}
       />
       <input
@@ -136,7 +129,7 @@ export const ShelterCreate: React.FC = () => {
         name="street"
         placeholder="Street"
         className="shelter-create__input"
-        value={shelter.address.street}
+        value={shelter.street}
         onChange={handleAddressChange}
       />
       <input
@@ -144,7 +137,7 @@ export const ShelterCreate: React.FC = () => {
         name="apartments"
         placeholder="Apartments"
         className="shelter-create__input"
-        value={shelter.address.apartments}
+        value={shelter.apartments}
         onChange={handleAddressChange}
       />
       <button onClick={handleSubmit} className="shelter-create__button">

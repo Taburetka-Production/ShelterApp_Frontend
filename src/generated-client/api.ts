@@ -136,6 +136,61 @@ export interface Address {
 /**
  * 
  * @export
+ * @interface AddressDto
+ */
+export interface AddressDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof AddressDto
+     */
+    'country'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddressDto
+     */
+    'region'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddressDto
+     */
+    'district'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddressDto
+     */
+    'city'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddressDto
+     */
+    'street'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddressDto
+     */
+    'apartments'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof AddressDto
+     */
+    'lng'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof AddressDto
+     */
+    'lat'?: number;
+}
+/**
+ * 
+ * @export
  * @interface AdoptionRequest
  */
 export interface AdoptionRequest {
@@ -304,6 +359,18 @@ export interface Animal {
     'shelter'?: Shelter;
     /**
      * 
+     * @type {AdoptionRequest}
+     * @memberof Animal
+     */
+    'adoptionRequest'?: AdoptionRequest;
+    /**
+     * 
+     * @type {string}
+     * @memberof Animal
+     */
+    'slug': string;
+    /**
+     * 
      * @type {Array<AnimalPhoto>}
      * @memberof Animal
      */
@@ -367,6 +434,49 @@ export interface AnimalPhoto {
 /**
  * 
  * @export
+ * @interface AnimalSummaryDto
+ */
+export interface AnimalSummaryDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof AnimalSummaryDto
+     */
+    'name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnimalSummaryDto
+     */
+    'species'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnimalSummaryDto
+     */
+    'status'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnimalSummaryDto
+     */
+    'slug'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AnimalSummaryDto
+     */
+    'primaryPhotoUrl'?: string | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AnimalSummaryDto
+     */
+    'isSaved'?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface CreateAnimalDto
  */
 export interface CreateAnimalDto {
@@ -394,12 +504,6 @@ export interface CreateAnimalDto {
      * @memberof CreateAnimalDto
      */
     'age'?: number | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateAnimalDto
-     */
-    'status': string;
     /**
      * 
      * @type {string}
@@ -442,6 +546,98 @@ export interface CreateAnimalDto {
      * @memberof CreateAnimalDto
      */
     'photoUrls'?: Array<string> | null;
+}
+/**
+ * 
+ * @export
+ * @interface CreateShelterDto
+ */
+export interface CreateShelterDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterDto
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterDto
+     */
+    'description': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterDto
+     */
+    'imageUrl': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterDto
+     */
+    'country': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterDto
+     */
+    'region': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterDto
+     */
+    'district': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterDto
+     */
+    'city': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterDto
+     */
+    'street': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterDto
+     */
+    'apartments': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateShelterDto
+     */
+    'lng': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateShelterDto
+     */
+    'lat': number;
+}
+/**
+ * 
+ * @export
+ * @interface CreateShelterFeedbackDto
+ */
+export interface CreateShelterFeedbackDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateShelterFeedbackDto
+     */
+    'comment': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateShelterFeedbackDto
+     */
+    'rating': number;
 }
 /**
  * 
@@ -799,10 +995,205 @@ export interface Shelter {
     'slug': string;
     /**
      * 
+     * @type {Array<Animal>}
+     * @memberof Shelter
+     */
+    'animals'?: Array<Animal> | null;
+    /**
+     * 
      * @type {Array<UsersShelter>}
      * @memberof Shelter
      */
     'usersShelters'?: Array<UsersShelter> | null;
+    /**
+     * 
+     * @type {Array<ShelterFeedback>}
+     * @memberof Shelter
+     */
+    'shelterFeedbacks'?: Array<ShelterFeedback> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShelterDetailDto
+ */
+export interface ShelterDetailDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterDetailDto
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterDetailDto
+     */
+    'name'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShelterDetailDto
+     */
+    'rating'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShelterDetailDto
+     */
+    'reviewsCount'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShelterDetailDto
+     */
+    'animalsCount'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterDetailDto
+     */
+    'description'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterDetailDto
+     */
+    'imageUrl'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterDetailDto
+     */
+    'slug'?: string | null;
+    /**
+     * 
+     * @type {AddressDto}
+     * @memberof ShelterDetailDto
+     */
+    'address'?: AddressDto;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShelterDetailDto
+     */
+    'isSaved'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShelterDetailDto
+     */
+    'hasSubmittedFeedback'?: boolean;
+    /**
+     * 
+     * @type {Array<AnimalSummaryDto>}
+     * @memberof ShelterDetailDto
+     */
+    'animals'?: Array<AnimalSummaryDto> | null;
+    /**
+     * 
+     * @type {Array<ShelterFeedbackDto>}
+     * @memberof ShelterDetailDto
+     */
+    'feedbacks'?: Array<ShelterFeedbackDto> | null;
+}
+/**
+ * 
+ * @export
+ * @interface ShelterFeedback
+ */
+export interface ShelterFeedback {
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterFeedback
+     */
+    'id'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterFeedback
+     */
+    'createdAtUtc': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterFeedback
+     */
+    'updatedAtUtc'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterFeedback
+     */
+    'userLastModified'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterFeedback
+     */
+    'userId': string;
+    /**
+     * 
+     * @type {User}
+     * @memberof ShelterFeedback
+     */
+    'user'?: User;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterFeedback
+     */
+    'shelterId': string;
+    /**
+     * 
+     * @type {Shelter}
+     * @memberof ShelterFeedback
+     */
+    'shelter'?: Shelter;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterFeedback
+     */
+    'comment': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShelterFeedback
+     */
+    'rating': number;
+}
+/**
+ * 
+ * @export
+ * @interface ShelterFeedbackDto
+ */
+export interface ShelterFeedbackDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterFeedbackDto
+     */
+    'comment'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ShelterFeedbackDto
+     */
+    'rating'?: number;
+    /**
+     * 
+     * @type {UserSummaryDto}
+     * @memberof ShelterFeedbackDto
+     */
+    'user'?: UserSummaryDto;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShelterFeedbackDto
+     */
+    'createdAtUtc'?: string;
 }
 /**
  * 
@@ -894,6 +1285,61 @@ export interface TwoFactorResponse {
 /**
  * 
  * @export
+ * @interface UpdateAddressDto
+ */
+export interface UpdateAddressDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateAddressDto
+     */
+    'country'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateAddressDto
+     */
+    'region'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateAddressDto
+     */
+    'district'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateAddressDto
+     */
+    'city'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateAddressDto
+     */
+    'street'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateAddressDto
+     */
+    'apartments'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateAddressDto
+     */
+    'lng'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateAddressDto
+     */
+    'lat'?: number;
+}
+/**
+ * 
+ * @export
  * @interface UpdateAnimalDto
  */
 export interface UpdateAnimalDto {
@@ -926,12 +1372,6 @@ export interface UpdateAnimalDto {
      * @type {string}
      * @memberof UpdateAnimalDto
      */
-    'status'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateAnimalDto
-     */
     'sex'?: string | null;
     /**
      * 
@@ -957,6 +1397,37 @@ export interface UpdateAnimalDto {
      * @memberof UpdateAnimalDto
      */
     'description'?: string | null;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateShelterDto
+ */
+export interface UpdateShelterDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateShelterDto
+     */
+    'name'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateShelterDto
+     */
+    'description'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateShelterDto
+     */
+    'imageUrl'?: string | null;
+    /**
+     * 
+     * @type {UpdateAddressDto}
+     * @memberof UpdateShelterDto
+     */
+    'address'?: UpdateAddressDto;
 }
 /**
  * 
@@ -1000,6 +1471,12 @@ export interface UpdateUserDto {
      * @memberof UpdateUserDto
      */
     'avatarUrl'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateUserDto
+     */
+    'email'?: string | null;
 }
 /**
  * 
@@ -1129,16 +1606,47 @@ export interface User {
     'shelter'?: Shelter;
     /**
      * 
+     * @type {AdoptionRequest}
+     * @memberof User
+     */
+    'adoptionRequest'?: AdoptionRequest;
+    /**
+     * 
      * @type {Array<UsersShelter>}
      * @memberof User
      */
     'usersShelters'?: Array<UsersShelter> | null;
     /**
      * 
+     * @type {Array<ShelterFeedback>}
+     * @memberof User
+     */
+    'userFeedbacks'?: Array<ShelterFeedback> | null;
+    /**
+     * 
      * @type {Array<UsersAnimal>}
      * @memberof User
      */
     'usersAnimals'?: Array<UsersAnimal> | null;
+}
+/**
+ * 
+ * @export
+ * @interface UserSummaryDto
+ */
+export interface UserSummaryDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof UserSummaryDto
+     */
+    'username'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserSummaryDto
+     */
+    'avatarUrl'?: string | null;
 }
 /**
  * 
@@ -1364,6 +1872,39 @@ export const AccountApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAccountSavedItemsGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Account/saved-items`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -1409,6 +1950,17 @@ export const AccountApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['AccountApi.apiAccountRegisterPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAccountSavedItemsGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAccountSavedItemsGet(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AccountApi.apiAccountSavedItemsGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -1444,6 +1996,14 @@ export const AccountApiFactory = function (configuration?: Configuration, basePa
          */
         apiAccountRegisterPost(registrationDto?: RegistrationDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
             return localVarFp.apiAccountRegisterPost(registrationDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAccountSavedItemsGet(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiAccountSavedItemsGet(options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1485,6 +2045,16 @@ export class AccountApi extends BaseAPI {
      */
     public apiAccountRegisterPost(registrationDto?: RegistrationDto, options?: RawAxiosRequestConfig) {
         return AccountApiFp(this.configuration).apiAccountRegisterPost(registrationDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AccountApi
+     */
+    public apiAccountSavedItemsGet(options?: RawAxiosRequestConfig) {
+        return AccountApiFp(this.configuration).apiAccountSavedItemsGet(options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -1824,15 +2394,48 @@ export const AnimalsApiAxiosParamCreator = function (configuration?: Configurati
         },
         /**
          * 
-         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiAnimalsIdGet: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiAnimalsIdGet', 'id', id)
-            const localVarPath = `/api/Animals/{id}`
-                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+        apiAnimalsPopulateSlugsPost: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/Animals/populate-slugs`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAnimalsSlugGet: async (slug: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'slug' is not null or undefined
+            assertParamExists('apiAnimalsSlugGet', 'slug', slug)
+            const localVarPath = `/api/Animals/{slug}`
+                .replace(`{${"slug"}}`, encodeURIComponent(String(slug)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -1841,6 +2444,43 @@ export const AnimalsApiAxiosParamCreator = function (configuration?: Configurati
             }
 
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAnimalsSlugToggleSavePost: async (slug: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'slug' is not null or undefined
+            assertParamExists('apiAnimalsSlugToggleSavePost', 'slug', slug)
+            const localVarPath = `/api/Animals/{slug}/toggle-save`
+                .replace(`{${"slug"}}`, encodeURIComponent(String(slug)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -1919,14 +2559,37 @@ export const AnimalsApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiAnimalsIdGet(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Animal>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAnimalsIdGet(id, options);
+        async apiAnimalsPopulateSlugsPost(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAnimalsPopulateSlugsPost(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['AnimalsApi.apiAnimalsIdGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['AnimalsApi.apiAnimalsPopulateSlugsPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAnimalsSlugGet(slug: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Animal>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAnimalsSlugGet(slug, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AnimalsApi.apiAnimalsSlugGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiAnimalsSlugToggleSavePost(slug: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiAnimalsSlugToggleSavePost(slug, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AnimalsApi.apiAnimalsSlugToggleSavePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -1977,12 +2640,29 @@ export const AnimalsApiFactory = function (configuration?: Configuration, basePa
         },
         /**
          * 
-         * @param {string} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiAnimalsIdGet(id: string, options?: RawAxiosRequestConfig): AxiosPromise<Animal> {
-            return localVarFp.apiAnimalsIdGet(id, options).then((request) => request(axios, basePath));
+        apiAnimalsPopulateSlugsPost(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiAnimalsPopulateSlugsPost(options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAnimalsSlugGet(slug: string, options?: RawAxiosRequestConfig): AxiosPromise<Animal> {
+            return localVarFp.apiAnimalsSlugGet(slug, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiAnimalsSlugToggleSavePost(slug: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiAnimalsSlugToggleSavePost(slug, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2040,13 +2720,34 @@ export class AnimalsApi extends BaseAPI {
 
     /**
      * 
-     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AnimalsApi
      */
-    public apiAnimalsIdGet(id: string, options?: RawAxiosRequestConfig) {
-        return AnimalsApiFp(this.configuration).apiAnimalsIdGet(id, options).then((request) => request(this.axios, this.basePath));
+    public apiAnimalsPopulateSlugsPost(options?: RawAxiosRequestConfig) {
+        return AnimalsApiFp(this.configuration).apiAnimalsPopulateSlugsPost(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} slug 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AnimalsApi
+     */
+    public apiAnimalsSlugGet(slug: string, options?: RawAxiosRequestConfig) {
+        return AnimalsApiFp(this.configuration).apiAnimalsSlugGet(slug, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} slug 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AnimalsApi
+     */
+    public apiAnimalsSlugToggleSavePost(slug: string, options?: RawAxiosRequestConfig) {
+        return AnimalsApiFp(this.configuration).apiAnimalsSlugToggleSavePost(slug, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -2063,8 +2764,8 @@ export const HomeApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiHomeGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/Home`;
+        infoGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/info`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2096,8 +2797,8 @@ export const HomeApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiHomeInfoGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/Home/info`;
+        rootGet: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2130,8 +2831,8 @@ export const HomeApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiHomePost: async (body?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/Home`;
+        rootPost: async (body?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -2176,10 +2877,10 @@ export const HomeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiHomeGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiHomeGet(options);
+        async infoGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.infoGet(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HomeApi.apiHomeGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['HomeApi.infoGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -2187,10 +2888,10 @@ export const HomeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiHomeInfoGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiHomeInfoGet(options);
+        async rootGet(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rootGet(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HomeApi.apiHomeInfoGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['HomeApi.rootGet']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -2199,10 +2900,10 @@ export const HomeApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiHomePost(body?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiHomePost(body, options);
+        async rootPost(body?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.rootPost(body, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['HomeApi.apiHomePost']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['HomeApi.rootPost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -2220,16 +2921,16 @@ export const HomeApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiHomeGet(options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.apiHomeGet(options).then((request) => request(axios, basePath));
+        infoGet(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.infoGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiHomeInfoGet(options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.apiHomeInfoGet(options).then((request) => request(axios, basePath));
+        rootGet(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.rootGet(options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -2237,8 +2938,8 @@ export const HomeApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiHomePost(body?: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.apiHomePost(body, options).then((request) => request(axios, basePath));
+        rootPost(body?: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.rootPost(body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -2256,8 +2957,8 @@ export class HomeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HomeApi
      */
-    public apiHomeGet(options?: RawAxiosRequestConfig) {
-        return HomeApiFp(this.configuration).apiHomeGet(options).then((request) => request(this.axios, this.basePath));
+    public infoGet(options?: RawAxiosRequestConfig) {
+        return HomeApiFp(this.configuration).infoGet(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2266,8 +2967,8 @@ export class HomeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HomeApi
      */
-    public apiHomeInfoGet(options?: RawAxiosRequestConfig) {
-        return HomeApiFp(this.configuration).apiHomeInfoGet(options).then((request) => request(this.axios, this.basePath));
+    public rootGet(options?: RawAxiosRequestConfig) {
+        return HomeApiFp(this.configuration).rootGet(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -2277,8 +2978,8 @@ export class HomeApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HomeApi
      */
-    public apiHomePost(body?: string, options?: RawAxiosRequestConfig) {
-        return HomeApiFp(this.configuration).apiHomePost(body, options).then((request) => request(this.axios, this.basePath));
+    public rootPost(body?: string, options?: RawAxiosRequestConfig) {
+        return HomeApiFp(this.configuration).rootPost(body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -3047,43 +3748,6 @@ export const SheltersApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
-         * @param {string} slug 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiSheltersByslugSlugGet: async (slug: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'slug' is not null or undefined
-            assertParamExists('apiSheltersByslugSlugGet', 'slug', slug)
-            const localVarPath = `/api/Shelters/byslug/{slug}`
-                .replace(`{${"slug"}}`, encodeURIComponent(String(slug)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-            // authentication Bearer required
-            // http bearer authentication required
-            await setBearerAuthToObject(localVarHeaderParameter, configuration)
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3155,12 +3819,13 @@ export const SheltersApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * 
          * @param {string} id 
+         * @param {UpdateShelterDto} [updateShelterDto] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSheltersIdGet: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiSheltersIdPut: async (id: string, updateShelterDto?: UpdateShelterDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
-            assertParamExists('apiSheltersIdGet', 'id', id)
+            assertParamExists('apiSheltersIdPut', 'id', id)
             const localVarPath = `/api/Shelters/{id}`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3170,7 +3835,7 @@ export const SheltersApiAxiosParamCreator = function (configuration?: Configurat
                 baseOptions = configuration.baseOptions;
             }
 
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -3180,9 +3845,12 @@ export const SheltersApiAxiosParamCreator = function (configuration?: Configurat
 
 
     
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(updateShelterDto, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3224,11 +3892,11 @@ export const SheltersApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @param {Shelter} [shelter] 
+         * @param {CreateShelterDto} [createShelterDto] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSheltersPost: async (shelter?: Shelter, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        apiSheltersPost: async (createShelterDto?: CreateShelterDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/Shelters`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3252,7 +3920,122 @@ export const SheltersApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(shelter, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createShelterDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {CreateShelterFeedbackDto} [createShelterFeedbackDto] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSheltersSlugFeedbackPost: async (slug: string, createShelterFeedbackDto?: CreateShelterFeedbackDto, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'slug' is not null or undefined
+            assertParamExists('apiSheltersSlugFeedbackPost', 'slug', slug)
+            const localVarPath = `/api/Shelters/{slug}/feedback`
+                .replace(`{${"slug"}}`, encodeURIComponent(String(slug)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(createShelterFeedbackDto, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSheltersSlugGet: async (slug: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'slug' is not null or undefined
+            assertParamExists('apiSheltersSlugGet', 'slug', slug)
+            const localVarPath = `/api/Shelters/{slug}`
+                .replace(`{${"slug"}}`, encodeURIComponent(String(slug)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSheltersSlugToggleSavePost: async (slug: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'slug' is not null or undefined
+            assertParamExists('apiSheltersSlugToggleSavePost', 'slug', slug)
+            const localVarPath = `/api/Shelters/{slug}/toggle-save`
+                .replace(`{${"slug"}}`, encodeURIComponent(String(slug)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication Bearer required
+            // http bearer authentication required
+            await setBearerAuthToObject(localVarHeaderParameter, configuration)
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3269,18 +4052,6 @@ export const SheltersApiAxiosParamCreator = function (configuration?: Configurat
 export const SheltersApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = SheltersApiAxiosParamCreator(configuration)
     return {
-        /**
-         * 
-         * @param {string} slug 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async apiSheltersByslugSlugGet(slug: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shelter>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiSheltersByslugSlugGet(slug, options);
-            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SheltersApi.apiSheltersByslugSlugGet']?.[localVarOperationServerIndex]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
-        },
         /**
          * 
          * @param {*} [options] Override http request option.
@@ -3307,13 +4078,14 @@ export const SheltersApiFp = function(configuration?: Configuration) {
         /**
          * 
          * @param {string} id 
+         * @param {UpdateShelterDto} [updateShelterDto] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSheltersIdGet(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiSheltersIdGet(id, options);
+        async apiSheltersIdPut(id: string, updateShelterDto?: UpdateShelterDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiSheltersIdPut(id, updateShelterDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
-            const localVarOperationServerBasePath = operationServerMap['SheltersApi.apiSheltersIdGet']?.[localVarOperationServerIndex]?.url;
+            const localVarOperationServerBasePath = operationServerMap['SheltersApi.apiSheltersIdPut']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
@@ -3329,14 +4101,51 @@ export const SheltersApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @param {Shelter} [shelter] 
+         * @param {CreateShelterDto} [createShelterDto] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async apiSheltersPost(shelter?: Shelter, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shelter>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.apiSheltersPost(shelter, options);
+        async apiSheltersPost(createShelterDto?: CreateShelterDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Shelter>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiSheltersPost(createShelterDto, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['SheltersApi.apiSheltersPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {CreateShelterFeedbackDto} [createShelterFeedbackDto] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSheltersSlugFeedbackPost(slug: string, createShelterFeedbackDto?: CreateShelterFeedbackDto, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiSheltersSlugFeedbackPost(slug, createShelterFeedbackDto, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SheltersApi.apiSheltersSlugFeedbackPost']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSheltersSlugGet(slug: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShelterDetailDto>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiSheltersSlugGet(slug, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SheltersApi.apiSheltersSlugGet']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async apiSheltersSlugToggleSavePost(slug: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.apiSheltersSlugToggleSavePost(slug, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['SheltersApi.apiSheltersSlugToggleSavePost']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
@@ -3349,15 +4158,6 @@ export const SheltersApiFp = function(configuration?: Configuration) {
 export const SheltersApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
     const localVarFp = SheltersApiFp(configuration)
     return {
-        /**
-         * 
-         * @param {string} slug 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        apiSheltersByslugSlugGet(slug: string, options?: RawAxiosRequestConfig): AxiosPromise<Shelter> {
-            return localVarFp.apiSheltersByslugSlugGet(slug, options).then((request) => request(axios, basePath));
-        },
         /**
          * 
          * @param {*} [options] Override http request option.
@@ -3378,11 +4178,12 @@ export const SheltersApiFactory = function (configuration?: Configuration, baseP
         /**
          * 
          * @param {string} id 
+         * @param {UpdateShelterDto} [updateShelterDto] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSheltersIdGet(id: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.apiSheltersIdGet(id, options).then((request) => request(axios, basePath));
+        apiSheltersIdPut(id: string, updateShelterDto?: UpdateShelterDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiSheltersIdPut(id, updateShelterDto, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -3394,12 +4195,40 @@ export const SheltersApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @param {Shelter} [shelter] 
+         * @param {CreateShelterDto} [createShelterDto] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        apiSheltersPost(shelter?: Shelter, options?: RawAxiosRequestConfig): AxiosPromise<Shelter> {
-            return localVarFp.apiSheltersPost(shelter, options).then((request) => request(axios, basePath));
+        apiSheltersPost(createShelterDto?: CreateShelterDto, options?: RawAxiosRequestConfig): AxiosPromise<Shelter> {
+            return localVarFp.apiSheltersPost(createShelterDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {CreateShelterFeedbackDto} [createShelterFeedbackDto] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSheltersSlugFeedbackPost(slug: string, createShelterFeedbackDto?: CreateShelterFeedbackDto, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiSheltersSlugFeedbackPost(slug, createShelterFeedbackDto, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSheltersSlugGet(slug: string, options?: RawAxiosRequestConfig): AxiosPromise<ShelterDetailDto> {
+            return localVarFp.apiSheltersSlugGet(slug, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} slug 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        apiSheltersSlugToggleSavePost(slug: string, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.apiSheltersSlugToggleSavePost(slug, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -3411,17 +4240,6 @@ export const SheltersApiFactory = function (configuration?: Configuration, baseP
  * @extends {BaseAPI}
  */
 export class SheltersApi extends BaseAPI {
-    /**
-     * 
-     * @param {string} slug 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SheltersApi
-     */
-    public apiSheltersByslugSlugGet(slug: string, options?: RawAxiosRequestConfig) {
-        return SheltersApiFp(this.configuration).apiSheltersByslugSlugGet(slug, options).then((request) => request(this.axios, this.basePath));
-    }
-
     /**
      * 
      * @param {*} [options] Override http request option.
@@ -3446,12 +4264,13 @@ export class SheltersApi extends BaseAPI {
     /**
      * 
      * @param {string} id 
+     * @param {UpdateShelterDto} [updateShelterDto] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SheltersApi
      */
-    public apiSheltersIdGet(id: string, options?: RawAxiosRequestConfig) {
-        return SheltersApiFp(this.configuration).apiSheltersIdGet(id, options).then((request) => request(this.axios, this.basePath));
+    public apiSheltersIdPut(id: string, updateShelterDto?: UpdateShelterDto, options?: RawAxiosRequestConfig) {
+        return SheltersApiFp(this.configuration).apiSheltersIdPut(id, updateShelterDto, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -3466,13 +4285,47 @@ export class SheltersApi extends BaseAPI {
 
     /**
      * 
-     * @param {Shelter} [shelter] 
+     * @param {CreateShelterDto} [createShelterDto] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof SheltersApi
      */
-    public apiSheltersPost(shelter?: Shelter, options?: RawAxiosRequestConfig) {
-        return SheltersApiFp(this.configuration).apiSheltersPost(shelter, options).then((request) => request(this.axios, this.basePath));
+    public apiSheltersPost(createShelterDto?: CreateShelterDto, options?: RawAxiosRequestConfig) {
+        return SheltersApiFp(this.configuration).apiSheltersPost(createShelterDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} slug 
+     * @param {CreateShelterFeedbackDto} [createShelterFeedbackDto] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SheltersApi
+     */
+    public apiSheltersSlugFeedbackPost(slug: string, createShelterFeedbackDto?: CreateShelterFeedbackDto, options?: RawAxiosRequestConfig) {
+        return SheltersApiFp(this.configuration).apiSheltersSlugFeedbackPost(slug, createShelterFeedbackDto, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} slug 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SheltersApi
+     */
+    public apiSheltersSlugGet(slug: string, options?: RawAxiosRequestConfig) {
+        return SheltersApiFp(this.configuration).apiSheltersSlugGet(slug, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} slug 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SheltersApi
+     */
+    public apiSheltersSlugToggleSavePost(slug: string, options?: RawAxiosRequestConfig) {
+        return SheltersApiFp(this.configuration).apiSheltersSlugToggleSavePost(slug, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

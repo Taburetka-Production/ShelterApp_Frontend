@@ -22,7 +22,7 @@ export const TopSlider: React.FC = () => {
     return allShelters
       .slice()
       .sort((a, b) => b.rating - a.rating)
-      .slice(0, 8);
+      .slice(0, 5);
   }, [allShelters]);
 
   const setStateWithTimeout = (index: number) => {

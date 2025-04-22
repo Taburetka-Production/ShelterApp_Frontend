@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../button/Button";
 import { ReviewText } from "../shelterCard/ReviewText";
 import { Star } from "../shelterCard/Star";
+import { truncateText } from "../truncateText";
 
 interface ShelterCardForSliderProps {
-  image?: string;
+  image: string;
   title: string;
-  description?: string;
+  description: string;
   index: number;
   currentIndex: number;
   length: number;
@@ -58,7 +59,7 @@ export const ShelterCardForSlider: React.FC<ShelterCardForSliderProps> = ({
       </div>
       <div className="shelter-card-content">
         <h3>{title}</h3>
-        <p>{description}</p>
+        <p>{truncateText(description, 140)}</p>
         <div className="shelter-card-rating">
           <Star rating={rating}>{reviews > 0 ? `(${rating} stars)` : ``}</Star>
           <ReviewText reviews={reviews} />

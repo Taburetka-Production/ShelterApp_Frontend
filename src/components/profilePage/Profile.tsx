@@ -1,12 +1,16 @@
-import { User } from "@/redux/types";
-import { ROUTES } from "@/routes/routes";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { BiLogOut } from "react-icons/bi";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import "./Profile.css";
+import { axiosInstance } from "@/App";
+import { AccountApi } from "@/generated-client";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/slices/authSlice";
+import { User } from "@/redux/types";
+import { PROFILE_NESTED_ROUTES, ROUTES } from "@/routes/routes";
+import React, { useEffect, useState } from "react";
+import { BiLogOut } from "react-icons/bi";
+import { FaCog, FaPaw, FaUserCircle } from "react-icons/fa";
+import { MdOutlineMail } from "react-icons/md";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import "./Profile.scss";
+import { AxiosResponse } from "axios";
 
 export const Profile: React.FC = () => {
   const navigate = useNavigate();
@@ -16,17 +20,10 @@ export const Profile: React.FC = () => {
   const { accessToken } = useAppSelector((state) => state.auth);
 
   const fetchProfile = async (): Promise<User> => {
-    if (!accessToken) {
-      throw new Error("Please log in.");
-    }
-    const response = await axios.get<User>(
-      "https://localhost:7118/api/Account/info",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      },
-    );
+    const apiInstance = new AccountApi(undefined, "", axiosInstance);
+    const response = (await apiInstance.apiAccountInfoGet({
+      headers: { Authorization: `Bearer ${accessToken}` },
+    })) as unknown as AxiosResponse<User>;
     return response.data;
   };
 
@@ -39,47 +36,46 @@ export const Profile: React.FC = () => {
         if (err instanceof Error) {
           setError(err.message);
         } else {
-          setError("Невідома помилка.");
+          setError("Невідома помилка завантаження профілю.");
         }
+        console.error("Помилка:", err);
       }
     };
-    fetchData();
-  });
-
-  if (error) {
-    return <div>{error}</div>;
-  }
-
-  if (!userData) {
-    return <div>Loading...</div>;
-  }
+    if (accessToken) {
+      fetchData();
+    } else {
+      navigate(ROUTES.AUTH_LOGIN);
+    }
+  }, [accessToken, navigate]);
 
   const handleLogout = () => {
     dispatch(logout());
     navigate(ROUTES.AUTH_LOGIN);
   };
 
+  if (error && !userData) {
+    return <div className="profile-page-message">{error}</div>;
+  }
+
+  if (!userData) {
+    return <div className="profile-page-message">Загрузка профілю...</div>;
+  }
+
   return (
     <div className="profile-page">
       <div className="profile-container">
-        <h2 className="profile-h2">Welcome {userData.userName}</h2>
         <div className="profile-wrapper">
           <div className="profile-side">
             <div className="profile-side user">
               <div className="profile-user-photo">
                 <img
                   src={
-                    userData.avatarUrl
-                      ? userData.avatarUrl
-                      : `${process.env.PUBLIC_URL}/images/user.png`
+                    userData.avatarUrl ||
+                    `${process.env.PUBLIC_URL}/images/user.png`
                   }
-                  alt="You"
+                  alt={`${userData.userName} avatar`}
                 />
-                <input
-                  type="file"
-                  accept="image/*"
-                  style={{ display: "none" }}
-                ></input>
+                {/* <input type="file" accept="image/*" style={{ display: "none" }} /> */}
               </div>
               <div className="profile-user-information">
                 <h2 className="profile-h2">{userData.userName}</h2>
@@ -96,52 +92,55 @@ export const Profile: React.FC = () => {
                       }
                       end
                     >
-                      Profile Info
+                      <FaUserCircle />
+                      <span>Інформація</span>
                     </NavLink>
                   </li>
-                  <li className="profile-nav-element">
+                  <li>
                     <NavLink
-                      to={`${ROUTES.PROFILE}/pets`}
+                      to={`${ROUTES.PROFILE}/${PROFILE_NESTED_ROUTES.FAVORITES}`}
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }
                     >
-                      Pets
+                      <FaPaw />
+                      <span>Улюблені</span>
                     </NavLink>
                   </li>
-                  <li className="profile-nav-element">
+                  <li>
                     <NavLink
-                      to={`${ROUTES.PROFILE}/transactions`}
+                      to={`${ROUTES.PROFILE}/${PROFILE_NESTED_ROUTES.NOTIFICATION}`}
                       className={({ isActive }) =>
                         isActive ? "link active" : "link"
                       }
                     >
-                      Transactions
+                      <MdOutlineMail />
+                      <span>Повідомлення</span>
                     </NavLink>
                   </li>
-                  <li className="profile-nav-element">
-                    <NavLink
-                      to={`${ROUTES.PROFILE}/tracked`}
-                      className={({ isActive }) =>
-                        isActive ? "link active" : "link"
-                      }
-                    >
-                      Tracked
-                    </NavLink>
-                  </li>
+                  {userData.roles?.includes("Superadmin") && (
+                    <li>
+                      <NavLink
+                        to={`${ROUTES.SUPER_ADMIN_PANEL}`}
+                        className={({ isActive }) =>
+                          isActive ? "link active" : "link"
+                        }
+                      >
+                        <FaCog />
+                        <span>Панель СуперАдміна</span>
+                      </NavLink>
+                    </li>
+                  )}
                 </ul>
-                <button
-                  onClick={() => handleLogout()}
-                  className="profile-logout-btn"
-                >
+                <button onClick={handleLogout} className="profile-logout-btn">
                   <BiLogOut className="logout-icon" />
-                  Logout
+                  <span>Вийти</span>{" "}
                 </button>
               </nav>
             </div>
           </div>
           <div className="profile-content">
-            <Outlet context={userData} />
+            <Outlet context={userData} />{" "}
           </div>
         </div>
       </div>

@@ -88,7 +88,7 @@
   justify-content: space-evenly;
   flex-direction: column;
   width: 140px;
-  height: 130px;
+  height: 120px;
   border-radius: var(--btn-border-radius);
   top: 157%;
   left: 0;
@@ -161,4 +161,16 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--hover-text-color);
+}
+
+.dropdown-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dropdown-menu li a svg {
+  font-size: 1em;
+  color: inherit;
+  flex-shrink: 0;
 }

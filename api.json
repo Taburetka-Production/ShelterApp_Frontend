@@ -77,6 +77,18 @@
                 }
             }
         },
+        "/api/Account/saved-items": {
+            "get": {
+                "tags": [
+                    "Account"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/api/AdoptionRequests": {
             "post": {
                 "tags": [
@@ -169,19 +181,18 @@
                 }
             }
         },
-        "/api/Animals/{id}": {
+        "/api/Animals/{slug}": {
             "get": {
                 "tags": [
                     "Animals"
                 ],
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "slug",
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "string",
-                            "format": "uuid"
+                            "type": "string"
                         }
                     }
                 ],
@@ -207,19 +218,20 @@
                         }
                     }
                 }
-            },
-            "delete": {
+            }
+        },
+        "/api/Animals/{slug}/toggle-save": {
+            "post": {
                 "tags": [
                     "Animals"
                 ],
                 "parameters": [
                     {
-                        "name": "id",
+                        "name": "slug",
                         "in": "path",
                         "required": true,
                         "schema": {
-                            "type": "string",
-                            "format": "uuid"
+                            "type": "string"
                         }
                     }
                 ],
@@ -302,7 +314,42 @@
                 }
             }
         },
-        "/api/Home": {
+        "/api/Animals/populate-slugs": {
+            "post": {
+                "tags": [
+                    "Animals"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Animals/{id}": {
+            "delete": {
+                "tags": [
+                    "Animals"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/": {
             "get": {
                 "tags": [
                     "Home"
@@ -343,7 +390,7 @@
                 }
             }
         },
-        "/api/Home/info": {
+        "/info": {
             "get": {
                 "tags": [
                     "Home"
@@ -708,17 +755,17 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Shelter"
+                                "$ref": "#/components/schemas/CreateShelterDto"
                             }
                         },
                         "text/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Shelter"
+                                "$ref": "#/components/schemas/CreateShelterDto"
                             }
                         },
                         "application/*+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Shelter"
+                                "$ref": "#/components/schemas/CreateShelterDto"
                             }
                         }
                     }
@@ -747,7 +794,7 @@
                 }
             }
         },
-        "/api/Shelters/byslug/{slug}": {
+        "/api/Shelters/{slug}": {
             "get": {
                 "tags": [
                     "Shelters"
@@ -768,17 +815,17 @@
                         "content": {
                             "text/plain": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Shelter"
+                                    "$ref": "#/components/schemas/ShelterDetailDto"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Shelter"
+                                    "$ref": "#/components/schemas/ShelterDetailDto"
                                 }
                             },
                             "text/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Shelter"
+                                    "$ref": "#/components/schemas/ShelterDetailDto"
                                 }
                             }
                         }
@@ -786,8 +833,83 @@
                 }
             }
         },
+        "/api/Shelters/{slug}/toggle-save": {
+            "post": {
+                "tags": [
+                    "Shelters"
+                ],
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Shelters/{slug}/feedback": {
+            "post": {
+                "tags": [
+                    "Shelters"
+                ],
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateShelterFeedbackDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateShelterFeedbackDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateShelterFeedbackDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/api/Shelters/populate-slugs": {
+            "post": {
+                "tags": [
+                    "Shelters"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/api/Shelters/{id}": {
-            "get": {
+            "put": {
                 "tags": [
                     "Shelters"
                 ],
@@ -802,6 +924,25 @@
                         }
                     }
                 ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateShelterDto"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateShelterDto"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateShelterDto"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -822,18 +963,6 @@
                             "format": "uuid"
                         }
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                }
-            }
-        },
-        "/api/Shelters/populate-slugs": {
-            "post": {
-                "tags": [
-                    "Shelters"
                 ],
                 "responses": {
                     "200": {
@@ -1049,6 +1178,44 @@
                 },
                 "additionalProperties": false
             },
+            "AddressDto": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "district": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "city": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "street": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "apartments": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lng": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "lat": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "additionalProperties": false
+            },
             "AdoptionRequest": {
                 "required": [
                     "animalId",
@@ -1111,6 +1278,7 @@
                     "sex",
                     "shelterId",
                     "size",
+                    "slug",
                     "species",
                     "status",
                     "sterilized"
@@ -1181,6 +1349,13 @@
                     "shelter": {
                         "$ref": "#/components/schemas/Shelter"
                     },
+                    "adoptionRequest": {
+                        "$ref": "#/components/schemas/AdoptionRequest"
+                    },
+                    "slug": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
                     "photos": {
                         "type": "array",
                         "items": {
@@ -1237,6 +1412,35 @@
                 },
                 "additionalProperties": false
             },
+            "AnimalSummaryDto": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "species": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "slug": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "primaryPhotoUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "isSaved": {
+                        "type": "boolean"
+                    }
+                },
+                "additionalProperties": false
+            },
             "CreateAnimalDto": {
                 "required": [
                     "description",
@@ -1246,7 +1450,6 @@
                     "shelterId",
                     "size",
                     "species",
-                    "status",
                     "sterilized"
                 ],
                 "type": "object",
@@ -1267,10 +1470,6 @@
                         "type": "integer",
                         "format": "int32",
                         "nullable": true
-                    },
-                    "status": {
-                        "minLength": 1,
-                        "type": "string"
                     },
                     "shelterId": {
                         "type": "string",
@@ -1301,6 +1500,90 @@
                             "type": "string"
                         },
                         "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateShelterDto": {
+                "required": [
+                    "apartments",
+                    "city",
+                    "country",
+                    "description",
+                    "district",
+                    "imageUrl",
+                    "lat",
+                    "lng",
+                    "name",
+                    "region",
+                    "street"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "description": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "imageUrl": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "country": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "region": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "district": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "city": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "street": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "apartments": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "lng": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "lat": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "CreateShelterFeedbackDto": {
+                "required": [
+                    "comment",
+                    "rating"
+                ],
+                "type": "object",
+                "properties": {
+                    "comment": {
+                        "maxLength": 1000,
+                        "minLength": 0,
+                        "type": "string"
+                    },
+                    "rating": {
+                        "maximum": 5,
+                        "minimum": 1,
+                        "type": "number",
+                        "format": "double"
                     }
                 },
                 "additionalProperties": false
@@ -1608,12 +1891,161 @@
                         "minLength": 1,
                         "type": "string"
                     },
+                    "animals": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Animal"
+                        },
+                        "nullable": true
+                    },
                     "usersShelters": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/UsersShelter"
                         },
                         "nullable": true
+                    },
+                    "shelterFeedbacks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ShelterFeedback"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ShelterDetailDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "rating": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "reviewsCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "animalsCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "imageUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "slug": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/AddressDto"
+                    },
+                    "isSaved": {
+                        "type": "boolean"
+                    },
+                    "hasSubmittedFeedback": {
+                        "type": "boolean"
+                    },
+                    "animals": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/AnimalSummaryDto"
+                        },
+                        "nullable": true
+                    },
+                    "feedbacks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ShelterFeedbackDto"
+                        },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ShelterFeedback": {
+                "required": [
+                    "comment",
+                    "createdAtUtc",
+                    "rating",
+                    "shelterId",
+                    "userId"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "createdAtUtc": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updatedAtUtc": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "userLastModified": {
+                        "type": "string",
+                        "format": "uuid",
+                        "nullable": true
+                    },
+                    "userId": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    },
+                    "shelterId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "shelter": {
+                        "$ref": "#/components/schemas/Shelter"
+                    },
+                    "comment": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "rating": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "ShelterFeedbackDto": {
+                "type": "object",
+                "properties": {
+                    "comment": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "rating": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserSummaryDto"
+                    },
+                    "createdAtUtc": {
+                        "type": "string",
+                        "format": "date-time"
                     }
                 },
                 "additionalProperties": false
@@ -1688,6 +2120,44 @@
                 },
                 "additionalProperties": false
             },
+            "UpdateAddressDto": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "region": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "district": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "city": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "street": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "apartments": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lng": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "lat": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "additionalProperties": false
+            },
             "UpdateAnimalDto": {
                 "type": "object",
                 "properties": {
@@ -1706,10 +2176,6 @@
                     "age": {
                         "type": "integer",
                         "format": "int32",
-                        "nullable": true
-                    },
-                    "status": {
-                        "type": "string",
                         "nullable": true
                     },
                     "sex": {
@@ -1731,6 +2197,27 @@
                     "description": {
                         "type": "string",
                         "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UpdateShelterDto": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "imageUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/UpdateAddressDto"
                     }
                 },
                 "additionalProperties": false
@@ -1761,6 +2248,11 @@
                     },
                     "avatarUrl": {
                         "type": "string",
+                        "nullable": true
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
                         "nullable": true
                     }
                 },
@@ -1850,10 +2342,20 @@
                     "shelter": {
                         "$ref": "#/components/schemas/Shelter"
                     },
+                    "adoptionRequest": {
+                        "$ref": "#/components/schemas/AdoptionRequest"
+                    },
                     "usersShelters": {
                         "type": "array",
                         "items": {
                             "$ref": "#/components/schemas/UsersShelter"
+                        },
+                        "nullable": true
+                    },
+                    "userFeedbacks": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/ShelterFeedback"
                         },
                         "nullable": true
                     },
@@ -1862,6 +2364,20 @@
                         "items": {
                             "$ref": "#/components/schemas/UsersAnimal"
                         },
+                        "nullable": true
+                    }
+                },
+                "additionalProperties": false
+            },
+            "UserSummaryDto": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "avatarUrl": {
+                        "type": "string",
                         "nullable": true
                     }
                 },

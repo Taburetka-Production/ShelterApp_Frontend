@@ -9,7 +9,7 @@ export const SuperAdminPanelRoutes = (): JSX.Element => {
     <Routes>
       <Route element={<SuperAdminPage />}>
         <Route index element={<Users />} />
-        <Route path={ROUTES.SHELTER} element={<Shelters />} />
+        <Route path={ROUTES.SHELTERS_PAGE} element={<Shelters />} />
       </Route>
     </Routes>
   );
