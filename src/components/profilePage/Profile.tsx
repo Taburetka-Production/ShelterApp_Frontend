@@ -1,15 +1,16 @@
+import { axiosInstance } from "@/App";
+import { AccountApi } from "@/generated-client";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/slices/authSlice";
 import { User } from "@/redux/types";
 import { PROFILE_NESTED_ROUTES, ROUTES } from "@/routes/routes";
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { FaCog, FaPaw, FaUserCircle } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
-
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./Profile.scss";
+import { AxiosResponse } from "axios";
 
 export const Profile: React.FC = () => {
   const navigate = useNavigate();
@@ -19,12 +20,10 @@ export const Profile: React.FC = () => {
   const { accessToken } = useAppSelector((state) => state.auth);
 
   const fetchProfile = async (): Promise<User> => {
-    const response = await axios.get<User>(
-      "https://localhost:7118/api/Account/info",
-      {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      },
-    );
+    const apiInstance = new AccountApi(undefined, "", axiosInstance);
+    const response = (await apiInstance.apiAccountInfoGet({
+      headers: { Authorization: `Bearer ${accessToken}` },
+    })) as unknown as AxiosResponse<User>;
     return response.data;
   };
 
@@ -39,7 +38,7 @@ export const Profile: React.FC = () => {
         } else {
           setError("Невідома помилка завантаження профілю.");
         }
-        console.error("Profile fetch error:", err);
+        console.error("Помилка:", err);
       }
     };
     if (accessToken) {
@@ -59,7 +58,7 @@ export const Profile: React.FC = () => {
   }
 
   if (!userData) {
-    return <div className="profile-page-message">Loading profile...</div>;
+    return <div className="profile-page-message">Загрузка профілю...</div>;
   }
 
   return (
@@ -94,7 +93,7 @@ export const Profile: React.FC = () => {
                       end
                     >
                       <FaUserCircle />
-                      <span>Profile Info</span>
+                      <span>Інформація</span>
                     </NavLink>
                   </li>
                   <li>
@@ -105,7 +104,7 @@ export const Profile: React.FC = () => {
                       }
                     >
                       <FaPaw />
-                      <span>Favorites</span>
+                      <span>Улюблені</span>
                     </NavLink>
                   </li>
                   <li>
@@ -116,7 +115,7 @@ export const Profile: React.FC = () => {
                       }
                     >
                       <MdOutlineMail />
-                      <span>Notifications</span>
+                      <span>Повідомлення</span>
                     </NavLink>
                   </li>
                   {userData.roles?.includes("Superadmin") && (
@@ -128,14 +127,14 @@ export const Profile: React.FC = () => {
                         }
                       >
                         <FaCog />
-                        <span>SuperAdmin Panel</span>
+                        <span>Панель СуперАдміна</span>
                       </NavLink>
                     </li>
                   )}
                 </ul>
                 <button onClick={handleLogout} className="profile-logout-btn">
                   <BiLogOut className="logout-icon" />
-                  <span>Logout</span>{" "}
+                  <span>Вийти</span>{" "}
                 </button>
               </nav>
             </div>

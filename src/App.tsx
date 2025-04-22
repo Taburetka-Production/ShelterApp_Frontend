@@ -11,7 +11,7 @@ import { ShelterRoutes } from "./routes/ShelterRoutes";
 import { SuperAdminPanelRoutes } from "./routes/SuperAdminPanelRoutes";
 import "./styles/main.scss";
 export const axiosInstance = axios.create({
-  baseURL: "https://localhost:7118/",
+  baseURL: "http://ec2-13-61-189-214.eu-north-1.compute.amazonaws.com:7118/",
 });
 function App() {
   return (

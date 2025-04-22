@@ -11,11 +11,14 @@ export const SecondSection = (): JSX.Element => {
       </div>
 
       <div className="main-page__second-section-group">
-        <h1>About us</h1>
+        <h1>Будинок тепла для кожного хвостика</h1>
         <div className="main-page__second-section-text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim venia.
+          Наша ініціатива покликана дарувати безпритульним тваринам безпечний
+          прихисток, кваліфікований медичний догляд і справжній дім. Ми
+          об’єднуємо волонтерів, благодійників та місцеві спільноти, щоб кожен
+          котик, песик чи інший пухнастий друг отримав любов і турботу, яких
+          заслуговує. Приєднуйтесь до нас — разом ми знайдемо для них найкращі
+          родини!
         </div>
         <Link to={ROUTES.SHELTERS_PAGE} className="no-text-decoration">
           <Button className="main-page__second-section-btn">

@@ -31,7 +31,8 @@ export const Users = () => {
 
   const handleDelete = async (userId: string) => {
     try {
-      await axios.delete(`https://localhost:7118/api/Users/${userId}`, {
+      const apiInstance = new UsersApi(undefined, "", axiosInstance);
+      await apiInstance.apiUsersUserIdDelete(userId, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -44,15 +45,14 @@ export const Users = () => {
 
   const handleGrant = async (userId: string) => {
     try {
-      await axios.post(
-        `https://localhost:7118/api/Users/grant-admin/${userId}`,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+      const apiInstance = new UsersApi(undefined, "", axiosInstance);
+      axiosInstance.defaults.headers.common["Authorization"] =
+        `Bearer ${accessToken}`;
+      await apiInstance.apiUsersGrantAdminIdPost(userId, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
         },
-      );
+      });
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
           user.id === userId ? { ...user, roles: ["ShelterAdmin"] } : user,

@@ -1,18 +1,14 @@
 import { ROUTES } from "@/routes/routes";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
-import { useCallback, useEffect } from "react";
-import { useAppSelector } from "@/redux/hooks";
-import { FaHome, FaSignInAlt, FaUserCircle, FaWarehouse } from "react-icons/fa";
+import { FaHome, FaSignInAlt, FaWarehouse } from "react-icons/fa";
 
 export const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [menuClass, setMenuClass] = useState("");
   const navigate = useNavigate();
   const timeoutRef = useRef<number | null>(null);
-  const { accessToken } = useAppSelector((state) => state.auth);
-  const userRoute = accessToken ? ROUTES.PROFILE : ROUTES.AUTH_LOGIN;
   const menuItems = [
     {
       name: "Головна",
@@ -25,20 +21,20 @@ export const Header = () => {
       icon: <FaWarehouse />,
     },
     {
-      name: accessToken ? "Профіль" : "Увійти",
-      path: userRoute,
-      icon: accessToken ? <FaUserCircle /> : <FaSignInAlt />,
+      name: "Увійти",
+      path: `${ROUTES.AUTH_LOGIN}`,
+      icon: <FaSignInAlt />,
     },
   ];
 
   const handleIconClicked = useCallback(
     (iconName: string) => {
-      if (iconName === "user") navigate(userRoute);
+      if (iconName === "user") navigate(ROUTES.AUTH_LOGIN);
       else if (iconName === "logo") {
         navigate(ROUTES.MAIN);
       }
     },
-    [navigate, userRoute],
+    [navigate],
   );
 
   const openDropdown = useCallback(() => {

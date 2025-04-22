@@ -150,7 +150,7 @@
   max-width: 800px;
 }
 
-/* @media (max-width: 768px) {
+@media (max-width: 768px) {
   .register.form {
     max-width: 550px;
     gap: 20px 25px;
@@ -164,4 +164,4 @@
   .register.form button[type="submit"] {
     width: 65%;
   }
-}  */
+}

@@ -5,6 +5,8 @@ import { useOutletContext, useNavigate } from "react-router-dom";
 import { Button } from "../button/Button";
 import "./ProfileInfo.scss";
 import { useAppSelector } from "@/redux/hooks";
+import { axiosInstance } from "@/App";
+import { AccountApi } from "@/generated-client";
 
 interface UserData {
   age: number;
@@ -54,11 +56,10 @@ export const ProfileInfo: React.FC = () => {
     setMessage("");
     try {
       const dataToSend = { ...userData };
-      await axios.put<UserData>(
-        "https://localhost:7118/api/Account/info",
-        dataToSend,
-        { headers: { Authorization: `Bearer ${accessToken}` } },
-      );
+      const apiInstance = new AccountApi(undefined, "", axiosInstance);
+      await apiInstance.apiAccountInfoPut(dataToSend, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
       setMessage("Профіль успішно оновлено.");
       setEditMode(false);
     } catch (error: any) {
