@@ -1,19 +1,19 @@
-import { HiSortAscending, HiSortDescending } from "react-icons/hi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   setRegionFilter,
   setSearchQuery,
   setSortOrder,
 } from "@/redux/slices/searchSlice";
+import { ROUTES } from "@/routes/routes";
 import "@/styles/components/sheltersPage/MainContent.css";
+import { HiSortAscending, HiSortDescending } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 import { Button } from "../button/Button";
 import { AllSheltersList } from "./AllSheltersList";
 import { Dropdown } from "./Dropdown";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "@/routes/routes";
 
 export const MainContent: React.FC = () => {
-  const { searchQuery, regions } = useAppSelector((state) => state.search);
+  const { regions } = useAppSelector((state) => state.search);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -45,7 +45,6 @@ export const MainContent: React.FC = () => {
           <div className="active-filters">
             <h3>Активні фільтри:</h3>
             <ul>
-              {searchQuery && <li>Пошук: {searchQuery}</li>}
               {regions.length > 0 && <li>Регіони: {regions.join(", ")}</li>}
             </ul>
           </div>

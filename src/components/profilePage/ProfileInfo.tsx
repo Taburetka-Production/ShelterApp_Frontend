@@ -1,9 +1,10 @@
 import { ROUTES, SHELTER_NESTED_ROUTES } from "@/routes/routes";
 import axios from "axios";
-import { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useOutletContext, useNavigate } from "react-router-dom";
 import { Button } from "../button/Button";
 import "./ProfileInfo.scss";
+import { useAppSelector } from "@/redux/hooks";
 
 interface UserData {
   age: number;
@@ -18,46 +19,62 @@ interface UserData {
 
 export const ProfileInfo: React.FC = () => {
   const navigate = useNavigate();
-  const handleCreateShelter = () => {
-    navigate(`${ROUTES.SHELTERS_PAGE}/${SHELTER_NESTED_ROUTES.CREATE}`);
-  };
-  const handleSuperAdmin = () => {
-    navigate(`${ROUTES.SUPER_ADMIN}`);
-  };
-  const [editMode, setEditMode] = useState(false);
   const initialData = useOutletContext<UserData>();
+  const [editMode, setEditMode] = useState(false);
   const [userData, setUserData] = useState<UserData>(initialData);
   const [message, setMessage] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { accessToken } = useAppSelector((state) => state.auth);
+
+  useEffect(() => {
+    setUserData(initialData);
+  }, [initialData]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type } = e.target;
     setUserData({
       ...userData,
-      [e.target.name]: e.target.value,
+      [name]: type === "number" ? Number(value) || 0 : value,
     });
+  };
+
+  const handleCancelEdit = () => {
+    setUserData(initialData);
+    setEditMode(false);
+    setMessage("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
-      setMessage("Будь ласка, увійдіть у систему.");
+      setMessage("Сесія застаріла. Будь ласка, увійдіть знову.");
       return;
     }
+    setIsSubmitting(true);
+    setMessage("");
     try {
+      const dataToSend = { ...userData };
       await axios.put<UserData>(
         "https://localhost:7118/api/Account/info",
-        userData,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
+        dataToSend,
+        { headers: { Authorization: `Bearer ${accessToken}` } },
       );
       setMessage("Профіль успішно оновлено.");
       setEditMode(false);
     } catch (error: any) {
-      setMessage(error);
+      console.error("Помилка оновлення профілю:", error);
+      const errorMsg =
+        error.response?.data?.message ||
+        error.message ||
+        "Помилка оновлення профілю.";
+      setMessage(`Помилка: ${errorMsg}`);
+    } finally {
+      setIsSubmitting(false);
     }
+  };
+
+  const handleCreateShelter = () => {
+    navigate(`${ROUTES.SHELTER}/${SHELTER_NESTED_ROUTES.CREATE}`);
   };
 
   return (
@@ -65,50 +82,51 @@ export const ProfileInfo: React.FC = () => {
       <Button onClick={handleCreateShelter} className="profile-info-btns">
         Create shelter
       </Button>
-      <Button onClick={handleSuperAdmin} className="profile-info-btns">
-        Super Admin Panel
-      </Button>
       <div className="profileInfo-section">
         <div className="profileInfo-header">
-          <h2>Profile Info</h2>
-          <div>
-            <Button
-              onClick={() => setEditMode(!editMode)}
-              className="edit-mode"
-            >
-              {editMode ? "Cancel" : "EDIT"}
-            </Button>
-            {editMode && (
-              <Button onClick={handleSubmit} className="save-edit">
-                Save
+          <h2>Profile info</h2>
+          <div className="profileInfo-header-buttons">
+            {!editMode && (
+              <Button onClick={() => setEditMode(true)} className="edit-btn">
+                Edit
               </Button>
+            )}
+            {editMode && (
+              <>
+                <Button
+                  onClick={handleCancelEdit}
+                  className="cancel-btn"
+                  disabled={isSubmitting}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  onClick={handleSubmit}
+                  className="save-btn"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Saving..." : "Save"}
+                </Button>
+              </>
             )}
           </div>
         </div>
 
-        <div className="profileInfo-details">
+        <form onSubmit={handleSubmit} className="profileInfo-details">
           <div className="detail-item">
-            <label>Username</label>
+            <label htmlFor="profile-name">Name</label>{" "}
             <input
-              name="userName"
-              value={userData.userName}
-              onChange={handleInputChange}
-              disabled={!editMode}
-            />
-          </div>
-          <div className="detail-item">
-            <label>First Name</label>
-            <input
+              id="profile-name"
               name="name"
-              value={userData.name}
+              value={userData.name || ""}
               onChange={handleInputChange}
               disabled={!editMode}
             />
           </div>
-
           <div className="detail-item">
-            <label>Last Name</label>
+            <label htmlFor="profile-surname">Surname</label>
             <input
+              id="profile-surname"
               name="surname"
               value={userData.surname || ""}
               onChange={handleInputChange}
@@ -117,46 +135,52 @@ export const ProfileInfo: React.FC = () => {
           </div>
 
           <div className="detail-item">
-            <label>Age</label>
+            <label htmlFor="profile-username">Username</label>
             <input
+              id="profile-username"
+              name="userName"
+              value={userData.userName}
+              onChange={handleInputChange}
+              disabled
+            />
+          </div>
+          <div className="detail-item">
+            <label htmlFor="profile-age">Age</label>
+            <input
+              id="profile-age"
+              type="number"
               name="age"
-              value={userData.age}
+              value={userData.age || 0}
               onChange={handleInputChange}
               disabled={!editMode}
             />
           </div>
 
           <div className="detail-item">
-            <label>Phone Number</label>
+            <label htmlFor="profile-phone">Phone number</label>
             <input
+              id="profile-phone"
+              type="tel"
               name="phoneNumber"
-              value={userData.phoneNumber}
+              value={userData.phoneNumber || ""}
               onChange={handleInputChange}
               disabled={!editMode}
             />
           </div>
+
           <div className="detail-item">
-            <label>Email</label>
+            <label htmlFor="profile-email">Email address</label>
             <input
+              id="profile-email"
+              type="email"
               name="email"
               value={userData.email}
               onChange={handleInputChange}
               disabled
             />
           </div>
-          {/* <div className="detail-item">
-            <label>Roles</label>
-            <input
-              name="roles"
-              value={userData.roles[0]}
-              onChange={handleInputChange}
-              disabled
-            />
-          </div> */}
-        </div>
-      </div>
-      <div>
-        <p>{message}</p>
+        </form>
+        {message && <p className="profile-info-message">{message}</p>}
       </div>
     </div>
   );

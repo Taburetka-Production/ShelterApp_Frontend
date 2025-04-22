@@ -21,6 +21,8 @@ export interface Shelter {
   addressId: string | null;
   address: Address;
   slug: string;
+  animals?: Animal[];
+  feedbacks?: Feedback[];
 }
 
 export interface User {
@@ -30,9 +32,26 @@ export interface User {
   surname: string;
   age: number;
   email: string;
-  userName: string;
-  phone: string;
+  userName?: string;
+  phone?: string;
   roles: string[];
+}
+
+export interface Animal {
+  id: string | null;
+  name: string;
+  species: string;
+  status: string;
+  slug: string;
+  primaryPhotoUrl: string;
+  isSaved: boolean;
+}
+
+export interface Feedback {
+  comment: string;
+  rating: number;
+  user: User;
+  createdAtUtc: string;
 }
 
 export interface SearchState {

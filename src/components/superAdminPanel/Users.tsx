@@ -1,18 +1,22 @@
+import { axiosInstance } from "@/App";
+import { UsersApi } from "@/generated-client";
+import { useAppSelector } from "@/redux/hooks";
 import { User } from "@/redux/types";
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
-import { axiosInstance } from "@/App";
-import { UsersApi } from "@/generated-client";
-
+import "./Users.scss";
 export const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const accessToken = useAppSelector((state) => state.auth.accessToken);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const apiInstance = new UsersApi(undefined, "", axiosInstance);
+        axiosInstance.defaults.headers.common["Authorization"] =
+          `Bearer ${accessToken}`;
         const response =
           (await apiInstance.apiUsersAllUsersGet()) as unknown as AxiosResponse<
             User[]
@@ -23,11 +27,15 @@ export const Users = () => {
       }
     };
     fetchUsers();
-  }, []);
+  }, [accessToken]);
 
   const handleDelete = async (userId: string) => {
     try {
-      await axios.delete(`https://localhost:7118/api/Users/${userId}`);
+      await axios.delete(`https://localhost:7118/api/Users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
     } catch (error) {
       console.error("Помилка:", error);
@@ -38,6 +46,12 @@ export const Users = () => {
     try {
       await axios.post(
         `https://localhost:7118/api/Users/grant-admin/${userId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
       );
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
@@ -82,7 +96,6 @@ export const Users = () => {
         <thead>
           <tr>
             <th>Icon</th>
-            <th>Username</th>
             <th>Name</th>
             <th>Surname</th>
             <th>Age</th>
@@ -94,8 +107,17 @@ export const Users = () => {
         <tbody>
           {users.map((user) => (
             <tr key={user.id}>
-              <td>{user.avatarUrl}</td>
-              <td>{user.userName}</td>
+              <td className="panel super-admin-user-avatar-container">
+                <img
+                  src={
+                    user.avatarUrl
+                      ? user.avatarUrl
+                      : `${process.env.PUBLIC_URL}/images/user.png`
+                  }
+                  alt={`${user.name}'s avatar`}
+                  className="panel super-admin-user-avatar"
+                />
+              </td>
               <td>{user.name}</td>
               <td>{user.surname}</td>
               <td>{user.age}</td>

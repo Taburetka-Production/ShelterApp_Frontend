@@ -1,10 +1,11 @@
 import { Shelter } from "@/redux/types";
+import { ROUTES } from "@/routes/routes";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "@/routes/routes";
 // import { SheltersApi } from "@/generated-client";
 // import { axiosInstance } from "@/App";
+import "./ShelterCreate.css";
 
 export const ShelterCreate: React.FC = () => {
   const navigate = useNavigate();

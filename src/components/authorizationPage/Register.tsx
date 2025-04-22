@@ -5,6 +5,8 @@ import {
   RegistrationDto,
   ShelterAppApi,
 } from "@/generated-client/api";
+import { useAppDispatch } from "@/redux/hooks";
+import { setCredentials } from "@/redux/slices/authSlice";
 import { ROUTES } from "@/routes/routes";
 import { useState } from "react";
 import { FaLock, FaUser } from "react-icons/fa";
@@ -12,32 +14,33 @@ import { MdEmail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
 
-interface UserData {
-  email: string;
-  password: string;
-  confirmPassword: string;
-  username: string;
-  name: string;
-  surname: string;
-  age: number;
-  phone: string;
-}
-
 export const Register: React.FC = () => {
-  const [data, setData] = useState<UserData>({
+  const [data, setData] = useState({
     email: "",
     password: "",
     confirmPassword: "",
     username: "",
     name: "",
     surname: "",
-    age: 0,
+    age: "",
     phone: "",
   });
   const [error, setError] = useState<string>("");
   const [showPasswordRequirements, setShowPasswordRequirements] =
     useState<boolean>(false);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const validatePassword = (pwd: string): boolean => {
+    const pattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{6,}$/;
+    if (!pattern.test(pwd)) return false;
+    return true;
+  };
+
+  const validateUsername = (name: string): boolean => {
+    const allowed = /^[A-Za-z0-9\-\._@+]+$/;
+    return allowed.test(name);
+  };
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -45,42 +48,53 @@ export const Register: React.FC = () => {
       setError("Паролі не співпадають");
       return;
     }
-    try {
-      const shelterAppApiInstance = new ShelterAppApi(
-        undefined,
-        "",
-        axiosInstance,
+    if (!validatePassword(data.password)) {
+      setError(
+        "Пароль має бути ≥6 символів, містити велику й малу літери, цифру та спеціальний символ.",
       );
+      return;
+    }
+    if (!validateUsername(data.username)) {
+      setError(
+        "Ім’я користувача може містити лише латинські букви, цифри та символи - . _ @ +",
+      );
+      return;
+    }
+    try {
       const accountApiInstance = new AccountApi(undefined, "", axiosInstance);
-
       const registerData: RegistrationDto = {
         email: data.email,
         password: data.password,
         userName: data.username,
         name: data.name,
         surname: data.surname,
-        age: data.age,
+        age: Number(data.age),
       };
       await accountApiInstance.apiAccountRegisterPost(registerData);
 
+      const shelterAppApiInstance = new ShelterAppApi(
+        undefined,
+        "",
+        axiosInstance,
+      );
       const loginData: LoginRequest = {
         email: data.username,
         password: data.password,
       };
-      const response = await shelterAppApiInstance.loginPost(
+      const loginResponse = await shelterAppApiInstance.loginPost(
         false,
         false,
         loginData,
       );
-      const { accessToken, refreshToken } = response.data;
+
+      const { accessToken, refreshToken } = loginResponse.data;
       if (accessToken && refreshToken) {
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+        dispatch(setCredentials({ accessToken, refreshToken }));
       }
+      navigate(ROUTES.PROFILE);
     } catch (error: any) {
       setError(error.response?.data.message || "Виникла помилка.");
     }
-    navigate(ROUTES.PROFILE);
   };
 
   const inputData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,7 +136,7 @@ export const Register: React.FC = () => {
         </div>
 
         <div className="register-input-box">
-          <label htmlFor="register-email">Email Address</label>
+          <label htmlFor="register-email">Поштова адреса</label>
           <input
             type="email"
             id="register-email"
@@ -135,7 +149,7 @@ export const Register: React.FC = () => {
         </div>
 
         <div className="register-input-box">
-          <label htmlFor="register-username">Username</label>
+          <label htmlFor="register-username">Юзернейм</label>
           <input
             type="text"
             id="register-username"
@@ -148,7 +162,7 @@ export const Register: React.FC = () => {
         </div>
 
         <div className="register-input-box">
-          <label htmlFor="register-password">Password</label>
+          <label htmlFor="register-password">Пароль</label>
           <input
             type="password"
             id="register-password"
@@ -162,7 +176,7 @@ export const Register: React.FC = () => {
         </div>
 
         <div className="register-input-box">
-          <label htmlFor="register-confirmPassword">Confirm Password</label>
+          <label htmlFor="register-confirmPassword">Повторити пароль</label>
           <input
             type="password"
             id="register-confirmPassword"
@@ -176,12 +190,12 @@ export const Register: React.FC = () => {
 
         {showPasswordRequirements && (
           <p className="password-requirements-text">
-            Password must be at least 8 characters long, contain 1 upper case
-            letter, 1 number, and 1 special character.
+            Пароль має бути ≥6 символів, містити велику й малу літери, цифру та
+            спеціальний символ.
           </p>
         )}
         <div className="register-input-box">
-          <label htmlFor="register-phone">Phone number</label>
+          <label htmlFor="register-phone">Номер телефону</label>
           <input
             type="tel"
             id="register-phone"
@@ -192,7 +206,7 @@ export const Register: React.FC = () => {
         </div>
 
         <div className="register-input-box">
-          <label htmlFor="register-age">Age</label>
+          <label htmlFor="register-age">Вік</label>
           <input
             type="number"
             id="register-age"

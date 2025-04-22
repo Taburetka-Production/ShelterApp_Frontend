@@ -6,16 +6,19 @@ import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { useAppDispatch } from "@/redux/hooks";
+import { setCredentials } from "@/redux/slices/authSlice";
 
 interface LoginData {
-  email: string;
+  username: string;
   password: string;
 }
 
 export const Login: React.FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [data, setData] = useState<LoginData>({
-    email: "",
+    username: "",
     password: "",
   });
   const [error, setError] = useState<string>("");
@@ -29,7 +32,7 @@ export const Login: React.FC = () => {
         axiosInstance,
       );
       const LoginRequestData: LoginRequest = {
-        email: data.email,
+        email: data.username,
         password: data.password,
       };
       const response = await shelterAppApiInstance.loginPost(
@@ -39,8 +42,7 @@ export const Login: React.FC = () => {
       );
       const { accessToken, refreshToken } = response.data;
       if (accessToken && refreshToken) {
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
+        dispatch(setCredentials({ accessToken, refreshToken }));
       }
       setError("");
       navigate(ROUTES.PROFILE);
@@ -66,7 +68,7 @@ export const Login: React.FC = () => {
           <div className="input-box">
             <input
               type="text"
-              name="email"
+              name="username"
               placeholder="Enter your username"
               onChange={inputData}
               required

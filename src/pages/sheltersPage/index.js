@@ -1,7 +1,7 @@
-import { Footer } from "../../components/footer/Footer.js";
-import { Header } from "../../components/header/Header.js";
-import { MainContent } from "../../components/sheltersPage/MainContent";
-import { TopSlider } from "../../components/sheltersPage/TopSlider";
+import { Footer } from "@/components/footer/Footer";
+import { Header } from "@/components/header/Header";
+import { MainContent } from "@/components/sheltersPage/MainContent";
+import { TopSlider } from "@/components/sheltersPage/TopSlider";
 
 const SheltersPage = () => {
   return (

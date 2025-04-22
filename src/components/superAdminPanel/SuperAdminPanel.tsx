@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import "./SuperAdminPanel.scss";
+import { ROUTES, SUPER_ADMIN_PANEL_NESTED_ROUTES } from "@/routes/routes";
 
 export const SuperAdminPanel: React.FC = () => {
   return (
@@ -9,14 +10,14 @@ export const SuperAdminPanel: React.FC = () => {
         <nav className="panel super-admin-menu">
           <ul>
             <NavLink
-              to="/SuperAdminPanel"
+              to={ROUTES.SUPER_ADMIN_PANEL}
               className={({ isActive }) => (isActive ? "link active" : "link")}
               end
             >
               Users List
             </NavLink>
             <NavLink
-              to="/SuperAdminPanel/shelters"
+              to={SUPER_ADMIN_PANEL_NESTED_ROUTES.SHELTERS_LIST}
               className={({ isActive }) => (isActive ? "link active" : "link")}
             >
               Shelters List

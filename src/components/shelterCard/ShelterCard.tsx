@@ -4,6 +4,7 @@ import "@/styles/components/shelterCard/ShelterCard.css";
 import { Button } from "../button/Button";
 import { ReviewText } from "./ReviewText";
 import { Star } from "./Star";
+import { ROUTES } from "@/routes/routes";
 
 interface ShelterCardProps {
   image: string;
@@ -26,11 +27,11 @@ export const ShelterCard: React.FC<ShelterCardProps> = ({
   onClick,
   slug,
 }) => {
-  const maxLength = 150;
+  const maxLength = 140;
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/shelter/${slug}`);
+    navigate(`${ROUTES.SHELTER}/${slug}`);
   };
 
   const truncateText = (text: string) => {

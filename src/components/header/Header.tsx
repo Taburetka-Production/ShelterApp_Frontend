@@ -4,28 +4,41 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { useCallback, useEffect } from "react";
 import { useAppSelector } from "@/redux/hooks";
+import { FaHome, FaSignInAlt, FaUserCircle, FaWarehouse } from "react-icons/fa";
 
 export const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [menuClass, setMenuClass] = useState("");
   const navigate = useNavigate();
-  const timeoutRef = useRef(null);
+  const timeoutRef = useRef<number | null>(null);
   const { accessToken } = useAppSelector((state) => state.auth);
-  const route = accessToken ? ROUTES.PROFILE : ROUTES.AUTH_LOGIN;
+  const userRoute = accessToken ? ROUTES.PROFILE : ROUTES.AUTH_LOGIN;
   const menuItems = [
-    { id: 1, name: "Головна", path: `${ROUTES.MAIN}` },
-    { id: 2, name: "Притулки", path: `${ROUTES.SHELTERS_PAGE}` },
-    { id: 3, name: "Увійти", path: `${ROUTES.AUTH_LOGIN}` },
-    { id: 4, name: "Профіль", path: `${route}` },
+    {
+      name: "Головна",
+      path: `${ROUTES.MAIN}`,
+      icon: <FaHome />,
+    },
+    {
+      name: "Притулки",
+      path: `${ROUTES.SHELTERS_PAGE}`,
+      icon: <FaWarehouse />,
+    },
+    {
+      name: accessToken ? "Профіль" : "Увійти",
+      path: userRoute,
+      icon: accessToken ? <FaUserCircle /> : <FaSignInAlt />,
+    },
   ];
+
   const handleIconClicked = useCallback(
-    (iconName) => {
-      if (iconName === "user") navigate(route);
+    (iconName: string) => {
+      if (iconName === "user") navigate(userRoute);
       else if (iconName === "logo") {
         navigate(ROUTES.MAIN);
       }
     },
-    [navigate, route],
+    [navigate, userRoute],
   );
 
   const openDropdown = useCallback(() => {
@@ -77,8 +90,11 @@ export const Header = () => {
             onMouseLeave={handleMouseLeave}
           >
             {menuItems.map((item) => (
-              <li key={item.id}>
-                <Link to={item.path}>{item.name}</Link>
+              <li key={item.path}>
+                <Link to={item.path}>
+                  {item.icon}
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>
