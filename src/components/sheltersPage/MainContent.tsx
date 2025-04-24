@@ -40,6 +40,7 @@ export const MainContent: React.FC = () => {
           >
             Обрати на карті
           </Button>
+          <Button onClick={handleClearFilters}>Очистити фільтри</Button>
         </div>
         <div className="filter-container-sorting">
           <div className="active-filters">
@@ -48,7 +49,6 @@ export const MainContent: React.FC = () => {
               {regions.length > 0 && <li>Регіони: {regions.join(", ")}</li>}
             </ul>
           </div>
-          <Button onClick={handleClearFilters}>Очистити фільтри</Button>
           <div className="sort-order-buttons">
             <button onClick={() => dispatch(setSortOrder("desc"))}>
               <HiSortDescending className="hiSort" /> За спаданням

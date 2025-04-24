@@ -54,10 +54,15 @@
   text-overflow: ellipsis;
 }
 
+.shelter-card-description {
+  font-size: 1em;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
 .shelter-card-content p.shelter-description {
   font-size: 0.9em;
   line-height: 1.4;
-  color: var(--grey-text-color);
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;

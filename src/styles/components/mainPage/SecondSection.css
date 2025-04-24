@@ -21,6 +21,7 @@
   justify-content: space-evenly;
   gap: 30px;
   margin-left: 50px;
+  color: var(--blue-color);
 }
 
 .main-page__second-section h1 {

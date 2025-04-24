@@ -22,7 +22,7 @@ export const SecondSection = (): JSX.Element => {
         </div>
         <Link to={ROUTES.SHELTERS_PAGE} className="no-text-decoration">
           <Button className="main-page__second-section-btn">
-            Visit Animals
+            Відвідати притулки
           </Button>
         </Link>
       </div>

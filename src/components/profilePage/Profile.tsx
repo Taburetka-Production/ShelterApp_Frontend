@@ -3,14 +3,19 @@ import { AccountApi } from "@/generated-client";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/slices/authSlice";
 import { User } from "@/redux/types";
-import { PROFILE_NESTED_ROUTES, ROUTES } from "@/routes/routes";
+import {
+  PROFILE_NESTED_ROUTES,
+  ROUTES,
+  SHELTER_NESTED_ROUTES,
+} from "@/routes/routes";
+import { AxiosError, AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { BiLogOut } from "react-icons/bi";
 import { FaCog, FaPaw, FaUserCircle } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./Profile.scss";
-import { AxiosResponse } from "axios";
+import { Button } from "../button/Button";
 
 export const Profile: React.FC = () => {
   const navigate = useNavigate();
@@ -33,6 +38,16 @@ export const Profile: React.FC = () => {
         const data = await fetchProfile();
         setUserData(data);
       } catch (err: unknown) {
+        if (err instanceof AxiosError) {
+          if (err.response?.status === 400) {
+            setError("Потрібно залогінитися");
+            navigate(ROUTES.AUTH_LOGIN);
+            return;
+          }
+          setError(err.response?.data?.message || err.message);
+          console.error("AxiosError:", err);
+          return;
+        }
         if (err instanceof Error) {
           setError(err.message);
         } else {
@@ -41,6 +56,7 @@ export const Profile: React.FC = () => {
         console.error("Помилка:", err);
       }
     };
+
     if (accessToken) {
       fetchData();
     } else {
@@ -51,6 +67,10 @@ export const Profile: React.FC = () => {
   const handleLogout = () => {
     dispatch(logout());
     navigate(ROUTES.AUTH_LOGIN);
+  };
+
+  const handleCreateShelter = () => {
+    navigate(`${ROUTES.SHELTER}/${SHELTER_NESTED_ROUTES.CREATE}`);
   };
 
   if (error && !userData) {
@@ -118,7 +138,7 @@ export const Profile: React.FC = () => {
                       <span>Повідомлення</span>
                     </NavLink>
                   </li>
-                  {userData.roles?.includes("Superadmin") && (
+                  {userData.roles?.includes("SuperAdmin") && (
                     <li>
                       <NavLink
                         to={`${ROUTES.SUPER_ADMIN_PANEL}`}
@@ -136,6 +156,12 @@ export const Profile: React.FC = () => {
                   <BiLogOut className="logout-icon" />
                   <span>Вийти</span>{" "}
                 </button>
+                {/* <Button
+                  onClick={handleCreateShelter}
+                  className="profile-info-btns"
+                >
+                  Створити притулок
+                </Button> */}
               </nav>
             </div>
           </div>

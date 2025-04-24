@@ -3,7 +3,7 @@ import { fetchShelters } from "@/redux/slices/shelterSlice";
 import { useEffect } from "react";
 import { Footer } from "../footer/Footer";
 import { Header } from "../header/Header";
-import { ShelterMap } from "../map/ShelterMap";
+import { ShelterMap } from "../map/SheltersMap";
 
 export const SheltersMap = () => {
   const allShelters = useAppSelector((state) => state.shelter.shelters);

@@ -13,7 +13,7 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-items">
-        <h1>Logo</h1>
+        <h1>Shelter Hub</h1>
         <ul className="footer-links">
           {items.map((item) => (
             <li key={item.id}>

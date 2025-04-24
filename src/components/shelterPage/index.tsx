@@ -1,16 +1,18 @@
 import { axiosInstance } from "@/App";
-import { SheltersApi } from "@/generated-client";
-import { Shelter } from "@/redux/types";
+import { ShelterDetailDto, SheltersApi } from "@/generated-client/api";
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { OneShelterMap } from "../map/OneShelterMap";
 import { Star } from "../shelterCard/Star";
 import { AnimalList } from "./AnimalList";
 import "./ShelterPage.css";
+import { ShelterReviews } from "./ShelterReviews";
+import { ReviewCreate } from "./ReviewCreate";
 
 export const ShelterPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [shelter, setShelter] = useState<Shelter | null>(null);
+  const [shelter, setShelter] = useState<ShelterDetailDto | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -19,7 +21,7 @@ export const ShelterPage: React.FC = () => {
         const apiInstance = new SheltersApi(undefined, "", axiosInstance);
         const response = (await apiInstance.apiSheltersSlugGet(
           slug!,
-        )) as unknown as AxiosResponse<Shelter>;
+        )) as unknown as AxiosResponse<ShelterDetailDto>;
         setShelter(response.data);
       } catch (err) {
         if (axios.isAxiosError(err)) {
@@ -36,6 +38,10 @@ export const ShelterPage: React.FC = () => {
     };
     fetchShelter();
   }, [slug]);
+
+  useEffect(() => {
+    console.log(shelter?.feedbacks);
+  }, [shelter]);
 
   if (error) {
     return <p className="error">{error}</p>;
@@ -90,12 +96,17 @@ export const ShelterPage: React.FC = () => {
                   {shelter.address.city}, {shelter.address.street}
                 </p>
               )}
-              <div className="map-placeholder">Карта</div>
+              <div className="map-placeholder">
+                <OneShelterMap shelter={shelter}></OneShelterMap>
+              </div>
             </div>
 
             <div className="shelter-page__reviews section">
               <h2>Відгуки ({shelter.reviewsCount || 0})</h2>
-              <div className="reviews-placeholder">Список відгуків</div>
+              <div className="reviews-placeholder">
+                <ShelterReviews feedbacks={shelter.feedbacks || []} />
+              </div>
+              <ReviewCreate slug={shelter.slug!}></ReviewCreate>
             </div>
           </div>
         </>

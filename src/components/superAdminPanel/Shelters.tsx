@@ -1,12 +1,11 @@
 import { ROUTES } from "@/routes/routes";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { fetchShelters } from "../../redux/slices/shelterSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { fetchShelters } from "@/redux/slices/shelterSlice";
 
 export const Shelters = () => {
   // const [shelters, setShelters] = useState<Shelter[]>([]);
-
   const shelters = useAppSelector((state) => state.shelter.shelters);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -18,12 +17,12 @@ export const Shelters = () => {
   return (
     <div>
       <div className="panel super-admin-header">
-        <h2>Shelters List</h2>
+        <h2>Список притулків</h2>
         <div className="panel super-admin-controls">
           <div className="panel super-admin-search-filter">
             <input type="text" placeholder="Search" />
             <select>
-              <option>Filters</option>
+              <option>Фільтри</option>
             </select>
           </div>
         </div>
@@ -31,24 +30,24 @@ export const Shelters = () => {
       <table className="panel super-admin-users-table">
         <thead>
           <tr>
-            <th>Icon</th>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Reviews count</th>
-            <th>Animals count</th>
-            <th>Admin</th>
+            <th>Лого</th>
+            <th>Назва</th>
+            <th>Рейтинг</th>
+            <th>Кількість відгуків</th>
+            <th>Кількість тваринок</th>
+            <th>Дії</th>
           </tr>
         </thead>
         <tbody>
           {shelters.map((shelter) => (
             <tr key={shelter.id}>
-              {/* <td>{shelter.imageUrl}</td> */}
-              <td>no image</td>
+              <td>
+                <img src={shelter.imageUrl} alt="shelter img" />
+              </td>
               <td>{shelter.name}</td>
-              <td>{shelter.rating}</td>
+              <td>{Math.round(shelter.rating * 10) / 10}</td>
               <td>{shelter.reviewsCount}</td>
               <td>{shelter.animalsCount}</td>
-              {/* <td>{}</td> */}
               <td>
                 <button
                   className="panel super-admin-action-btn"
@@ -58,7 +57,7 @@ export const Shelters = () => {
                 </button>
                 <button
                   className="panel super-admin-action-btn delete"
-                  onClick={() => navigate(`${ROUTES.SHELTER}/${shelter.id}`)}
+                  onClick={() => navigate(`${ROUTES.SHELTER}/${shelter.slug}`)}
                 >
                   Details
                 </button>

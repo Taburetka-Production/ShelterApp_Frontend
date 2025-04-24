@@ -10,6 +10,8 @@ export const ROUTES = {
   AUTH_LOGIN: "/auth/login",
   AUTH_REGISTER: "/auth/register",
   SHELTERS_MAP: "/shelters-map",
+  ANIMAL: "/animal",
+  ANIMALS: "/animals",
 };
 
 export const PROFILE_NESTED_ROUTES = {
@@ -24,8 +26,13 @@ export const SHELTER_NESTED_ROUTES = {
   DETAIL: ":slug",
 };
 
+export const ANIMAL_NESTED_ROUTES = {
+  CREATE: "create",
+  DETAIL: ":slug",
+};
+
 export const SUPER_ADMIN_PANEL_NESTED_ROUTES = {
   USERS: "/SuperAdminPanel/users",
   SHELTERS_LIST: "/SuperAdminPanel/shelters",
-  // ANIMALS: "animals",
+  ANIMALS: "/SuperAdminPanel/animals",
 };

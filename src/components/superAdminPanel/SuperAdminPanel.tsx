@@ -14,16 +14,20 @@ export const SuperAdminPanel: React.FC = () => {
               className={({ isActive }) => (isActive ? "link active" : "link")}
               end
             >
-              Users List
+              Список користувачів
             </NavLink>
             <NavLink
               to={SUPER_ADMIN_PANEL_NESTED_ROUTES.SHELTERS_LIST}
               className={({ isActive }) => (isActive ? "link active" : "link")}
             >
-              Shelters List
+              Список притулків
             </NavLink>
-            <li>Animals List</li>
-            <li>Reviews List</li>
+            <NavLink
+              to={SUPER_ADMIN_PANEL_NESTED_ROUTES.ANIMALS}
+              className={({ isActive }) => (isActive ? "link active" : "link")}
+            >
+              Список тваринок
+            </NavLink>
           </ul>
         </nav>
       </div>

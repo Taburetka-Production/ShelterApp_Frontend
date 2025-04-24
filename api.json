@@ -143,6 +143,46 @@
                 }
             }
         },
+        "/api/Animals/create-temporary-bulk": {
+            "post": {
+                "tags": [
+                    "Animals"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CreateAnimalDto"
+                                }
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CreateAnimalDto"
+                                }
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/CreateAnimalDto"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/api/Animals": {
             "get": {
                 "tags": [
@@ -732,6 +772,54 @@
                     },
                     "404": {
                         "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/api/Shelters/create-temporary": {
+            "post": {
+                "tags": [
+                    "Shelters"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TemporaryCreateShelterInputModel"
+                            }
+                        },
+                        "text/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TemporaryCreateShelterInputModel"
+                            }
+                        },
+                        "application/*+json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TemporaryCreateShelterInputModel"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "text/plain": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Shelter"
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Shelter"
+                                }
+                            },
+                            "text/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Shelter"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -1423,15 +1511,15 @@
                         "type": "string",
                         "nullable": true
                     },
-                    "status": {
-                        "type": "string",
-                        "nullable": true
-                    },
                     "slug": {
                         "type": "string",
                         "nullable": true
                     },
                     "primaryPhotoUrl": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description": {
                         "type": "string",
                         "nullable": true
                     },
@@ -2050,6 +2138,73 @@
                 },
                 "additionalProperties": false
             },
+            "TemporaryCreateShelterInputModel": {
+                "required": [
+                    "city",
+                    "country",
+                    "description",
+                    "imageUrl",
+                    "lat",
+                    "lng",
+                    "name",
+                    "region",
+                    "street",
+                    "userId"
+                ],
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "name": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "description": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "imageUrl": {
+                        "minLength": 1,
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "country": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "region": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "district": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "city": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "street": {
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "apartments": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "lng": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "lat": {
+                        "type": "number",
+                        "format": "double"
+                    }
+                },
+                "additionalProperties": false
+            },
             "TransferAdminDto": {
                 "required": [
                     "newAdminEmail"
@@ -2196,6 +2351,13 @@
                     },
                     "description": {
                         "type": "string",
+                        "nullable": true
+                    },
+                    "newPhotoUrls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
                         "nullable": true
                     }
                 },
