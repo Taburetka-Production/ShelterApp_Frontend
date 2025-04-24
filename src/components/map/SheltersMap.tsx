@@ -1,5 +1,10 @@
-import React from "react";
-import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
+import React, { useState, useCallback, useRef } from "react";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  MarkerF,
+  InfoWindowF,
+} from "@react-google-maps/api";
 import { Shelter } from "@/generated-client/api";
 
 const containerStyle = {
@@ -28,22 +33,18 @@ export const ShelterMap: React.FC<ShelterMapProps> = ({
     googleMapsApiKey: process.env.REACT_APP_Maps_API_KEY || "",
   });
 
-  const mapRef = React.useRef<google.maps.Map | null>(null);
+  const [selectedShelter, setSelectedShelter] = useState<Shelter | null>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
 
-  const onLoad = React.useCallback(
+  const onLoad = useCallback(
     (map: google.maps.Map) => {
-      if (!map) return;
       mapRef.current = map;
       if (shelters.length > 0) {
         const bounds = new window.google.maps.LatLngBounds();
-        shelters.forEach((shelter) => {
-          if (shelter.address?.lat && shelter.address?.lng) {
-            bounds.extend(
-              new window.google.maps.LatLng(
-                shelter.address.lat,
-                shelter.address.lng,
-              ),
-            );
+        shelters.forEach((sh) => {
+          const { lat, lng } = sh.address || {};
+          if (typeof lat === "number" && typeof lng === "number") {
+            bounds.extend(new window.google.maps.LatLng(lat, lng));
           }
         });
         map.fitBounds(bounds);
@@ -51,9 +52,9 @@ export const ShelterMap: React.FC<ShelterMapProps> = ({
         const listener = window.google.maps.event.addListener(
           map,
           "idle",
-          function () {
-            if (map!.getZoom()! > 15) {
-              map!.setZoom(15);
+          () => {
+            if (map.getZoom()! > 15) {
+              map.setZoom(15);
             }
             window.google.maps.event.removeListener(listener);
           },
@@ -63,7 +64,7 @@ export const ShelterMap: React.FC<ShelterMapProps> = ({
     [shelters],
   );
 
-  const onUnmount = React.useCallback(() => {
+  const onUnmount = useCallback(() => {
     mapRef.current = null;
   }, []);
 
@@ -89,17 +90,56 @@ export const ShelterMap: React.FC<ShelterMapProps> = ({
         zoomControl: true,
       }}
     >
-      {shelters.map((shelter) =>
-        shelter.address &&
-        typeof shelter.address.lat === "number" &&
-        typeof shelter.address.lng === "number" ? (
+      {shelters.map((shelter) => {
+        const { lat, lng } = shelter.address || {};
+        if (typeof lat !== "number" || typeof lng !== "number") return null;
+
+        return (
           <MarkerF
-            key={shelter.id}
-            position={{ lat: shelter.address.lat, lng: shelter.address.lng }}
+            key={shelter.id || `${lat}-${lng}`}
+            position={{ lat, lng }}
             title={shelter.name}
+            onClick={() => setSelectedShelter(shelter)}
           />
-        ) : null,
-      )}
+        );
+      })}
+
+      {selectedShelter &&
+        (() => {
+          const { lat, lng, city, street } = selectedShelter.address || {};
+          const addressParts = [street, city].filter(Boolean);
+          const addressString = addressParts.join(", ");
+
+          return (
+            <InfoWindowF
+              position={{ lat: lat!, lng: lng! }}
+              onCloseClick={() => setSelectedShelter(null)}
+              options={{ pixelOffset: new window.google.maps.Size(0, -35) }}
+            >
+              <div className="shelter-infowindow-content">
+                {selectedShelter.imageUrl && (
+                  <img
+                    src={selectedShelter.imageUrl}
+                    alt={selectedShelter.name}
+                    className="shelter-map-img"
+                    style={{ width: 100, height: 100, objectFit: "cover" }}
+                  />
+                )}
+                <h4>{selectedShelter.name}</h4>
+                <p className="shelter-address">
+                  {addressString || "Адреса не вказана"}
+                </p>
+                <p className="shelter-rating">
+                  Рейтинг:{" "}
+                  {(
+                    Math.round((selectedShelter.rating || 0) * 10) / 10
+                  ).toFixed(1)}
+                  /5 ({selectedShelter.reviewsCount} відгуків)
+                </p>
+              </div>
+            </InfoWindowF>
+          );
+        })()}
     </GoogleMap>
   );
 };

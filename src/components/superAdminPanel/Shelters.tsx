@@ -17,12 +17,12 @@ export const Shelters = () => {
   return (
     <div>
       <div className="panel super-admin-header">
-        <h2>Shelters List</h2>
+        <h2>Список притулків</h2>
         <div className="panel super-admin-controls">
           <div className="panel super-admin-search-filter">
             <input type="text" placeholder="Search" />
             <select>
-              <option>Filters</option>
+              <option>Фільтри</option>
             </select>
           </div>
         </div>
@@ -30,12 +30,12 @@ export const Shelters = () => {
       <table className="panel super-admin-users-table">
         <thead>
           <tr>
-            <th>Icon</th>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Reviews count</th>
-            <th>Animals count</th>
-            <th>Actions</th>
+            <th>Лого</th>
+            <th>Назва</th>
+            <th>Рейтинг</th>
+            <th>Кількість відгуків</th>
+            <th>Кількість тваринок</th>
+            <th>Дії</th>
           </tr>
         </thead>
         <tbody>
@@ -57,7 +57,7 @@ export const Shelters = () => {
                 </button>
                 <button
                   className="panel super-admin-action-btn delete"
-                  onClick={() => navigate(`${ROUTES.SHELTER}/${shelter.id}`)}
+                  onClick={() => navigate(`${ROUTES.SHELTER}/${shelter.slug}`)}
                 >
                   Details
                 </button>

@@ -115,7 +115,9 @@ export const OneShelterMap: React.FC<ShelterMapProps> = ({ shelter }) => {
               {addressString || "Адреса не вказана"}
             </p>
             <p className="shelter-rating">
-              Рейтинг: {shelter.rating}/5 ({shelter.reviewsCount} відгуків)
+              Рейтинг:
+              {Math.round(shelter.rating ? shelter.rating * 10 : 0) / 10}/5 (
+              {shelter.reviewsCount} відгуків)
             </p>
           </div>
         </InfoWindowF>

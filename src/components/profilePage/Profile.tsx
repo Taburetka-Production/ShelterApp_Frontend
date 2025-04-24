@@ -3,7 +3,11 @@ import { AccountApi } from "@/generated-client";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { logout } from "@/redux/slices/authSlice";
 import { User } from "@/redux/types";
-import { PROFILE_NESTED_ROUTES, ROUTES } from "@/routes/routes";
+import {
+  PROFILE_NESTED_ROUTES,
+  ROUTES,
+  SHELTER_NESTED_ROUTES,
+} from "@/routes/routes";
 import { AxiosError, AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { BiLogOut } from "react-icons/bi";
@@ -11,6 +15,7 @@ import { FaCog, FaPaw, FaUserCircle } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import "./Profile.scss";
+import { Button } from "../button/Button";
 
 export const Profile: React.FC = () => {
   const navigate = useNavigate();
@@ -62,6 +67,10 @@ export const Profile: React.FC = () => {
   const handleLogout = () => {
     dispatch(logout());
     navigate(ROUTES.AUTH_LOGIN);
+  };
+
+  const handleCreateShelter = () => {
+    navigate(`${ROUTES.SHELTER}/${SHELTER_NESTED_ROUTES.CREATE}`);
   };
 
   if (error && !userData) {
@@ -147,6 +156,12 @@ export const Profile: React.FC = () => {
                   <BiLogOut className="logout-icon" />
                   <span>Вийти</span>{" "}
                 </button>
+                {/* <Button
+                  onClick={handleCreateShelter}
+                  className="profile-info-btns"
+                >
+                  Створити притулок
+                </Button> */}
               </nav>
             </div>
           </div>

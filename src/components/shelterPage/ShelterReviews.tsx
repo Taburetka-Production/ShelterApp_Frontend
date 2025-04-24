@@ -1,5 +1,4 @@
 import { ShelterFeedbackDto } from "@/generated-client";
-import { useEffect } from "react";
 import "./ShelterReviews.css";
 interface ShelterReviewsProps {
   feedbacks: ShelterFeedbackDto[];
@@ -8,9 +7,6 @@ interface ShelterReviewsProps {
 export const ShelterReviews: React.FC<ShelterReviewsProps> = ({
   feedbacks,
 }) => {
-  useEffect(() => {
-    console.log(feedbacks);
-  }, [feedbacks]);
   return (
     <div>
       {feedbacks.map((feedback) => (

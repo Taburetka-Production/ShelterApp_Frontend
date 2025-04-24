@@ -1,12 +1,10 @@
-import { ROUTES, SHELTER_NESTED_ROUTES } from "@/routes/routes";
-import axios from "axios";
-import React, { useState, useEffect } from "react";
-import { useOutletContext, useNavigate } from "react-router-dom";
-import { Button } from "../button/Button";
-import "./ProfileInfo.scss";
-import { useAppSelector } from "@/redux/hooks";
 import { axiosInstance } from "@/App";
 import { AccountApi } from "@/generated-client";
+import { useAppSelector } from "@/redux/hooks";
+import React, { useEffect, useState } from "react";
+import { useOutletContext } from "react-router-dom";
+import { Button } from "../button/Button";
+import "./ProfileInfo.scss";
 
 interface UserData {
   age: number;
@@ -20,7 +18,6 @@ interface UserData {
 }
 
 export const ProfileInfo: React.FC = () => {
-  const navigate = useNavigate();
   const initialData = useOutletContext<UserData>();
   const [editMode, setEditMode] = useState(false);
   const [userData, setUserData] = useState<UserData>(initialData);
@@ -74,15 +71,8 @@ export const ProfileInfo: React.FC = () => {
     }
   };
 
-  const handleCreateShelter = () => {
-    navigate(`${ROUTES.SHELTER}/${SHELTER_NESTED_ROUTES.CREATE}`);
-  };
-
   return (
     <div>
-      <Button onClick={handleCreateShelter} className="profile-info-btns">
-        Create shelter
-      </Button>
       <div className="profileInfo-section">
         <div className="profileInfo-header">
           <h2>Profile info</h2>

@@ -84,12 +84,12 @@ export const Users = () => {
   return (
     <div>
       <div className="panel super-admin-header">
-        <h2>Users List</h2>
+        <h2>Список користувачів</h2>
         <div className="panel super-admin-controls">
           <div className="panel super-admin-search-filter">
             <input type="text" placeholder="Search" />
             <select>
-              <option>Filters</option>
+              <option>Фільтри</option>
             </select>
           </div>
         </div>
@@ -97,13 +97,13 @@ export const Users = () => {
       <table className="panel super-admin-users-table">
         <thead>
           <tr>
-            <th>Icon</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Age</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Actions</th>
+            <th>Аватар</th>
+            <th>Ім'я</th>
+            <th>Прізвище</th>
+            <th>Вік</th>
+            <th>Пошта</th>
+            <th>Ролі</th>
+            <th>Дії</th>
           </tr>
         </thead>
         <tbody>

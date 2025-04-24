@@ -1,5 +1,6 @@
 import { axiosInstance } from "@/App";
 import { Animal, AnimalsApi } from "@/generated-client/api";
+import { useAppSelector } from "@/redux/hooks";
 import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import {
@@ -12,13 +13,13 @@ import {
   FaRegHeart,
   FaRulerCombined,
   FaTag,
-  FaVenus,
   FaTimesCircle,
+  FaVenus,
 } from "react-icons/fa";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "../button/Button";
-import "./OneAnimalPage.css";
 import { HealthStatus } from "./HealthStatus";
+import "./OneAnimalPage.css";
 
 const getGenderIcon = (sex: string) => {
   if (sex === "Самець") return <FaMars />;
@@ -46,6 +47,9 @@ export const OneAnimalPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFavorite, setIsFavorite] = useState(false);
+  const accessToken = useAppSelector((state) => state.auth.accessToken);
+  const apiInstance = new AnimalsApi(undefined, "", axiosInstance);
+  const [isAdopted, setIsAdopted] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -57,13 +61,11 @@ export const OneAnimalPage: React.FC = () => {
         return;
       }
       try {
-        const apiInstance = new AnimalsApi(undefined, "", axiosInstance);
         const response = (await apiInstance.apiAnimalsSlugGet(
           slug,
         )) as unknown as AxiosResponse<Animal>;
         setAnimal(response.data);
         setCurrentImageIndex(0);
-        // setIsFavorite(checkIfFavorite(response.data.id));
       } catch (err) {
         if (axios.isAxiosError(err)) {
           if (err.response?.status === 404) {
@@ -103,12 +105,32 @@ export const OneAnimalPage: React.FC = () => {
     setCurrentImageIndex(index);
   };
 
-  const handleFavoriteToggle = () => {
+  const handleFavoriteToggle = async () => {
     setIsFavorite(!isFavorite);
-    // delete from favorites
+    try {
+      await apiInstance.apiAnimalsSlugToggleSavePost(animal?.slug!, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+    } catch (error) {
+      console.error("Error toggling favorite:", error);
+    }
   };
 
-  const handleAdoptButton = () => {};
+  // const handleAdoptButton = () => {
+  //   alert("Запит відправлено!");
+  //   if (!animal?.slug) return;
+  //   try {
+  //     await axiosInstance.post<string>("/api/AdoptionRequests", animal.slug, {
+  //       headers: { Authorization: `Bearer ${accessToken}` },
+  //     });
+  //   } catch (err) {
+  //     console.error("Adoption Request Error:", err);
+  //   }
+  // };
+
+  const handleAdoptButton = () => {
+    setIsAdopted(true);
+  };
 
   const getSterilizationText = (sterilized: boolean, sex: string) => {
     const prefix = sterilized ? "" : "Не ";
@@ -178,7 +200,9 @@ export const OneAnimalPage: React.FC = () => {
               {photos.map((photo, index) => (
                 <button
                   key={photo.id || index}
-                  className={`thumbnail__item ${index === currentImageIndex ? "active" : ""}`}
+                  className={`thumbnail__item ${
+                    index === currentImageIndex ? "active" : ""
+                  }`}
                   onClick={() => handleThumbnailClick(index)}
                 >
                   <img
@@ -255,15 +279,21 @@ export const OneAnimalPage: React.FC = () => {
           </div>
 
           <div className="info__story">
-            <h2>My story</h2>
-            <p>{animal.description || "No story available yet."}</p>
+            <h2>Моя історія</h2>
+            <p>{animal.description || "Немає опису."}</p>
           </div>
 
           <div className="info__adopt-button-container">
             <Button className="info__adopt-button" onClick={handleAdoptButton}>
-              Adopt me
+              Забери мене
             </Button>
           </div>
+          {isAdopted && (
+            <div className="adopted-message">
+              <p>Запит на усиновлення відправлено!</p>
+              <p>Очікуйте на зв'язок з нами.</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
