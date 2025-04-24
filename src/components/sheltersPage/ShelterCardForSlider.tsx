@@ -51,6 +51,7 @@ export const ShelterCardForSlider: React.FC<ShelterCardForSliderProps> = ({
         : currentIndex >= length - 2 && index <= 1 - (length - 1 - currentIndex)
           ? classNames[index + 3 + (length - 1 - currentIndex)]
           : "");
+  const roundedRating = Math.round(rating * 10) / 10;
 
   return (
     <div className={`shelter-card ${className}`}>
@@ -59,9 +60,13 @@ export const ShelterCardForSlider: React.FC<ShelterCardForSliderProps> = ({
       </div>
       <div className="shelter-card-content">
         <h3>{title}</h3>
-        <p>{truncateText(description, 140)}</p>
+        <p className="shelter-card-description">
+          {truncateText(description, 140)}
+        </p>
         <div className="shelter-card-rating">
-          <Star rating={rating}>{reviews > 0 ? `(${rating} stars)` : ``}</Star>
+          <Star rating={rating}>
+            {reviews > 0 ? `(${roundedRating} stars)` : ``}
+          </Star>
           <ReviewText reviews={reviews} />
         </div>
         <Button className="view-more-btn" onClick={handleClick}>

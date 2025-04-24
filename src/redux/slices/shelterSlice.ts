@@ -1,8 +1,9 @@
 import { axiosInstance } from "@/App";
 import { SheltersApi } from "@/generated-client";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Shelter } from "../types";
 import { AxiosResponse } from "axios";
+import { Shelter } from "@/generated-client/api";
+
 interface ShelterState {
   shelters: Shelter[];
   loading: boolean;

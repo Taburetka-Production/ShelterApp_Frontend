@@ -2,9 +2,11 @@ import { axiosInstance } from "@/App";
 import { UsersApi } from "@/generated-client";
 import { useAppSelector } from "@/redux/hooks";
 import { User } from "@/redux/types";
+// import { User } from "@/generated-client/api";
 import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import "./Users.scss";
+
 export const Users = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [showModal, setShowModal] = useState<boolean>(false);

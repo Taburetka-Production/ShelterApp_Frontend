@@ -1,0 +1,52 @@
+.shelter-review {
+  background-color: #f9f9f9; /* Light grey background for each review */
+  padding: 15px 20px; /* Padding inside each review */
+  margin-bottom: 15px; /* Space between reviews */
+  border-radius: 8px; /* Slightly rounded corners */
+  border: 1px solid #e0e0e0; /* Subtle border */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Soft shadow */
+}
+
+.shelter-review__author {
+  display: flex; /* Use flexbox for avatar and username alignment */
+  align-items: center; /* Vertically center avatar and username */
+  gap: 10px; /* Space between avatar and username */
+  font-weight: 600; /* Bold username */
+  color: #333; /* Darker color for author name */
+  margin: 0 0 8px 0; /* Margin below the author line */
+  font-size: 0.95em;
+}
+
+.shelter-review__author img {
+  width: 30px; /* Small avatar */
+  height: 30px; /* Square aspect ratio */
+  border-radius: 50%; /* Make avatar circular */
+  object-fit: cover; /* Ensure image covers the area nicely */
+  border: 1px solid #ddd; /* Optional: subtle border for avatar */
+}
+
+.shelter-review__text {
+  color: #555; /* Slightly lighter color for the review text */
+  font-size: 1em;
+  line-height: 1.5; /* Improved readability */
+  margin: 0 0 10px 0; /* Margin below text, before date */
+  overflow-wrap: break-word; /* Ensure long words break correctly */
+  white-space: pre-wrap; /* Preserve line breaks if any in the comment */
+}
+
+.shelter-review__date {
+  font-size: 0.8em; /* Smaller font size for the date */
+  color: #888; /* Grey color for the date */
+  text-align: right; /* Align date to the right */
+  margin: 0; /* Remove default margins */
+}
+
+.shelter-review__no-feedback {
+  text-align: center; /* Center the "no feedback" message */
+  color: #777; /* Subdued color */
+  padding: 20px;
+  font-style: italic; /* Italicize for distinction */
+  border: 1px dashed #ccc; /* Optional dashed border */
+  border-radius: 8px;
+  margin-top: 20px;
+}

@@ -1,12 +1,11 @@
 import { ROUTES } from "@/routes/routes";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { fetchShelters } from "../../redux/slices/shelterSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { fetchShelters } from "@/redux/slices/shelterSlice";
 
 export const Shelters = () => {
   // const [shelters, setShelters] = useState<Shelter[]>([]);
-
   const shelters = useAppSelector((state) => state.shelter.shelters);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -36,19 +35,19 @@ export const Shelters = () => {
             <th>Rating</th>
             <th>Reviews count</th>
             <th>Animals count</th>
-            <th>Admin</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {shelters.map((shelter) => (
             <tr key={shelter.id}>
-              {/* <td>{shelter.imageUrl}</td> */}
-              <td>no image</td>
+              <td>
+                <img src={shelter.imageUrl} alt="shelter img" />
+              </td>
               <td>{shelter.name}</td>
-              <td>{shelter.rating}</td>
+              <td>{Math.round(shelter.rating * 10) / 10}</td>
               <td>{shelter.reviewsCount}</td>
               <td>{shelter.animalsCount}</td>
-              {/* <td>{}</td> */}
               <td>
                 <button
                   className="panel super-admin-action-btn"

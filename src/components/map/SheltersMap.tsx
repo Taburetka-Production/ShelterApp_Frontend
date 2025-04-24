@@ -1,6 +1,6 @@
 import React from "react";
 import { GoogleMap, useJsApiLoader, MarkerF } from "@react-google-maps/api";
-import { Shelter } from "@/redux/types";
+import { Shelter } from "@/generated-client/api";
 
 const containerStyle = {
   width: "100%",

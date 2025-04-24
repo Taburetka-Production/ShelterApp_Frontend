@@ -1,10 +1,10 @@
-import { Animal } from "@/redux/types";
+import { AnimalSummaryDto } from "@/generated-client/api";
 import React, { useEffect, useState } from "react";
 import "../../styles/components/sheltersPage/AllSheltersList.css";
 import { AnimalCard } from "../animalCard/index";
 
 export interface AnimalListProps {
-  animals: Animal[];
+  animals: AnimalSummaryDto[];
   onSaveToggle?: (slug: string) => void;
 }
 
@@ -16,10 +16,6 @@ export const AnimalList: React.FC<AnimalListProps> = ({
   const showMore = () => setVisibleAnimals((prev) => prev + 8);
   const showLess = () => setVisibleAnimals(4);
 
-  useEffect(() => {
-    console.log(animals);
-  }, [animals]);
-
   if (animals.length === 0) {
     return <p>Немає тваринок</p>;
   }
@@ -28,10 +24,7 @@ export const AnimalList: React.FC<AnimalListProps> = ({
     <div className="main-slider-container">
       <div className="main-shelters-div">
         {animals.slice(0, visibleAnimals).map((animal) => (
-          <div
-            key={animal.id ?? animal.slug}
-            className="card-container animation-card"
-          >
+          <div key={animal.slug} className="card-container animation-card">
             <AnimalCard animal={animal} onSaveToggle={onSaveToggle} />
           </div>
         ))}

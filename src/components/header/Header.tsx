@@ -3,12 +3,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { FaHome, FaSignInAlt, FaWarehouse } from "react-icons/fa";
+import { useAppSelector } from "@/redux/hooks";
 
 export const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [menuClass, setMenuClass] = useState("");
   const navigate = useNavigate();
   const timeoutRef = useRef<number | null>(null);
+  const user = useAppSelector((state) => state.auth.accessToken);
+
   const menuItems = [
     {
       name: "Головна",
@@ -29,12 +32,13 @@ export const Header = () => {
 
   const handleIconClicked = useCallback(
     (iconName: string) => {
-      if (iconName === "user") navigate(ROUTES.AUTH_LOGIN);
+      if (iconName === "user")
+        user ? navigate(ROUTES.PROFILE) : navigate(ROUTES.PROFILE);
       else if (iconName === "logo") {
         navigate(ROUTES.MAIN);
       }
     },
-    [navigate],
+    [navigate, user],
   );
 
   const openDropdown = useCallback(() => {
@@ -101,9 +105,11 @@ export const Header = () => {
       <div className="header-divider-right"></div>
 
       <div className="header-logo">
-        <h1 className="logo" onClick={() => handleIconClicked("logo")}>
-          lamash
-        </h1>
+        <img
+          src="/images/logo.png"
+          alt="ShelterHub"
+          onClick={() => handleIconClicked("logo")}
+        />
       </div>
 
       <div className="header-icons">

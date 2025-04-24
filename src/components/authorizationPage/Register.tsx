@@ -9,7 +9,7 @@ import { useAppDispatch } from "@/redux/hooks";
 import { setCredentials } from "@/redux/slices/authSlice";
 import { ROUTES } from "@/routes/routes";
 import { useState } from "react";
-import { FaLock, FaUser } from "react-icons/fa";
+import { FaCalendarAlt, FaLock, FaPhoneAlt, FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
@@ -109,30 +109,34 @@ export const Register: React.FC = () => {
     <div className="register-div">
       <form onSubmit={submitForm} className="register form">
         <div className="sign-text-header">
-          <h2>Welcome!</h2>
-          <p>Please enter your details to sign up.</p>
+          <h2>Ласкаво просимо!</h2>
+          <p>Уведіть ваші деталі для реєстрації</p>
         </div>
 
         <div className="register-input-box">
-          <label htmlFor="register-name">Name</label>
+          <label htmlFor="register-name">Ім'я</label>
           <input
             type="text"
             id="register-name"
             name="name"
             value={data.name}
             onChange={inputData}
+            required
           />
+          <FaUser className="auth-icon" />
         </div>
 
         <div className="register-input-box">
-          <label htmlFor="register-surname">Surname</label>
+          <label htmlFor="register-surname">Прізвище</label>
           <input
             type="text"
             id="register-surname"
             name="surname"
             value={data.surname}
             onChange={inputData}
+            required
           />
+          <FaUser className="auth-icon" />
         </div>
 
         <div className="register-input-box">
@@ -169,7 +173,7 @@ export const Register: React.FC = () => {
             name="password"
             value={data.password}
             onChange={inputData}
-            onClick={() => setShowPasswordRequirements(true)}
+            onFocus={() => setShowPasswordRequirements(true)}
             required
           />
           <FaLock className="auth-icon" />
@@ -188,12 +192,14 @@ export const Register: React.FC = () => {
           <FaLock className="auth-icon" />
         </div>
 
-        {showPasswordRequirements && (
-          <p className="password-requirements-text">
-            Пароль має бути ≥6 символів, містити велику й малу літери, цифру та
-            спеціальний символ.
-          </p>
-        )}
+        {showPasswordRequirements &&
+          !validatePassword(data.password) &&
+          data.password.length > 0 && (
+            <p className="password-requirements-text error-message">
+              Пароль має бути ≥6 символів, містити велику й малу літери, цифру
+              та спеціальний символ.
+            </p>
+          )}
         <div className="register-input-box">
           <label htmlFor="register-phone">Номер телефону</label>
           <input
@@ -203,6 +209,7 @@ export const Register: React.FC = () => {
             value={data.phone}
             onChange={inputData}
           />
+          <FaPhoneAlt className="auth-icon" />
         </div>
 
         <div className="register-input-box">
@@ -213,7 +220,11 @@ export const Register: React.FC = () => {
             name="age"
             value={data.age}
             onChange={inputData}
+            required
+            min={0}
+            max={150}
           />
+          <FaCalendarAlt className="auth-icon" />
         </div>
 
         <button type="submit">Зареєструватися</button>

@@ -12,7 +12,7 @@ interface ShelterCardProps {
   title: string;
   description: string;
   rating: number;
-  reviews: number;
+  reviewsCount: number;
   className?: string;
   onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   slug: string;
@@ -23,7 +23,7 @@ export const ShelterCard: React.FC<ShelterCardProps> = ({
   title,
   description,
   rating,
-  reviews,
+  reviewsCount,
   className,
   slug,
 }) => {
@@ -31,6 +31,8 @@ export const ShelterCard: React.FC<ShelterCardProps> = ({
   const handleViewMoreClick = (e: React.MouseEvent) => {
     navigate(`${ROUTES.SHELTER}/${slug}`);
   };
+
+  const roundedRating = Math.round(rating * 10) / 10;
 
   return (
     <div className={`shelter-card ${className || ""}`}>
@@ -47,9 +49,9 @@ export const ShelterCard: React.FC<ShelterCardProps> = ({
         <div className="shelter-card-footer">
           <div className="shelter-card-rating">
             <Star rating={rating}>
-              {reviews > 0 ? `(${rating} stars)` : ""}
+              {reviewsCount > 0 ? `(${roundedRating} stars)` : ""}
             </Star>
-            <ReviewText reviews={reviews} />
+            <ReviewText reviews={reviewsCount} />
           </div>
           <Button className="view-more-btn" onClick={handleViewMoreClick}>
             View more

@@ -27,7 +27,7 @@ export const ThirdSection = (): JSX.Element => {
       </div>
 
       <div className="main-page__third-section-animal-container">
-        <img src="/images/CatInArm.svg" alt="Description" />
+        <img src="/images/cat-for-mainpage.png" alt="Description" />
       </div>
     </div>
   );

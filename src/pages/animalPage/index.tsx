@@ -1,12 +1,12 @@
-import { SuperAdminPanel } from "@/components/superAdminPanel/SuperAdminPanel";
 import { Footer } from "@/components/footer/Footer";
 import { Header } from "@/components/header/Header";
+import { OneAnimalPage } from "@/components/animalPage";
 
-export const SuperAdminPage = () => {
+export const AnimalPage = () => {
   return (
     <>
       <Header></Header>
-      <SuperAdminPanel />
+      <OneAnimalPage />
       <Footer></Footer>
     </>
   );

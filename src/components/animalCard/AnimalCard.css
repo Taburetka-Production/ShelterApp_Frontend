@@ -53,11 +53,16 @@
   padding-right: 30px;
 }
 
-.animal-species,
-.animal-status {
+.animal-species {
   margin: 2px 0;
   font-size: 1rem;
-  color: var(--grey-text-color);
+  color: var(--blue-text-color);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.animal-description {
+  font-size: 0.9rem;
   line-height: 1.4;
 }
 
@@ -84,9 +89,9 @@
   justify-content: center;
 }
 
-.save-btn {
+.animal-card-save-btn {
   position: absolute;
-  bottom: 120px;
+  bottom: 150px;
   right: 0px;
   z-index: 10;
   background: none;

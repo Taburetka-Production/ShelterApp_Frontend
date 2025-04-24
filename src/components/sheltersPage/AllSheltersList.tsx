@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { fetchShelters } from "@/redux/slices/shelterSlice";
-import { Shelter } from "@/redux/types";
+import { Shelter } from "@/generated-client/api";
 import "@/styles/components/sheltersPage/AllSheltersList.css";
 import { ShelterCard } from "../shelterCard/ShelterCard";
 import { SkeletonCard } from "../skeletonCard/SkeletonCard";
@@ -45,7 +45,7 @@ export const AllSheltersList: React.FC = () => {
                   title={shelter.name}
                   description={shelter.description}
                   rating={shelter.rating}
-                  reviews={shelter.reviewsCount}
+                  reviewsCount={shelter.reviewsCount}
                   className={``}
                   slug={shelter.slug}
                 />

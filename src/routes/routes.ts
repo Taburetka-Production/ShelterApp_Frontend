@@ -10,6 +10,7 @@ export const ROUTES = {
   AUTH_LOGIN: "/auth/login",
   AUTH_REGISTER: "/auth/register",
   SHELTERS_MAP: "/shelters-map",
+  ANIMAL: "/animal",
 };
 
 export const PROFILE_NESTED_ROUTES = {
@@ -20,6 +21,11 @@ export const PROFILE_NESTED_ROUTES = {
 };
 
 export const SHELTER_NESTED_ROUTES = {
+  CREATE: "create",
+  DETAIL: ":slug",
+};
+
+export const ANIMAL_NESTED_ROUTES = {
   CREATE: "create",
   DETAIL: ":slug",
 };

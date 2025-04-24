@@ -1,13 +1,14 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import "./AnimalCard.css";
-import { Button } from "../button/Button";
-import { IoHeart, IoHeartOutline } from "react-icons/io5";
+import { AnimalSummaryDto } from "@/generated-client/api";
 import { ROUTES } from "@/routes/routes";
-import { Animal } from "@/redux/types";
+import React from "react";
+import { IoHeart, IoHeartOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../button/Button";
+import { truncateText } from "../truncateText";
+import "./AnimalCard.css";
 
 export interface AnimalCardProps {
-  animal: Animal;
+  animal: AnimalSummaryDto;
   onSaveToggle?: (slug: string) => void;
 }
 
@@ -15,36 +16,39 @@ export const AnimalCard: React.FC<AnimalCardProps> = ({
   animal,
   onSaveToggle,
 }) => {
-  // const navigate = useNavigate();
-  // const handleViewMore = () => navigate(`${ROUTES.ANIMAL}/${animal.slug}`);
+  const navigate = useNavigate();
+  const handleViewMore = () => navigate(`${ROUTES.ANIMAL}/${animal.slug}`);
 
   const handleSaveClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onSaveToggle?.(animal.slug);
+    onSaveToggle?.(animal.slug!);
   };
 
   return (
-    // <div className="animal-card" onClick={handleViewMore}>
     <div className="animal-card">
       <div className="animal-card-img">
-        <img src={animal.primaryPhotoUrl} alt={animal.name} />
+        <img
+          src={animal.primaryPhotoUrl || ""}
+          alt={animal.name || "shelter"}
+        />
       </div>
       <div className="animal-card-content">
         <h3>{animal.name}</h3>
         <p className="animal-species">{animal.species}</p>
-        <p className="animal-status">Status: {animal.status}</p>
+        <p className="animal-description">
+          {truncateText(animal.description!, 100)}
+        </p>
         <div className="animal-card-actions">
           <Button
             className="animal-view-more-btn"
             onClick={(e) => {
-              // e.stopPropagation();
-              // handleViewMore();
+              handleViewMore();
             }}
           >
-            View more
+            Детальніше
           </Button>
           <button
-            className="save-btn"
+            className="animal-card-save-btn"
             onClick={handleSaveClick}
             aria-label={animal.isSaved ? "Unsave" : "Save"}
           >
